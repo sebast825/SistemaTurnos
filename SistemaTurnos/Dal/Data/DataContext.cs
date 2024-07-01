@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PatronRepositorio_UnitOfWork.Dal.Data.DataSeed;
-using PatronRepositorio_UnitOfWork.Dal.Entities;
+using SistemaTurnos.Dal.Data.DataSeed;
+using SistemaTurnos.Dal.Entities;
 using System.Security;
 
-namespace PatronRepositorio_UnitOfWork.Dal.Data
+namespace SistemaTurnos.Dal.Data
 {
     public class DataContext : DbContext
     {
@@ -22,9 +22,18 @@ namespace PatronRepositorio_UnitOfWork.Dal.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PersonaSeed());
+            modelBuilder.ApplyConfiguration(new SexoSeed());
+            modelBuilder.Entity<Persona>(entity =>
+            {
+                // Mapeo de FechaCreacion a la columna date en SQL Server (no se guarda la hora)
+                entity.Property(e => e.FechaNacimiento)
+                    .HasColumnType("date");
+            });
         }
 
         //Nombre de las  tablas
         public virtual DbSet<Persona> Personas { get; set; }
+        public virtual DbSet<Sexo> Sexos{ get; set; }
+
     }
 }

@@ -1,10 +1,10 @@
-﻿using PatronRepositorio_UnitOfWork.Dal.Repository.Interface;
+﻿using SistemaTurnos.Dal.Repository.Interface;
 
-namespace PatronRepositorio_UnitOfWork.Dal
+namespace SistemaTurnos.Dal
 {
     public interface IUnitOfWork : IDisposable
     {
-        IPersonaRepository PersonaRepository { get; }
+        //IPersonaRepository PersonaRepository { get; }
         Task<int> Save();
 
     }

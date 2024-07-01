@@ -1,4 +1,4 @@
-﻿namespace PatronRepositorio_UnitOfWork.Dal.Repository.Interface
+﻿namespace SistemaTurnos.Dal.Repository.Interface
 {
     public interface IRepository<T> where T : class
     {

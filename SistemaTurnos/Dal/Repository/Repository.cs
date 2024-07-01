@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PatronRepositorio_UnitOfWork.Dal.Data;
-using PatronRepositorio_UnitOfWork.Dal.Repository.Interface;
+using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Repository.Interface;
 
-namespace PatronRepositorio_UnitOfWork.Dal.Repository
+namespace SistemaTurnos.Dal.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

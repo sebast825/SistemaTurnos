@@ -1,16 +1,14 @@
-﻿using PatronRepositorio_UnitOfWork.Dal.Data;
-using PatronRepositorio_UnitOfWork.Dal.Repository.Interface;
+﻿using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Repository.Interface;
 
-namespace PatronRepositorio_UnitOfWork.Dal
+namespace SistemaTurnos.Dal
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IPersonaRepository PersonaRepository { get; }
         private readonly DataContext _context;
-        public UnitOfWork(DataContext context, IPersonaRepository personaRepository)
+        public UnitOfWork(DataContext context)
         {
             _context = context;
-            PersonaRepository = personaRepository;
         }
 
         public async Task<int> Save()

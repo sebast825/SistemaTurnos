@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace PatronRepositorio_UnitOfWork.Dal.Entities
+namespace SistemaTurnos.Dal.Entities
 {
     public class ClaseBase
     {
