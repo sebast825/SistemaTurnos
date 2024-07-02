@@ -6,9 +6,17 @@ namespace SistemaTurnos.Dal
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
-        public UnitOfWork(DataContext context)
+
+        public IPersonaRepository PersonaRepository { get; }
+
+        public IPacienteRepository PacienteRepository { get; }
+
+        public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository)
         {
             _context = context;
+            PacienteRepository = pacienteRepository;
+            PersonaRepository = personaRepository;
+
         }
 
         public async Task<int> Save()

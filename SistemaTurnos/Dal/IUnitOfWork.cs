@@ -4,7 +4,8 @@ namespace SistemaTurnos.Dal
 {
     public interface IUnitOfWork : IDisposable
     {
-        //IPersonaRepository PersonaRepository { get; }
+        IPersonaRepository PersonaRepository { get; }
+        IPacienteRepository PacienteRepository { get; }
         Task<int> Save();
 
     }

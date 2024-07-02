@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Repository;
+using SistemaTurnos.Dal.Repository.Interface;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +21,18 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringEF")));
 
 
+//-------------------------------Inyecciones-----| los repositorios creados
+builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
+builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
+
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
+    x.GetRequiredService<IPacienteRepository>(),
+    x.GetRequiredService<IPersonaRepository>()));
+
+
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
