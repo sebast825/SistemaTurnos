@@ -29,11 +29,27 @@ namespace SistemaTurnos.Dal.Data
                 entity.Property(e => e.FechaNacimiento)
                     .HasColumnType("date");
             });
+            modelBuilder.ApplyConfiguration(new PacienteSeed());
+            modelBuilder.ApplyConfiguration(new MedicoSeed());
+            modelBuilder.ApplyConfiguration(new EspecialidadSeed());
+
+
         }
 
         //Nombre de las  tablas
         public virtual DbSet<Persona> Personas { get; set; }
         public virtual DbSet<Sexo> Sexos{ get; set; }
+        public virtual DbSet<Paciente> Pacientes { get; set; }
+        public virtual DbSet<Especialidad> Especialidades { get; set; }
+
+        /*
+        public virtual DbSet<Administrativo> Administrativos { get; set; }
+        public virtual DbSet<Medico> Medicos { get; set; }
+        public virtual DbSet<Rol> Roles { get; set; }*/
+
+
+
+
 
     }
 }
