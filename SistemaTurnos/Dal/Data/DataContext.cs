@@ -32,6 +32,8 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new PacienteSeed());
             modelBuilder.ApplyConfiguration(new MedicoSeed());
             modelBuilder.ApplyConfiguration(new EspecialidadSeed());
+            modelBuilder.ApplyConfiguration(new AdministrativoSeed());
+            modelBuilder.ApplyConfiguration(new RolSeed());
 
 
         }
@@ -41,11 +43,9 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<Sexo> Sexos{ get; set; }
         public virtual DbSet<Paciente> Pacientes { get; set; }
         public virtual DbSet<Especialidad> Especialidades { get; set; }
+        public virtual DbSet<Rol> Roles { get; set; }
 
-        /*
-        public virtual DbSet<Administrativo> Administrativos { get; set; }
-        public virtual DbSet<Medico> Medicos { get; set; }
-        public virtual DbSet<Rol> Roles { get; set; }*/
+
 
 
 
