@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Service;
+using SistemaTurnos.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddSwaggerGen();
 
 //--------------Services------------------------ | configuracion DB
 builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringEF")));
+
+
+builder.Services.AddScoped<IPacienteService, PacienteService>();
 
 
 var app = builder.Build();
