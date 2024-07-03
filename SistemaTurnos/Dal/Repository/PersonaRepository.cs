@@ -13,8 +13,8 @@ namespace SistemaTurnos.Dal.Repository
         {
             var persona = await _context.Personas
                 .Include(x => x.Sexo)
-                  .Include(x => x.EstadoUsuario)
-                .FirstOrDefaultAsync(x => x.NumeroDocumento == numeroDocumento);
+                .Include(s => s.EstadoUsuario)
+                .FirstOrDefaultAsync(m => m.NumeroDocumento == numeroDocumento);
 
             return persona;
         }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
 using SistemaTurnos.Service;
@@ -24,10 +25,13 @@ builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configu
 //-------------------------------Inyecciones-----| los repositorios creados
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
+builder.Services.AddScoped<IEstadoUsuarioRepository, EstadoUsuarioRepository>();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
-    x.GetRequiredService<IPersonaRepository>()));
+    x.GetRequiredService<IPersonaRepository>(),
+    x.GetRequiredService<IEstadoUsuarioRepository>()
+        ));
 
 
 builder.Services.AddScoped<IPacienteService, PacienteService>();

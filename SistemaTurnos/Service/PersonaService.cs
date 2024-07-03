@@ -2,6 +2,7 @@
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
+using SistemaTurnos.Migrations;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Service
@@ -27,7 +28,7 @@ namespace SistemaTurnos.Service
             if(persona != null) {
 
                 persona.EstadoUsuarioId = estado;
-               
+                persona.EstadoUsuario = await _unitOfWork.EstadoUsuarioRepository.GetId(estado);
                 await _unitOfWork.Save();
                 return _mapper.Map<PersonaResponseDTO>(persona);
             }
@@ -36,10 +37,22 @@ namespace SistemaTurnos.Service
 
             
         }
-
-        public Task<PersonaResponseDTO> ActualizarEstadoEliminar(int dni)
+       
+        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int dni)
         {
-            throw new NotImplementedException();
+            var dniString = dni.ToString();
+
+            var persona = await _unitOfWork.PersonaRepository.GetByDni(dniString);
+            if (persona != null)
+            {
+
+                persona.EstadoUsuarioId = 4;
+                persona.EstadoUsuario = await _unitOfWork.EstadoUsuarioRepository.GetId(4);
+                await _unitOfWork.Save();
+                return _mapper.Map<PersonaResponseDTO>(persona);
+            }
+
+            throw new Exception("no se encontro el usuario");
         }
     }
 }
