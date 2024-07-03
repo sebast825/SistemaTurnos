@@ -30,7 +30,7 @@ namespace SistemaTurnos.Service
                 return _mapper.Map<PacienteResponseDTO>(entity);
        
             }
-            throw new Exception("ya eexite");
+            throw new Exception("ya existe");
 
         }
 

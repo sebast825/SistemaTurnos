@@ -34,6 +34,7 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new EspecialidadSeed());
             modelBuilder.ApplyConfiguration(new AdministrativoSeed());
             modelBuilder.ApplyConfiguration(new RolSeed());
+            modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
 
 
         }
@@ -45,6 +46,7 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<Especialidad> Especialidades { get; set; }
         public virtual DbSet<Rol> Roles { get; set; }
 
+        public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
 
 
 

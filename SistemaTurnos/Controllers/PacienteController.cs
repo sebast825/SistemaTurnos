@@ -26,7 +26,7 @@ namespace SistemaTurnos.Controllers
         public async Task<ActionResult<bool>> Create (PacienteCreateRequestDTO paciente)
         {
             var rsta = await _pacienteService.Create(paciente);
-            Console.WriteLine(rsta);
+          
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }
