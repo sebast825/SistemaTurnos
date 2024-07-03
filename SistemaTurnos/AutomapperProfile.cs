@@ -12,9 +12,14 @@ namespace SistemaTurnos
             CreateMap<Paciente, PacienteResponseDTO>()
                 .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
                     .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+
             CreateMap<PacienteCreateRequestDTO, Paciente>();
-           //.ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => new Sexo { Id = src.SexoId }));
-        
-    }
+            //.ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => new Sexo { Id = src.SexoId }));
+
+            CreateMap<Persona, PersonaResponseDTO>()
+                 .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
+                 .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+
+        }
     }
 }

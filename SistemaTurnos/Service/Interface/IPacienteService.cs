@@ -7,5 +7,6 @@ namespace SistemaTurnos.Service.Interface
     {
         Task<List<PacienteResponseDTO>> GetAll();
         Task<PacienteResponseDTO> Create(PacienteCreateRequestDTO paciente);
+
     }
 }

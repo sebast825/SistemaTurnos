@@ -31,6 +31,8 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequ
 
 
 builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<IPersonaService, PersonaService>();
+
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
