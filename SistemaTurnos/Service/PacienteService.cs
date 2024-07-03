@@ -22,7 +22,7 @@ namespace SistemaTurnos.Service
         public async Task<PacienteResponseDTO> Create(PacienteCreateRequestDTO dto)
         {
             var paciente = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
-            if(paciente == null)
+            if(paciente == null || paciente.EstadoUsuario.Nombre == "Eliminado")
             {
                 var entity = _mapper.Map<Paciente>(dto);
                 await _unitOfWork.PacienteRepository.Add(entity);

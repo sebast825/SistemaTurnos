@@ -13,7 +13,7 @@ namespace SistemaTurnos.Dal.Repository
         }
         public async Task<List<Paciente>> GetAll()
         {
-            var personas = await _context.Personas.Include(v => v.Sexo).ToListAsync();
+            var personas = await _context.Personas.Include(v => v.Sexo).Include(x => x.EstadoUsuario).ToListAsync();
 
             // Convertir List<Persona> a List<Paciente> si es necesario
             // Esto asume que Paciente es una subclase de Persona
