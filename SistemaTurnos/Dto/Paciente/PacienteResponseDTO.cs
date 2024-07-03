@@ -1,17 +1,11 @@
 ﻿using SistemaTurnos.Dal.Entities;
+using SistemaTurnos.Dto.Persona;
 
 namespace SistemaTurnos.Dto.Paciente
 {
-    public class PacienteResponseDTO
+    public class PacienteResponseDTO : PersonaResponseDTO
     {
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public string Telefono { get; set; }
-        public string NumeroDocumento { get; set; }
-        public string Email { get; set; }
-        public int SexoId { get; set; }
-        public string Sexo { get; set; }
+   
         public string TelefonoEmergencia { get; set; }
         public string NombreEmergencia { get; set; }
     }

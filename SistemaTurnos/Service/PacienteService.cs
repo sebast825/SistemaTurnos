@@ -26,7 +26,7 @@ namespace SistemaTurnos.Service
          
             return rsta;
         }
-
+        /*
         private List<PacienteResponseDTO> EntitiesToCamionResponseDtos(IEnumerable<Paciente> pacientes)
         {
             var responseDtos = new List<PacienteResponseDTO>();
@@ -52,6 +52,6 @@ namespace SistemaTurnos.Service
 
             };
             return responseDto;
-        }
+        }*/
     }
 }
