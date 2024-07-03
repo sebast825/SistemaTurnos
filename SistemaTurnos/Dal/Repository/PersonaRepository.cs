@@ -1,13 +1,23 @@
-﻿using SistemaTurnos.Dal.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
 
 namespace SistemaTurnos.Dal.Repository
 {
-    public class PersonaRepository : IPersonaRepository
+    public class PersonaRepository : Repository<Persona>,IPersonaRepository
     {
-        public Task<List<Persona>> GetByID(int id)
+        public PersonaRepository(DataContext context) : base(context) { }
+
+        public async Task<Persona> GetByDni(string numeroDocumento)
         {
-            throw new NotImplementedException();
+            var persona = await _context.Personas
+                .Include(x => x.Sexo)
+                .FirstOrDefaultAsync(x => x.NumeroDocumento == numeroDocumento);
+
+            return persona;
         }
+
+      
     }
 }

@@ -21,5 +21,14 @@ namespace SistemaTurnos.Controllers
             var paciente =  await _pacienteService.GetAll();
             return Ok(paciente);
         }
+
+        [HttpPost("Create")]
+        public async Task<ActionResult<bool>> Create (PacienteCreateRequestDTO paciente)
+        {
+            var rsta = await _pacienteService.Create(paciente);
+            Console.WriteLine(rsta);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+
+        }
     }
 }

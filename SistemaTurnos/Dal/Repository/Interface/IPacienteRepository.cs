@@ -2,7 +2,7 @@
 
 namespace SistemaTurnos.Dal.Repository.Interface
 {
-    public interface IPacienteRepository
+    public interface IPacienteRepository : IRepository<Paciente>
     {
         Task<List<Paciente>> GetAll();
 

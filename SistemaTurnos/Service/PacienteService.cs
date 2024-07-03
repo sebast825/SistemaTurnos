@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
@@ -17,6 +18,22 @@ namespace SistemaTurnos.Service
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+        public async Task<PacienteResponseDTO> Create(PacienteCreateRequestDTO dto)
+        {
+            var paciente = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
+            if(paciente == null)
+            {
+                var entity = _mapper.Map<Paciente>(dto);
+                await _unitOfWork.PacienteRepository.Add(entity);
+                await _unitOfWork.Save();
+                return _mapper.Map<PacienteResponseDTO>(entity);
+       
+            }
+            throw new Exception("ya eexite");
+
+        }
+
         public async Task<List<PacienteResponseDTO>> GetAll()
         {
             await Task.CompletedTask;

@@ -2,8 +2,8 @@
 
 namespace SistemaTurnos.Dal.Repository.Interface
 {
-    public interface IPersonaRepository
+    public interface IPersonaRepository : IRepository<Persona>
     {
-        Task<List<Persona>> GetByID(int id);
+        Task<Persona> GetByDni(string numeroDocumento);
     }
 }
