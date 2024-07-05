@@ -20,8 +20,11 @@ namespace SistemaTurnos
             CreateMap<Persona, PersonaResponseDTO>()
                  .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
                  .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
-            CreateMap<Medico, MedicoResponseDTO>();
-            CreateMap<MedicoCreateRequestDTO, Medico>();
+            CreateMap<Medico, MedicoResponseDTO>()
+             .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
+                .ForMember(dest => dest.Especialidad, opt => opt.MapFrom(src => src.Especialidad.Nombre))
+                   .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+            //CreateMap<MedicoCreateRequestDTO, Medico>();
 
         }
     }

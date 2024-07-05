@@ -20,5 +20,11 @@ namespace SistemaTurnos.Controllers
             var rsta = await _medicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
+        [HttpGet("GetAll")]
+        public async Task<List<MedicoResponseDTO>> GetAll()
+        {
+            var rsta = await _medicoService.GetAll();
+            return rsta;
+        }
     }
 }

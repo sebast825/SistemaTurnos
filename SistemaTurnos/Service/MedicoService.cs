@@ -21,7 +21,7 @@ namespace SistemaTurnos.Service
             Console.WriteLine(dto.NumeroDocumento);
 
             var medico = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
-            Console.WriteLine("!Asd");
+          
             if (medico == null || medico.EstadoUsuario.Nombre == "Eliminado")
             {
                 var entity = _mapper.Map<Medico>(dto);
@@ -34,9 +34,11 @@ namespace SistemaTurnos.Service
 
         }
 
-        public Task<List<MedicoResponseDTO>> GetAll()
+        public async Task<List<MedicoResponseDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var medicos = await _unitOfWork.MedicoRepository.GetAll();
+            var rsta = _mapper.Map<List<MedicoResponseDTO>>(medicos);
+            return rsta;
         }
     }
 }
