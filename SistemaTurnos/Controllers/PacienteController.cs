@@ -23,7 +23,8 @@ namespace SistemaTurnos.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<ActionResult<bool>> Create (PacienteCreateRequestDTO paciente)
+
+        public async Task<ActionResult<bool>> Create ( PacienteCreateRequestDTO paciente)
         {
             var rsta = await _pacienteService.Create(paciente);
           

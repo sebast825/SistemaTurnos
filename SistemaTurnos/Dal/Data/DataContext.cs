@@ -21,6 +21,7 @@ namespace SistemaTurnos.Dal.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new PersonaSeed());
             modelBuilder.ApplyConfiguration(new SexoSeed());
             modelBuilder.Entity<Persona>(entity =>

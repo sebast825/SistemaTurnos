@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaTurnos.Dal.Entities;
+using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 
@@ -19,6 +20,8 @@ namespace SistemaTurnos
             CreateMap<Persona, PersonaResponseDTO>()
                  .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
                  .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+            CreateMap<Medico, MedicoResponseDTO>();
+            CreateMap<MedicoCreateRequestDTO, Medico>();
 
         }
     }

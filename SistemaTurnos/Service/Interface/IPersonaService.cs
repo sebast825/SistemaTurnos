@@ -8,5 +8,7 @@ namespace SistemaTurnos.Service.Interface
     {
         Task<PersonaResponseDTO> ActualizarEstado(int dni,int estado);
         Task<PersonaResponseDTO> ActualizarEstadoEliminar(int dni);
+        Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto);
+
     }
 }

@@ -7,6 +7,7 @@ namespace SistemaTurnos.Dal
         IPersonaRepository PersonaRepository { get; }
         IPacienteRepository PacienteRepository { get; }
         IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
+        IMedicoRepository MedicoRepository { get; }
 
         Task<int> Save();
 

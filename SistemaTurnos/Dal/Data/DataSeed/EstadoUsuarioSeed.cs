@@ -27,6 +27,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                 Nombre = "Suspendido"
 
             },
+            //en caso de modificar el id, hay que modificar tambien los metodos de Persona para camiar estado
             new EstadoUsuario
             {
                 Id = 4,

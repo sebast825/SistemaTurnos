@@ -11,16 +11,18 @@ namespace SistemaTurnos.Dal
 
         public IPacienteRepository PacienteRepository { get; }
         public IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
+        public IMedicoRepository MedicoRepository { get; }
 
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
-            IEstadoUsuarioRepository estadoUsuarioRepository
+            IEstadoUsuarioRepository estadoUsuarioRepository,
+            IMedicoRepository medicoRepository
             )
         {
             _context = context;
             PacienteRepository = pacienteRepository;
             PersonaRepository = personaRepository;
             EstadoUsuarioRepository = estadoUsuarioRepository;
-
+            MedicoRepository = medicoRepository;
         }
 
         public async Task<int> Save()

@@ -26,16 +26,19 @@ builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configu
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IEstadoUsuarioRepository, EstadoUsuarioRepository>();
+builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
     x.GetRequiredService<IPersonaRepository>(),
-    x.GetRequiredService<IEstadoUsuarioRepository>()
+    x.GetRequiredService<IEstadoUsuarioRepository>(),
+    x.GetRequiredService<IMedicoRepository>()
         ));
 
 
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
+builder.Services.AddScoped<IMedicoService, MedicoService>();
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

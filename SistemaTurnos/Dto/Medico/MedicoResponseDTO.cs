@@ -1,0 +1,10 @@
+﻿using SistemaTurnos.Dto.Persona;
+
+namespace SistemaTurnos.Dto.Medico
+{
+    public class MedicoResponseDTO : PersonaResponseDTO
+    {
+        public string NumeroLicencia { get; set; }
+        public string EspecialidadId { get; set; }
+    }
+}

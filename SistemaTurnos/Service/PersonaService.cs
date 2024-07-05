@@ -54,5 +54,16 @@ namespace SistemaTurnos.Service
 
             throw new Exception("no se encontro el usuario");
         }
+
+        public Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Nombre))
+                throw new ArgumentException("El nombre del disco es obligatorio.", nameof(dto.Nombre));
+
+            if (string.IsNullOrWhiteSpace(dto.Apellido))
+                throw new ArgumentException("El apellido es obligatorio.", nameof(dto.Apellido));
+
+            throw new NotImplementedException();
+        }
     }
 }
