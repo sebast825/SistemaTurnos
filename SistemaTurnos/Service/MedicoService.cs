@@ -34,6 +34,13 @@ namespace SistemaTurnos.Service
 
         }
 
+        public async Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id)
+        {
+            var medicos = await _unitOfWork.MedicoRepository.FilterByEspecialidad(id);
+            var rsta = _mapper.Map<List<MedicoResponseDTO>>(medicos);
+            return rsta;
+        }
+
         public async Task<List<MedicoResponseDTO>> GetAll()
         {
             var medicos = await _unitOfWork.MedicoRepository.GetAll();

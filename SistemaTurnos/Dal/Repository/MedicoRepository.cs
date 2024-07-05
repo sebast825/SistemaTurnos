@@ -12,7 +12,19 @@ namespace SistemaTurnos.Dal.Repository
 
         }
 
-        async Task<List<Medico>> IMedicoRepository.GetAll()
+        public async Task<List<Medico>> FilterByEspecialidad(int id)
+        {
+            var medicos = await _context.Personas
+                                .OfType<Medico>()
+                                  .Include(v => v.Sexo)
+                                 .Include(x => x.EstadoUsuario)
+                                .Where(m => id == m.EspecialidadId)
+                                .Include(x => x.Especialidad)
+                                .ToListAsync();
+            return medicos;
+        }
+
+        public async Task<List<Medico>> GetAll()
         {
             //se filtra aca medico si no no puedo encontrarEspecialdiad
             var medicos = await _context.Personas

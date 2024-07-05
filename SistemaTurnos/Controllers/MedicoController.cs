@@ -26,5 +26,11 @@ namespace SistemaTurnos.Controllers
             var rsta = await _medicoService.GetAll();
             return rsta;
         }
+        [HttpGet("FilterByEspecialidad")]
+        public async Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id)
+        {
+            var rsta = await _medicoService.FilterByEspecialidad(id);
+            return rsta;
+        }
     }
 }
