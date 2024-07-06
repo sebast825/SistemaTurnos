@@ -8,18 +8,21 @@ namespace SistemaTurnos.Dal.Repository
 {
     public class PacienteRepository : Repository<Paciente> ,IPacienteRepository
     {
+
         public PacienteRepository(DataContext context) : base(context)
         {
+            
         }
         public async Task<List<Paciente>> GetAll()
         {
-            var personas = await _context.Personas.Include(v => v.Sexo).Include(x => x.EstadoUsuario).Where(s => s.EstadoUsuarioId != 4)
-.ToListAsync();
+            var pacientes = await _context.Personas
+                   .OfType<Paciente>()
+                .Include(v => v.Sexo)
+                .Include(x => x.EstadoUsuario)
+                .Where(s => s.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                .ToListAsync();
 
-            // Convertir List<Persona> a List<Paciente> si es necesario
-            // Esto asume que Paciente es una subclase de Persona
-            // Si quieres devolver específicamente Pacientes, puedes filtrar aquí
-            var pacientes = personas.OfType<Paciente>().ToList();
+      
 
             return pacientes;
 

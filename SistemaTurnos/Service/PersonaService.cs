@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Configuration.Conventions;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
@@ -15,16 +16,16 @@ namespace SistemaTurnos.Service
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-        public async Task<PersonaResponseDTO> ActualizarEstado(int dni, int estado)
+        public async Task<PersonaResponseDTO> ActualizarEstado(int id, int estado)
         {
 
             if(estado  == 4) {
                 throw new Exception("no puedes eliminar un usuario");
 
             }
-            var dniString = dni.ToString();
+          
 
-            var persona = await _unitOfWork.PersonaRepository.GetByDni(dniString);
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
             if(persona != null) {
 
                 persona.EstadoUsuarioId = estado;
@@ -38,11 +39,10 @@ namespace SistemaTurnos.Service
             
         }
        
-        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int dni)
+        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
         {
-            var dniString = dni.ToString();
 
-            var persona = await _unitOfWork.PersonaRepository.GetByDni(dniString);
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
             if (persona != null)
             {
 

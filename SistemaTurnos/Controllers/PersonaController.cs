@@ -15,18 +15,18 @@ namespace SistemaTurnos.Controllers
 
         [HttpPatch("ActualizarEstado")]
 
-        public async Task<PersonaResponseDTO> ActualizarEstado(int dni, int estado)
+        public async Task<PersonaResponseDTO> ActualizarEstado(int id, int estado)
         {
-            var rsta = await _personaService.ActualizarEstado(dni, estado);
+            var rsta = await _personaService.ActualizarEstado(id, estado);
 
             return rsta;
         }
 
         [HttpPatch("ActualizarEstadoEliminar")]
 
-        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int dni)
+        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
         {
-            var rsta = await _personaService.ActualizarEstadoEliminar(dni);
+            var rsta = await _personaService.ActualizarEstadoEliminar(id);
             return rsta;
         }
         [HttpPatch("ActualizarPersona")]

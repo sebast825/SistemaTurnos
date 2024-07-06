@@ -14,11 +14,21 @@ namespace SistemaTurnos.Dal.Repository
             var persona = await _context.Personas
                 .Include(x => x.Sexo)
                 .Include(s => s.EstadoUsuario)
-                .FirstOrDefaultAsync(m => m.NumeroDocumento == numeroDocumento);
+                .Where(m => m.NumeroDocumento == numeroDocumento && m.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                .FirstOrDefaultAsync();
 
             return persona;
         }
 
-      
+        public async Task<Persona> GetId(int id)
+        {
+            var persona = await _context.Personas
+                        .Include(x => x.Sexo)
+                        .Include(s => s.EstadoUsuario)
+                        .Where(m => m.Id == id && m.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                        .FirstOrDefaultAsync();
+
+            return persona;
+        }
     }
 }

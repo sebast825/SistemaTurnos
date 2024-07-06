@@ -7,6 +7,7 @@ namespace SistemaTurnos.Dal.Repository
 {
     public class MedicoRepository : Repository<Medico>, IMedicoRepository
     {
+        private readonly int _idMedicosActivos = 1;
         public MedicoRepository(DataContext context) : base(context)
         {
 
@@ -14,11 +15,14 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<List<Medico>> FilterByEspecialidad(int id)
         {
+            var asd = await GetAll();
+            var filtrados = asd.Where(j => j.EspecialidadId == id);
+
             var medicos = await _context.Personas
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)
                                  .Include(x => x.EstadoUsuario)
-                                .Where(m => id == m.EspecialidadId && m.EstadoUsuarioId == 1)
+                                .Where(m => id == m.EspecialidadId && m.EstadoUsuarioId == _idMedicosActivos)
                                 .Include(x => x.Especialidad)
                                 .ToListAsync();
             return medicos;
@@ -32,7 +36,7 @@ namespace SistemaTurnos.Dal.Repository
                     .Include(v => v.Sexo)
                     .Include(x => x.EstadoUsuario)
                     .Include(x => x.Especialidad)
-                    .Where(s => s.EstadoUsuarioId == 1)
+                    .Where(s => s.EstadoUsuarioId == _idMedicosActivos)
                     .ToListAsync();
 
             // Convertir List<Persona> a List<medico> si es necesario

@@ -6,7 +6,6 @@ namespace SistemaTurnos.Dal
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _context;
-
         public IPersonaRepository PersonaRepository { get; }
 
         public IPacienteRepository PacienteRepository { get; }

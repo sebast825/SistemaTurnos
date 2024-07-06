@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Repository.Interface;
+using System.Linq.Expressions;
 
 namespace SistemaTurnos.Dal.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DataContext _context;
+        public readonly int _idEstadoUsuarioEliminado = 4;
+
         public Repository(DataContext context)
         {
             _context = context;
