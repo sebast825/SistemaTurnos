@@ -18,7 +18,7 @@ namespace SistemaTurnos.Dal.Repository
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)
                                  .Include(x => x.EstadoUsuario)
-                                .Where(m => id == m.EspecialidadId)
+                                .Where(m => id == m.EspecialidadId && m.EstadoUsuarioId == 1)
                                 .Include(x => x.Especialidad)
                                 .ToListAsync();
             return medicos;
@@ -32,6 +32,7 @@ namespace SistemaTurnos.Dal.Repository
                     .Include(v => v.Sexo)
                     .Include(x => x.EstadoUsuario)
                     .Include(x => x.Especialidad)
+                    .Where(s => s.EstadoUsuarioId == 1)
                     .ToListAsync();
 
             // Convertir List<Persona> a List<medico> si es necesario
