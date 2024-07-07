@@ -36,8 +36,21 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new AdministrativoSeed());
             modelBuilder.ApplyConfiguration(new RolSeed());
             modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
+            modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
+            modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
+            modelBuilder.Entity<DisponibilidadMedico>()
+       .Property(p => p.StartTime)
+       .HasConversion(
+           v => v.ToTimeSpan(),
+           v => new TimeOnly(v.Ticks)
+       );
 
-
+            modelBuilder.Entity<DisponibilidadMedico>()
+                .Property(p => p.EndTime)
+                .HasConversion(
+                    v => v.ToTimeSpan(),
+                    v => new TimeOnly(v.Ticks)
+                );
         }
 
         //Nombre de las  tablas
@@ -46,9 +59,9 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<Paciente> Pacientes { get; set; }
         public virtual DbSet<Especialidad> Especialidades { get; set; }
         public virtual DbSet<Rol> Roles { get; set; }
-
         public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
-
+        public virtual DbSet<DiaSemana> DiasSemana { get; set; }
+        public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos{ get; set; }
 
 
 
