@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
-using SistemaTurnos.Migrations;
 using SistemaTurnos.Service.Interface;
 using System.Security.Cryptography;
 

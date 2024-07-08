@@ -12,8 +12,8 @@ using SistemaTurnos.Dal.Data;
 namespace SistemaTurnos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240702160418_Administrativo")]
-    partial class Administrativo
+    [Migration("20240708163944_disponibilidadMedicoId")]
+    partial class disponibilidadMedicoId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,131 @@ namespace SistemaTurnos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.DiaSemana", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DiasSemana");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Lunes"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Martes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Miercoles"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Jueves"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nombre = "Viernes"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nombre = "Sabado"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Nombre = "Domingo"
+                        });
+                });
+
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.DisponibilidadMedico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DiaSemanaId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("MedicoId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiaSemanaId");
+
+                    b.HasIndex("MedicoId");
+
+                    b.ToTable("DisponibilidadMedicos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DiaSemanaId = 1,
+                            EndTime = new TimeSpan(0, 12, 0, 0, 0),
+                            MedicoId = 5,
+                            StartTime = new TimeSpan(0, 9, 0, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DiaSemanaId = 3,
+                            EndTime = new TimeSpan(0, 16, 0, 0, 0),
+                            MedicoId = 5,
+                            StartTime = new TimeSpan(0, 13, 0, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DiaSemanaId = 2,
+                            EndTime = new TimeSpan(0, 14, 0, 0, 0),
+                            MedicoId = 6,
+                            StartTime = new TimeSpan(0, 10, 0, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DiaSemanaId = 4,
+                            EndTime = new TimeSpan(0, 12, 0, 0, 0),
+                            MedicoId = 7,
+                            StartTime = new TimeSpan(0, 8, 0, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DiaSemanaId = 5,
+                            EndTime = new TimeSpan(0, 18, 0, 0, 0),
+                            MedicoId = 7,
+                            StartTime = new TimeSpan(0, 14, 0, 0, 0)
+                        });
+                });
 
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Especialidad", b =>
                 {
@@ -66,6 +191,45 @@ namespace SistemaTurnos.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.EstadoUsuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EstadoUsuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Activo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Inactivo"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Suspendido"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Eliminado"
+                        });
+                });
+
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Persona", b =>
                 {
                     b.Property<int>("Id")
@@ -78,13 +242,12 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstadoUsuarioId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
@@ -107,13 +270,18 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EstadoUsuarioId");
 
                     b.HasIndex("SexoId");
 
                     b.ToTable("Personas");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Persona");
+                    b.HasDiscriminator<int>("Type").HasValue(0);
 
                     b.UseTphMappingStrategy();
 
@@ -123,7 +291,8 @@ namespace SistemaTurnos.Migrations
                             Id = 1,
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 453, DateTimeKind.Local).AddTicks(7797),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9908),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "12345678",
@@ -135,7 +304,8 @@ namespace SistemaTurnos.Migrations
                             Id = 2,
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 453, DateTimeKind.Local).AddTicks(7813),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9923),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "87654321",
@@ -216,7 +386,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.HasDiscriminator().HasValue("Administrativo");
+                    b.HasDiscriminator().HasValue(3);
 
                     b.HasData(
                         new
@@ -224,7 +394,8 @@ namespace SistemaTurnos.Migrations
                             Id = 8,
                             Apellido = "Martínez",
                             Email = "laura.martinez@ejemplo.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 459, DateTimeKind.Local).AddTicks(7498),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2384),
                             FechaNacimiento = new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Laura",
                             NumeroDocumento = "DNI65432100",
@@ -237,7 +408,8 @@ namespace SistemaTurnos.Migrations
                             Id = 9,
                             Apellido = "Sánchez",
                             Email = "pedro.sanchez@ejemplo.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 459, DateTimeKind.Local).AddTicks(7513),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2387),
                             FechaNacimiento = new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Pedro",
                             NumeroDocumento = "DNI12345001",
@@ -260,7 +432,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("EspecialidadId");
 
-                    b.HasDiscriminator().HasValue("Medico");
+                    b.HasDiscriminator().HasValue(1);
 
                     b.HasData(
                         new
@@ -268,7 +440,8 @@ namespace SistemaTurnos.Migrations
                             Id = 5,
                             Apellido = "Pérez",
                             Email = "juan.perez@ejemplo.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 457, DateTimeKind.Local).AddTicks(776),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1796),
                             FechaNacimiento = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "DNI12345678",
@@ -282,7 +455,8 @@ namespace SistemaTurnos.Migrations
                             Id = 6,
                             Apellido = "González",
                             Email = "maria.gonzalez@ejemplo.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 457, DateTimeKind.Local).AddTicks(781),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1799),
                             FechaNacimiento = new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "DNI87654321",
@@ -296,7 +470,8 @@ namespace SistemaTurnos.Migrations
                             Id = 7,
                             Apellido = "López",
                             Email = "carlos.lopez@ejemplo.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 457, DateTimeKind.Local).AddTicks(786),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1801),
                             FechaNacimiento = new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Carlos",
                             NumeroDocumento = "DNI23456789",
@@ -319,7 +494,7 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Paciente");
+                    b.HasDiscriminator().HasValue(2);
 
                     b.HasData(
                         new
@@ -327,7 +502,8 @@ namespace SistemaTurnos.Migrations
                             Id = 3,
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 454, DateTimeKind.Local).AddTicks(25),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1507),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "45345678",
@@ -341,7 +517,8 @@ namespace SistemaTurnos.Migrations
                             Id = 4,
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
-                            FechaCreacion = new DateTime(2024, 7, 2, 13, 4, 18, 454, DateTimeKind.Local).AddTicks(44),
+                            EstadoUsuarioId = 1,
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1513),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "12345678",
@@ -352,13 +529,40 @@ namespace SistemaTurnos.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.DisponibilidadMedico", b =>
+                {
+                    b.HasOne("SistemaTurnos.Dal.Entities.DiaSemana", "DiaSemana")
+                        .WithMany()
+                        .HasForeignKey("DiaSemanaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaTurnos.Dal.Entities.Medico", "Medico")
+                        .WithMany()
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DiaSemana");
+
+                    b.Navigation("Medico");
+                });
+
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Persona", b =>
                 {
+                    b.HasOne("SistemaTurnos.Dal.Entities.EstadoUsuario", "EstadoUsuario")
+                        .WithMany()
+                        .HasForeignKey("EstadoUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SistemaTurnos.Dal.Entities.Sexo", "Sexo")
                         .WithMany()
                         .HasForeignKey("SexoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("EstadoUsuario");
 
                     b.Navigation("Sexo");
                 });

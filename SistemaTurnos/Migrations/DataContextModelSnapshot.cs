@@ -110,7 +110,7 @@ namespace SistemaTurnos.Migrations
                             Id = 1,
                             DiaSemanaId = 1,
                             EndTime = new TimeSpan(0, 12, 0, 0, 0),
-                            MedicoId = 1,
+                            MedicoId = 5,
                             StartTime = new TimeSpan(0, 9, 0, 0, 0)
                         },
                         new
@@ -118,7 +118,7 @@ namespace SistemaTurnos.Migrations
                             Id = 2,
                             DiaSemanaId = 3,
                             EndTime = new TimeSpan(0, 16, 0, 0, 0),
-                            MedicoId = 1,
+                            MedicoId = 5,
                             StartTime = new TimeSpan(0, 13, 0, 0, 0)
                         },
                         new
@@ -126,7 +126,7 @@ namespace SistemaTurnos.Migrations
                             Id = 3,
                             DiaSemanaId = 2,
                             EndTime = new TimeSpan(0, 14, 0, 0, 0),
-                            MedicoId = 2,
+                            MedicoId = 6,
                             StartTime = new TimeSpan(0, 10, 0, 0, 0)
                         },
                         new
@@ -134,7 +134,7 @@ namespace SistemaTurnos.Migrations
                             Id = 4,
                             DiaSemanaId = 4,
                             EndTime = new TimeSpan(0, 12, 0, 0, 0),
-                            MedicoId = 3,
+                            MedicoId = 7,
                             StartTime = new TimeSpan(0, 8, 0, 0, 0)
                         },
                         new
@@ -142,7 +142,7 @@ namespace SistemaTurnos.Migrations
                             Id = 5,
                             DiaSemanaId = 5,
                             EndTime = new TimeSpan(0, 18, 0, 0, 0),
-                            MedicoId = 3,
+                            MedicoId = 7,
                             StartTime = new TimeSpan(0, 14, 0, 0, 0)
                         });
                 });
@@ -239,10 +239,6 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -271,6 +267,9 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EstadoUsuarioId");
@@ -279,7 +278,7 @@ namespace SistemaTurnos.Migrations
 
                     b.ToTable("Personas");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Persona");
+                    b.HasDiscriminator<int>("Type").HasValue(0);
 
                     b.UseTphMappingStrategy();
 
@@ -290,7 +289,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(1094),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9908),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "12345678",
@@ -303,7 +302,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(1111),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9923),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "87654321",
@@ -384,7 +383,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.HasDiscriminator().HasValue("Administrativo");
+                    b.HasDiscriminator().HasValue(3);
 
                     b.HasData(
                         new
@@ -393,7 +392,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Martínez",
                             Email = "laura.martinez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 987, DateTimeKind.Local).AddTicks(9150),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2384),
                             FechaNacimiento = new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Laura",
                             NumeroDocumento = "DNI65432100",
@@ -407,7 +406,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Sánchez",
                             Email = "pedro.sanchez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 987, DateTimeKind.Local).AddTicks(9161),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2387),
                             FechaNacimiento = new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Pedro",
                             NumeroDocumento = "DNI12345001",
@@ -430,7 +429,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("EspecialidadId");
 
-                    b.HasDiscriminator().HasValue("Medico");
+                    b.HasDiscriminator().HasValue(1);
 
                     b.HasData(
                         new
@@ -439,7 +438,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(3318),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1796),
                             FechaNacimiento = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "DNI12345678",
@@ -454,7 +453,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "González",
                             Email = "maria.gonzalez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(3368),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1799),
                             FechaNacimiento = new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "DNI87654321",
@@ -469,7 +468,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "López",
                             Email = "carlos.lopez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(3372),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1801),
                             FechaNacimiento = new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Carlos",
                             NumeroDocumento = "DNI23456789",
@@ -492,7 +491,7 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Paciente");
+                    b.HasDiscriminator().HasValue(2);
 
                     b.HasData(
                         new
@@ -501,7 +500,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(3028),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1507),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "45345678",
@@ -516,7 +515,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 7, 20, 33, 16, 985, DateTimeKind.Local).AddTicks(3037),
+                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1513),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "12345678",

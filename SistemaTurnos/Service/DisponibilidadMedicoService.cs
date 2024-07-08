@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using SistemaTurnos.Dal;
+using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Service.Interface;
 
@@ -27,7 +28,10 @@ namespace SistemaTurnos.Service
 
         public async Task<List<DisponibilidadMedicoResponseDTO>> GetAll()
         {
+          
             var asd = await _unitOfWork.DisponibilidadMedicoRepository.GetAll();
+
+           
             var map = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(asd);
             return map;
 

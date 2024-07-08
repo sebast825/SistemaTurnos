@@ -3,7 +3,6 @@ using AutoMapper.Configuration.Conventions;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
-using SistemaTurnos.Migrations;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Service

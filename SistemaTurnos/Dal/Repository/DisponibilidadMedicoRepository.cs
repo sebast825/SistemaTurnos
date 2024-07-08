@@ -2,6 +2,7 @@
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
+using System.Linq;
 
 namespace SistemaTurnos.Dal.Repository
 {
@@ -20,16 +21,18 @@ namespace SistemaTurnos.Dal.Repository
         {
             throw new NotImplementedException();
         }
-        public async Task<List<DisponibilidadMedico>> GetAll()
+        public  async Task<List<DisponibilidadMedico>> GetAll()
         {
-            //se filtra aca medico si no no puedo encontrarEspecialdiad
-            var disponibilidadMedicos = await _context.DisponibilidadMedicos
-                 .clude(v => v.Medico)
-                    .Include(x => x.DiaSemana)
-                    //.Where(s => s.MedicoId == _idMedicosActivos)
-                    .ToListAsync();
 
- 
+          
+            var disponibilidadMedicos = await _context.DisponibilidadMedicos
+                     .Include(s => s.Medico)
+
+                    .Include(x => x.DiaSemana)
+                    .Where(s => s.Medico.EstadoUsuarioId == _idMedicosActivos)
+                    .ToListAsync();
+            Console.WriteLine("lp");
+           
 
             return disponibilidadMedicos;
         }

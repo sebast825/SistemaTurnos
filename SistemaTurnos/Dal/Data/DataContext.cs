@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Entities;
 using System.Security;
@@ -31,11 +32,7 @@ namespace SistemaTurnos.Dal.Data
                     .HasColumnType("date");
             });
             // Configuración de la herencia con discriminador
-            modelBuilder.Entity<Persona>()
-                .HasDiscriminator<string>("Discriminator")
-                .HasValue<Persona>("Persona")
-                .HasValue<Medico>("Medico")
-                       .HasValue<Paciente>("Paciente");
+         
 
             modelBuilder.ApplyConfiguration(new PacienteSeed());
             modelBuilder.ApplyConfiguration(new MedicoSeed());
@@ -44,7 +41,6 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new RolSeed());
             modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
             modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
-            modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
 
             //convierte el tipo de dato TimeOnly
             modelBuilder.Entity<DisponibilidadMedico>()
@@ -60,6 +56,17 @@ namespace SistemaTurnos.Dal.Data
                     v => v.ToTimeSpan(),
                     v => new TimeOnly(v.Ticks)
                 );
+
+            modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
+
+            modelBuilder.Entity<Persona>()
+             .HasDiscriminator<int>("Type")
+             .HasValue<Persona>(0)
+             .HasValue<Medico>(1)
+                          .HasValue<Paciente>(2)
+                                      .HasValue<Administrativo>(3);
+
+
         }
 
         //Nombre de las  tablas
@@ -71,6 +78,8 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
         public virtual DbSet<DiaSemana> DiasSemana { get; set; }
         public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos{ get; set; }
+        public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Administrativo> Administrativos{ get; set; }
 
 
 
