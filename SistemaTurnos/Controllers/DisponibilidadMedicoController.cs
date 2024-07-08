@@ -22,9 +22,14 @@ namespace SistemaTurnos.Controllers
         [HttpGet("GetAll")]
         public async Task<List<DisponibilidadMedicoResponseDTO>> GetAll()
         {
-            Console.WriteLine("estaoas??");
-            var asd = await _disponibilidadMedicoService.GetAll();
-            return asd;
+            var rsta = await _disponibilidadMedicoService.GetAll();
+            return rsta;
+        }
+        [HttpGet("GetByMedico")]
+        public async Task<List<DisponibilidadMedicoResponseDTO>> GetByMedico(int idMedico)
+        {
+            var rsta = await _disponibilidadMedicoService.GetByMedico(idMedico);
+            return rsta;
         }
 
     }

@@ -17,9 +17,17 @@ namespace SistemaTurnos.Dal.Repository
             throw new NotImplementedException();
         }
 
-        public Task<List<DisponibilidadMedico>> GetByMedico(int idMedico)
+        public async Task<List<DisponibilidadMedico>> GetByMedico(int idMedico)
         {
-            throw new NotImplementedException();
+            var disponibilidadMedic = await _context.DisponibilidadMedicos
+                                .Include(s => s.Medico)
+
+                               .Include(x => x.DiaSemana)
+                               .Where(s => s.MedicoId == idMedico && s.Medico.EstadoUsuarioId == _idMedicosActivos)
+                               .ToListAsync();
+
+
+            return disponibilidadMedic;
         }
         public  async Task<List<DisponibilidadMedico>> GetAll()
         {
@@ -31,7 +39,6 @@ namespace SistemaTurnos.Dal.Repository
                     .Include(x => x.DiaSemana)
                     .Where(s => s.Medico.EstadoUsuarioId == _idMedicosActivos)
                     .ToListAsync();
-            Console.WriteLine("lp");
            
 
             return disponibilidadMedicos;

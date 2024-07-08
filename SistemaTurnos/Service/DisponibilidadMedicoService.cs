@@ -29,17 +29,22 @@ namespace SistemaTurnos.Service
         public async Task<List<DisponibilidadMedicoResponseDTO>> GetAll()
         {
           
-            var asd = await _unitOfWork.DisponibilidadMedicoRepository.GetAll();
+            var medicos = await _unitOfWork.DisponibilidadMedicoRepository.GetAll();
 
            
-            var map = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(asd);
-            return map;
+            var rsta = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(medicos);
+            return rsta;
 
         }
 
-        public Task<List<DisponibilidadMedicoResponseDTO>> GetByMedico(int idMedico)
+        public async Task<List<DisponibilidadMedicoResponseDTO>> GetByMedico(int idMedico)
         {
-            throw new NotImplementedException();
+
+            var medico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(idMedico);
+
+
+            var rsta = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(medico);
+            return rsta;
         }
        
 
