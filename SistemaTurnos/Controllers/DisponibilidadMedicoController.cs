@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Medico;
+using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
@@ -38,6 +39,12 @@ namespace SistemaTurnos.Controllers
             var rsta = await _disponibilidadMedicoService.FilterByEspecialidad(idEspecialidad);
             return rsta;
         }
-
+     
+        [HttpPost("Create")]
+        public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
+        {
+            var rsta = await _disponibilidadMedicoService.Create(dto);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+        }
     }
 }

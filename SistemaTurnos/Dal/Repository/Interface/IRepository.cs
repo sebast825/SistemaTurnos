@@ -9,5 +9,6 @@
         Task Add(T entity);
         void Delete(T entity);
         void Edit(T entity);
+        int GetIdMedicosActivos();
     }
 }

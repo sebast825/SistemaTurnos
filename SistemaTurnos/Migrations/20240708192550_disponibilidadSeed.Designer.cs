@@ -12,8 +12,8 @@ using SistemaTurnos.Dal.Data;
 namespace SistemaTurnos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240708163944_disponibilidadMedicoId")]
-    partial class disponibilidadMedicoId
+    [Migration("20240708192550_disponibilidadSeed")]
+    partial class disponibilidadSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -242,6 +242,10 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,9 +274,6 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EstadoUsuarioId");
@@ -281,7 +282,7 @@ namespace SistemaTurnos.Migrations
 
                     b.ToTable("Personas");
 
-                    b.HasDiscriminator<int>("Type").HasValue(0);
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Persona");
 
                     b.UseTphMappingStrategy();
 
@@ -292,7 +293,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9908),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(2100),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "12345678",
@@ -305,7 +306,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 881, DateTimeKind.Local).AddTicks(9923),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(2123),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "87654321",
@@ -386,7 +387,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("RolId");
 
-                    b.HasDiscriminator().HasValue(3);
+                    b.HasDiscriminator().HasValue("Administrativo");
 
                     b.HasData(
                         new
@@ -395,7 +396,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Martínez",
                             Email = "laura.martinez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2384),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(5305),
                             FechaNacimiento = new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Laura",
                             NumeroDocumento = "DNI65432100",
@@ -409,7 +410,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Sánchez",
                             Email = "pedro.sanchez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(2387),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(5308),
                             FechaNacimiento = new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Pedro",
                             NumeroDocumento = "DNI12345001",
@@ -432,7 +433,7 @@ namespace SistemaTurnos.Migrations
 
                     b.HasIndex("EspecialidadId");
 
-                    b.HasDiscriminator().HasValue(1);
+                    b.HasDiscriminator().HasValue("Medico");
 
                     b.HasData(
                         new
@@ -441,7 +442,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1796),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4757),
                             FechaNacimiento = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "DNI12345678",
@@ -456,7 +457,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "González",
                             Email = "maria.gonzalez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1799),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4759),
                             FechaNacimiento = new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "DNI87654321",
@@ -471,7 +472,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "López",
                             Email = "carlos.lopez@ejemplo.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1801),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4762),
                             FechaNacimiento = new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Carlos",
                             NumeroDocumento = "DNI23456789",
@@ -494,7 +495,7 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue(2);
+                    b.HasDiscriminator().HasValue("Paciente");
 
                     b.HasData(
                         new
@@ -503,7 +504,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Pérez",
                             Email = "juan.perez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1507),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4421),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "45345678",
@@ -518,7 +519,7 @@ namespace SistemaTurnos.Migrations
                             Apellido = "Gómez",
                             Email = "maria.gomez@example.com",
                             EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 13, 39, 43, 882, DateTimeKind.Local).AddTicks(1513),
+                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4427),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "12345678",

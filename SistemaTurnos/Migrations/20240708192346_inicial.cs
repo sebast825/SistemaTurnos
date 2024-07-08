@@ -94,7 +94,7 @@ namespace SistemaTurnos.Migrations
                     SexoId = table.Column<int>(type: "int", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EstadoUsuarioId = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RolId = table.Column<int>(type: "int", nullable: true),
                     NumeroLicencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EspecialidadId = table.Column<int>(type: "int", nullable: true),
@@ -214,51 +214,39 @@ namespace SistemaTurnos.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personas",
-                columns: new[] { "Id", "Apellido", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "SexoId", "Telefono", "Type" },
+                columns: new[] { "Id", "Apellido", "Discriminator", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 1, "Pérez", "juan.perez@example.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 75, DateTimeKind.Local).AddTicks(9173), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "12345678", 1, "123456789", 0 },
-                    { 2, "Gómez", "maria.gomez@example.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 75, DateTimeKind.Local).AddTicks(9189), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "87654321", 2, "987654321", 0 }
+                    { 1, "Pérez", "Persona", "juan.perez@example.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(3913), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "12345678", 1, "123456789" },
+                    { 2, "Gómez", "Persona", "maria.gomez@example.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(3960), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "87654321", 2, "987654321" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Personas",
-                columns: new[] { "Id", "Apellido", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NombreEmergencia", "NumeroDocumento", "SexoId", "Telefono", "TelefonoEmergencia", "Type" },
+                columns: new[] { "Id", "Apellido", "Discriminator", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NombreEmergencia", "NumeroDocumento", "SexoId", "Telefono", "TelefonoEmergencia" },
                 values: new object[,]
                 {
-                    { 3, "Pérez", "juan.perez@example.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(1369), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "Ana Pérez", "45345678", 1, "123452389", "1122334455", 2 },
-                    { 4, "Gómez", "maria.gomez@example.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(1378), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "Carlos Gómez", "12345678", 2, "123456756", "2233445566", 2 }
+                    { 3, "Pérez", "Paciente", "juan.perez@example.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(7879), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "Ana Pérez", "45345678", 1, "123452389", "1122334455" },
+                    { 4, "Gómez", "Paciente", "maria.gomez@example.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(7889), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "Carlos Gómez", "12345678", 2, "123456756", "2233445566" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Personas",
-                columns: new[] { "Id", "Apellido", "Email", "EspecialidadId", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "NumeroLicencia", "SexoId", "Telefono", "Type" },
+                columns: new[] { "Id", "Apellido", "Discriminator", "Email", "EspecialidadId", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "NumeroLicencia", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 5, "Pérez", "juan.perez@ejemplo.com", 1, 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(1724), new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "DNI12345678", "LIC1234", 1, "123456789", 1 },
-                    { 6, "González", "maria.gonzalez@ejemplo.com", 2, 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(1728), new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "DNI87654321", "LIC5678", 2, "987654321", 1 },
-                    { 7, "López", "carlos.lopez@ejemplo.com", 3, 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(1731), new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "DNI23456789", "LIC9101", 1, "555123456", 1 }
+                    { 5, "Pérez", "Medico", "juan.perez@ejemplo.com", 1, 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(8207), new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "DNI12345678", "LIC1234", 1, "123456789" },
+                    { 6, "González", "Medico", "maria.gonzalez@ejemplo.com", 2, 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(8210), new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "DNI87654321", "LIC5678", 2, "987654321" },
+                    { 7, "López", "Medico", "carlos.lopez@ejemplo.com", 3, 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(8213), new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "DNI23456789", "LIC9101", 1, "555123456" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Personas",
-                columns: new[] { "Id", "Apellido", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "RolId", "SexoId", "Telefono", "Type" },
+                columns: new[] { "Id", "Apellido", "Discriminator", "Email", "EstadoUsuarioId", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "RolId", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 8, "Martínez", "laura.martinez@ejemplo.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(2411), new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Laura", "DNI65432100", 1, 2, "111222333", 3 },
-                    { 9, "Sánchez", "pedro.sanchez@ejemplo.com", 1, new DateTime(2024, 7, 8, 13, 29, 37, 76, DateTimeKind.Local).AddTicks(2416), new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pedro", "DNI12345001", 2, 1, "444555666", 3 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "DisponibilidadMedicos",
-                columns: new[] { "Id", "DiaSemanaId", "EndTime", "MedicoId", "StartTime" },
-                values: new object[,]
-                {
-                    { 1, 1, new TimeSpan(0, 12, 0, 0, 0), 1, new TimeSpan(0, 9, 0, 0, 0) },
-                    { 2, 3, new TimeSpan(0, 16, 0, 0, 0), 1, new TimeSpan(0, 13, 0, 0, 0) },
-                    { 3, 2, new TimeSpan(0, 14, 0, 0, 0), 2, new TimeSpan(0, 10, 0, 0, 0) },
-                    { 4, 4, new TimeSpan(0, 12, 0, 0, 0), 3, new TimeSpan(0, 8, 0, 0, 0) },
-                    { 5, 5, new TimeSpan(0, 18, 0, 0, 0), 3, new TimeSpan(0, 14, 0, 0, 0) }
+                    { 8, "Martínez", "Administrativo", "laura.martinez@ejemplo.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(8768), new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Laura", "DNI65432100", 1, 2, "111222333" },
+                    { 9, "Sánchez", "Administrativo", "pedro.sanchez@ejemplo.com", 1, new DateTime(2024, 7, 8, 16, 23, 46, 322, DateTimeKind.Local).AddTicks(8772), new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pedro", "DNI12345001", 2, 1, "444555666" }
                 });
 
             migrationBuilder.CreateIndex(

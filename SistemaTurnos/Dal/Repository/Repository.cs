@@ -14,7 +14,9 @@ namespace SistemaTurnos.Dal.Repository
         {
             _context = context;
         }
-
+        public int GetIdMedicosActivos() { 
+            return _idMedicosActivos;
+                }
         public async Task Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);

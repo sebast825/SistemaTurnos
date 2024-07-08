@@ -41,22 +41,23 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new RolSeed());
             modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
             modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
+            modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
 
             //convierte el tipo de dato TimeOnly
-            modelBuilder.Entity<DisponibilidadMedico>()
-       .Property(p => p.StartTime)
-       .HasConversion(
-           v => v.ToTimeSpan(),
-           v => new TimeOnly(v.Ticks)
-       );
+            /*    modelBuilder.Entity<DisponibilidadMedico>()
+           .Property(p => p.StartTime)
+           .HasConversion(
+               v => v.ToTimeSpan(),
+               v => new TimeOnly(v.Ticks)
+           );
 
-            modelBuilder.Entity<DisponibilidadMedico>()
-                .Property(p => p.EndTime)
-                .HasConversion(
-                    v => v.ToTimeSpan(),
-                    v => new TimeOnly(v.Ticks)
-                );
-
+                modelBuilder.Entity<DisponibilidadMedico>()
+                    .Property(p => p.EndTime)
+                    .HasConversion(
+                        v => v.ToTimeSpan(),
+                        v => new TimeOnly(v.Ticks)
+                    );*/
+            /*
             modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
 
             modelBuilder.Entity<Persona>()
@@ -66,7 +67,7 @@ namespace SistemaTurnos.Dal.Data
                           .HasValue<Paciente>(2)
                                       .HasValue<Administrativo>(3);
 
-
+            */
         }
 
         //Nombre de las  tablas

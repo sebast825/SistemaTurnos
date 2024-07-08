@@ -6,7 +6,7 @@ namespace SistemaTurnos.Dto.DisponibilidadMedico
     {
         public string Medico { get; set; }
         public string DiaSemana { get; set; }
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
     }
 }

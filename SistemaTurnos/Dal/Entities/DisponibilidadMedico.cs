@@ -6,8 +6,8 @@
         public Medico Medico { get; set; }
         public int DiaSemanaId { get; set; } 
         public DiaSemana DiaSemana { get; set; }
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
     }
 }

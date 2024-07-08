@@ -28,9 +28,29 @@ namespace SistemaTurnos
             //CreateMap<MedicoCreateRequestDTO, Medico>();
 
             CreateMap<DisponibilidadMedico, DisponibilidadMedicoResponseDTO>()
-                .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " "+ src.Medico.Apellido))
-                .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.DiaSemana.Nombre));
+                .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " " + src.Medico.Apellido))
+                .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.DiaSemana.Nombre))
+                   .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString(@"hh\:mm")))
+                 .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")));
 
+
+            CreateMap<DisponibilidadMedicoCreateRequestDTO, DisponibilidadMedico>()
+                    .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.StartTime)))
+            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.EndTime)));
+                     
+
+           
         }
+
     }
 }
+
+/*
+ {
+  "medicoId": 5,
+  "diaSemanaId": 5,
+  "startTime": "11:20",
+  "endTime": "13:40"
+}
+
+ */
