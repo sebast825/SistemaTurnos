@@ -32,5 +32,12 @@ namespace SistemaTurnos.Controllers
             return rsta;
         }
 
+        [HttpGet("FilterByEspecialidad")]
+        public async Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
+        {
+            var rsta = await _disponibilidadMedicoService.FilterByEspecialidad(idEspecialidad);
+            return rsta;
+        }
+
     }
 }

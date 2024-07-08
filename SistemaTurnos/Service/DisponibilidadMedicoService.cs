@@ -21,9 +21,13 @@ namespace SistemaTurnos.Service
             throw new NotImplementedException();
         }
 
-        public Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
+        public async Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
         {
-            throw new NotImplementedException();
+            var medicos = await _unitOfWork.DisponibilidadMedicoRepository.FilterByEspecialidad(idEspecialidad);
+
+
+            var rsta = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(medicos);
+            return rsta;
         }
 
         public async Task<List<DisponibilidadMedicoResponseDTO>> GetAll()
