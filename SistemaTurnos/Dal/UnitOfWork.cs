@@ -1,4 +1,6 @@
-﻿using SistemaTurnos.Dal.Data;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using SistemaTurnos.Dal.Data;
+using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
 using SistemaTurnos.Service.Interface;
 
@@ -13,11 +15,12 @@ namespace SistemaTurnos.Dal
         public IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
         public IMedicoRepository MedicoRepository { get; }
         public IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
-
+        public IDiaSemanaRepository DiaSemanaRepository { get; }
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
             IEstadoUsuarioRepository estadoUsuarioRepository,
             IMedicoRepository medicoRepository,
-                      IDisponibilidadMedicoRepository disponibilidadMedicoRepository
+                      IDisponibilidadMedicoRepository disponibilidadMedicoRepository,
+                      IDiaSemanaRepository diaSemanaRepository
 
             )
         {
@@ -27,6 +30,7 @@ namespace SistemaTurnos.Dal
             EstadoUsuarioRepository = estadoUsuarioRepository;
             MedicoRepository = medicoRepository;
             DisponibilidadMedicoRepository = disponibilidadMedicoRepository;
+            DiaSemanaRepository = diaSemanaRepository;
         }
 
         public async Task<int> Save()
