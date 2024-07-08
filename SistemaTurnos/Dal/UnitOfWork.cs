@@ -1,5 +1,6 @@
 ﻿using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Dal
 {
@@ -11,10 +12,13 @@ namespace SistemaTurnos.Dal
         public IPacienteRepository PacienteRepository { get; }
         public IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
         public IMedicoRepository MedicoRepository { get; }
+        public IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
 
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
             IEstadoUsuarioRepository estadoUsuarioRepository,
-            IMedicoRepository medicoRepository
+            IMedicoRepository medicoRepository,
+                      IDisponibilidadMedicoRepository disponibilidadMedicoRepository
+
             )
         {
             _context = context;
@@ -22,6 +26,7 @@ namespace SistemaTurnos.Dal
             PersonaRepository = personaRepository;
             EstadoUsuarioRepository = estadoUsuarioRepository;
             MedicoRepository = medicoRepository;
+            DisponibilidadMedicoRepository = disponibilidadMedicoRepository;
         }
 
         public async Task<int> Save()

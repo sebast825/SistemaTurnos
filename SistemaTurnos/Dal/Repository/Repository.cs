@@ -9,7 +9,7 @@ namespace SistemaTurnos.Dal.Repository
     {
         protected readonly DataContext _context;
         public readonly int _idEstadoUsuarioEliminado = 4;
-
+        public readonly int _idMedicosActivos = 1;
         public Repository(DataContext context)
         {
             _context = context;

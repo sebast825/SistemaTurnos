@@ -27,18 +27,23 @@ builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IEstadoUsuarioRepository, EstadoUsuarioRepository>();
 builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
+builder.Services.AddScoped<IDisponibilidadMedicoRepository, DisponibilidadMedicoRepository>();
+
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
     x.GetRequiredService<IPersonaRepository>(),
     x.GetRequiredService<IEstadoUsuarioRepository>(),
-    x.GetRequiredService<IMedicoRepository>()
+    x.GetRequiredService<IMedicoRepository>(),
+        x.GetRequiredService<IDisponibilidadMedicoRepository>()
+
         ));
 
 
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
+builder.Services.AddScoped<IDisponibilidadMedicoService, DisponibilidadMedicoService>();
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

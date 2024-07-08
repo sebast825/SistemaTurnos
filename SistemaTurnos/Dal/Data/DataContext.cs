@@ -30,6 +30,13 @@ namespace SistemaTurnos.Dal.Data
                 entity.Property(e => e.FechaNacimiento)
                     .HasColumnType("date");
             });
+            // Configuración de la herencia con discriminador
+            modelBuilder.Entity<Persona>()
+                .HasDiscriminator<string>("Discriminator")
+                .HasValue<Persona>("Persona")
+                .HasValue<Medico>("Medico")
+                       .HasValue<Paciente>("Paciente");
+
             modelBuilder.ApplyConfiguration(new PacienteSeed());
             modelBuilder.ApplyConfiguration(new MedicoSeed());
             modelBuilder.ApplyConfiguration(new EspecialidadSeed());
@@ -38,6 +45,8 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
             modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
             modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
+
+            //convierte el tipo de dato TimeOnly
             modelBuilder.Entity<DisponibilidadMedico>()
        .Property(p => p.StartTime)
        .HasConversion(

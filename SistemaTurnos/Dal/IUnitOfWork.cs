@@ -1,4 +1,5 @@
 ﻿using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Dal
 {
@@ -8,7 +9,7 @@ namespace SistemaTurnos.Dal
         IPacienteRepository PacienteRepository { get; }
         IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
         IMedicoRepository MedicoRepository { get; }
-
+        IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
         Task<int> Save();
 
     }

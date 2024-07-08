@@ -7,7 +7,7 @@ namespace SistemaTurnos.Dal.Repository
 {
     public class MedicoRepository : Repository<Medico>, IMedicoRepository
     {
-        private readonly int _idMedicosActivos = 1;
+      
         public MedicoRepository(DataContext context) : base(context)
         {
 
