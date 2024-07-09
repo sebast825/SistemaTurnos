@@ -42,32 +42,30 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
             modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
             modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
+            modelBuilder.ApplyConfiguration(new TurnoSeed());
 
-            //convierte el tipo de dato TimeOnly
-            /*    modelBuilder.Entity<DisponibilidadMedico>()
-           .Property(p => p.StartTime)
-           .HasConversion(
-               v => v.ToTimeSpan(),
-               v => new TimeOnly(v.Ticks)
-           );
+            // Configuración específica para la entidad Turno
+            modelBuilder.Entity<Turno>()
+                .Property(t => t.Estado) // Selecciona la propiedad 'Estado' en la entidad 'Turno'
+                .HasConversion( // Define una conversión personalizada para esta propiedad
+                    v => v.ToString(), // Conversión de la propiedad 'Estado' del enum a string al guardar en la base de datos
+                    v => (EstadoTurno)Enum.Parse(typeof(EstadoTurno), v) // Conversión de string a enum 'EstadoTurno' al leer de la base de datos
+                );
 
-                modelBuilder.Entity<DisponibilidadMedico>()
-                    .Property(p => p.EndTime)
-                    .HasConversion(
-                        v => v.ToTimeSpan(),
-                        v => new TimeOnly(v.Ticks)
-                    );*/
-            /*
-            modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
+            //en caso de que se eliminen datos no afecta la consistencia de datos
+            modelBuilder.Entity<Turno>(entity =>
+            {
+                entity.HasOne(t => t.Medico)
+                    .WithMany()
+                    .HasForeignKey(t => t.MedicoId)
+                    .OnDelete(DeleteBehavior.NoAction);
+                //en caso de que se eliminen datos no afecta la consistencia de datos
 
-            modelBuilder.Entity<Persona>()
-             .HasDiscriminator<int>("Type")
-             .HasValue<Persona>(0)
-             .HasValue<Medico>(1)
-                          .HasValue<Paciente>(2)
-                                      .HasValue<Administrativo>(3);
-
-            */
+                entity.HasOne(t => t.Paciente)
+                    .WithMany()
+                    .HasForeignKey(t => t.PacienteId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
         }
 
         //Nombre de las  tablas
@@ -82,7 +80,7 @@ namespace SistemaTurnos.Dal.Data
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Administrativo> Administrativos{ get; set; }
 
-
+        public DbSet<Turno> Turnos { get; set; }
 
 
 

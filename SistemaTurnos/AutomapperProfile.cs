@@ -4,6 +4,7 @@ using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
+using SistemaTurnos.Dto.Turno;
 
 namespace SistemaTurnos
 {
@@ -37,9 +38,14 @@ namespace SistemaTurnos
             CreateMap<DisponibilidadMedicoCreateRequestDTO, DisponibilidadMedico>()
                     .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.StartTime)))
             .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.EndTime)));
-                     
 
-           
+            CreateMap<Turno, TurnoResponseDTO>()
+                .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " " + src.Medico.Apellido))
+                .ForMember(dest => dest.Paciente, opt => opt.MapFrom(src => src.Paciente.Nombre + " " + src.Paciente.Apellido))
+                .ForMember(dest => dest.PacienteDni, opt => opt.MapFrom(src => src.Paciente.NumeroDocumento));
+
+
+
         }
 
     }
