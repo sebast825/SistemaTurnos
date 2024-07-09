@@ -32,7 +32,20 @@ namespace SistemaTurnos.Controllers
             var estados = Enum.GetNames(typeof(EstadoTurno)).ToList();
             return Ok(estados);
         }
+        
 
-      
+                  [HttpGet("FilterByDoctor")]
+        public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
+        {
+            var rsta = await _turnoService.FilterByDoctor(id);
+            return rsta;
+        }
+        [HttpGet("FilterByPaciente")]
+        public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
+        {
+            var rsta = await _turnoService.FilterByPaciente(id);
+            return rsta;
+        }
+
     }
 }

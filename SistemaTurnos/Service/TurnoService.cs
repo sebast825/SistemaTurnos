@@ -14,9 +14,11 @@ namespace SistemaTurnos.Service
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
+        public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
         {
-            throw new NotImplementedException();
+            var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(id);
+            var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
+            return rsta;
         }
 
         public Task<List<TurnoResponseDTO>> FilterByDoctorProgramedToday(int id)
@@ -31,9 +33,11 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-        public Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
+        public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
         {
-            throw new NotImplementedException();
+            var turnos = await _unitOfWork.TurnoRepository.FilterByPaciente(id);
+            var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
+            return rsta;
         }
 
      
