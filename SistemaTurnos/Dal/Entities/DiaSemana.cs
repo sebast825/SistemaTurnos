@@ -5,3 +5,15 @@
         public string Nombre {  get; set; }
     }
 }
+
+public enum DayOfWeekEnum
+{
+    None,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
+};

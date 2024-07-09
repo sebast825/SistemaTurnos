@@ -43,6 +43,7 @@ namespace SistemaTurnos
                 .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " " + src.Medico.Apellido))
                 .ForMember(dest => dest.Paciente, opt => opt.MapFrom(src => src.Paciente.Nombre + " " + src.Paciente.Apellido))
                 .ForMember(dest => dest.PacienteDni, opt => opt.MapFrom(src => src.Paciente.NumeroDocumento));
+            CreateMap<TurnoCreateRequestDTO, Turno>();
 
 
 

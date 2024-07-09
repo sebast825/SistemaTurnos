@@ -9,5 +9,6 @@ namespace SistemaTurnos.Service.Interface
         Task<List<DisponibilidadMedicoResponseDTO>> GetByMedico(int idMedico);
         Task<DisponibilidadMedicoResponseDTO> Create(DisponibilidadMedicoCreateRequestDTO dto);
         Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad);
+
     }
 }

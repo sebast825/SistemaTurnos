@@ -52,6 +52,12 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        
+        [HttpPost("Create")]
+        public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
+        {
+            var rsta = await _turnoService.Create(dto);
+            return rsta;
+        }
+
     }
 }

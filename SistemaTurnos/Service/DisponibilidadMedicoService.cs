@@ -5,6 +5,7 @@ using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
+using static SistemaTurnos.Service.TurnoService;
 
 namespace SistemaTurnos.Service
 {
@@ -86,7 +87,7 @@ namespace SistemaTurnos.Service
             var rsta = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(disponibildiadMedicos);
             return rsta;
         }
-       
 
+      
     }
 }

@@ -3,6 +3,7 @@ using SistemaTurnos.Dal;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Service.Interface;
 using SistemaTurnos.Common;
+using SistemaTurnos.Dal.Entities;
 namespace SistemaTurnos.Service
 {
     public class TurnoService : ITurnoService
@@ -14,20 +15,45 @@ namespace SistemaTurnos.Service
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
-        public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
+        public async Task<bool> MedicoIsAviable(TurnoCreateRequestDTO dto)
         {
+            string diaSemana = dto.Fecha.DayOfWeek.ToString();
+
+            bool diaSemanaExiste = Enum.TryParse<DayOfWeekEnum>(diaSemana, out DayOfWeekEnum result);
+            int indiceDiaSemana = (int)result;
+
+            TimeSpan tiempo = dto.Fecha.TimeOfDay;
+
+            var medicoDisponible = await _unitOfWork.DisponibilidadMedicoRepository.MedicoIsAviable(dto.MedicoId, indiceDiaSemana, tiempo);
+
+            return medicoDisponible.Count() > 0 ? true : false;
+        }
+  
+    public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
+        {
+          
+
             var medico = await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
-            if (medico == null)            
+            if (medico == null)      
                 throw new Exception(ErrorMessages.MedicoNotFound);
             
             var paciente = await _unitOfWork.PacienteRepository.GetId(dto.PacienteId);
             if (paciente == null)          
                 throw new Exception(ErrorMessages.PacienteNotFound);
-            
-            throw new Exception("el paciente no existe");
 
+            var medicoIsAviable = await MedicoIsAviable(dto);
+            if (!medicoIsAviable)
+                throw new Exception(ErrorMessages.MedicoHorarioNotAviable);
 
+            var hayTurnosCerca = await FilterByDateTime(dto.Fecha, dto.MedicoId);
+            if(hayTurnosCerca.Count > 0)            
+                throw new Exception(ErrorMessages.HorarioTurnoOcupado);
+
+            var entity = _mapper.Map<Turno>(dto);
+            await _unitOfWork.TurnoRepository.Add(entity);
+            await _unitOfWork.Save();
+            return _mapper.Map<TurnoResponseDTO>(entity);
+            //throw new Exception(ErrorMessages.HorarioTurnoOcupado);
         }
 
         public async Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime fecha, int? medicoId)

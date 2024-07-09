@@ -51,5 +51,23 @@ namespace SistemaTurnos.Dal.Repository
 
             return disponibilidadMedicos;
         }
+
+        public async Task<List<DisponibilidadMedico>> MedicoIsAviable(int idMedico, int dia, TimeSpan horario)
+        {
+            var disponibilidadMedico = await _context.DisponibilidadMedicos
+                                        .Include(s => s.Medico)
+
+                                       .Include(x => x.DiaSemana)
+                                       .Where(s => s.MedicoId == idMedico &&
+                                       s.Medico.EstadoUsuarioId == _idMedicosActivos &&
+                                       s.DiaSemanaId == dia 
+                                       &&
+                                       s.StartTime <= horario && s.EndTime >= horario
+                                       
+                                       )
+                                       .ToListAsync();
+
+            return disponibilidadMedico;
+        }
     }
 }

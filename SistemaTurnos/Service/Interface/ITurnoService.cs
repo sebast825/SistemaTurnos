@@ -12,6 +12,7 @@ namespace SistemaTurnos.Service.Interface
         Task<List<TurnoResponseDTO>> FilterByDoctorProgramedToday(int id);
         Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto);
         Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime fecha, int? medicoId);
+        Task<bool> MedicoIsAviable(TurnoCreateRequestDTO dto);
 
     }
 }
