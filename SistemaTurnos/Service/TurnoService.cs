@@ -24,16 +24,19 @@ namespace SistemaTurnos.Service
             throw new NotImplementedException();
         }
 
+        public async Task<List<TurnoResponseDTO>> FilterByEstadoTurno(EstadoTurno estado)
+        {
+            var turnos = await _unitOfWork.TurnoRepository.FilterByEstadoTurno(estado);
+            var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos); 
+            return rsta;
+        }
+
         public Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<TurnoResponseDTO>> FilterByPacienteProgramed(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+     
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
             var turnos = await _unitOfWork.TurnoRepository.GetAll();

@@ -32,5 +32,16 @@ namespace SistemaTurnos.Dal.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<Turno>> FilterByEstadoTurno(EstadoTurno estado)
+        {
+            var turnos = await _context.Turnos
+                             .Include(x => x.Medico)
+                             .Include(p => p.Paciente)
+                             .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado && p.Estado == estado)
+                             .ToListAsync();
+
+            return turnos;
+        }
     }
 }
