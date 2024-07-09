@@ -46,6 +46,12 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByPaciente(id);
             return rsta;
         }
-
+        [HttpGet("FilterByDateTime")]
+        public async Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime dt, int? idDoctor)
+        {
+            var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
+            return rsta;
+        }
+        
     }
 }

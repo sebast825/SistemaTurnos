@@ -10,5 +10,8 @@ namespace SistemaTurnos.Service.Interface
         Task<List<TurnoResponseDTO>> FilterByDoctor(int id);
         Task<List<TurnoResponseDTO>> FilterByPaciente(int id);
         Task<List<TurnoResponseDTO>> FilterByDoctorProgramedToday(int id);
+        Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto);
+        Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime fecha, int? medicoId);
+
     }
 }

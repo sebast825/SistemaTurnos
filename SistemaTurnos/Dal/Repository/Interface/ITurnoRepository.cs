@@ -9,6 +9,7 @@ namespace SistemaTurnos.Dal.Repository.Interface
         Task<List<Turno>> FilterByDoctor(int id);
         Task<List<Turno>> FilterByPaciente(int id);
         Task<List<Turno>> FilterByEstadoTurno(EstadoTurno estado);
+        Task<List<Turno>> FilterByDateTime (DateTime dt, int? medicoId);
 
     }
 }
