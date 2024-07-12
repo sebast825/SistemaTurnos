@@ -30,7 +30,7 @@ builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 builder.Services.AddScoped<IDisponibilidadMedicoRepository, DisponibilidadMedicoRepository>();
 builder.Services.AddScoped<IDiaSemanaRepository, DiaSemanaRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
-
+builder.Services.AddScoped<IAdministrativoRepository,AdministrativoRepository>();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
@@ -39,7 +39,8 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequ
     x.GetRequiredService<IMedicoRepository>(),
         x.GetRequiredService<IDisponibilidadMedicoRepository>(),
         x.GetRequiredService<IDiaSemanaRepository>(),
-        x.GetRequiredService<ITurnoRepository>()
+        x.GetRequiredService<ITurnoRepository>(),
+        x.GetRequiredService<IAdministrativoRepository>()
 
         ));
 
@@ -49,6 +50,8 @@ builder.Services.AddScoped<IPersonaService, PersonaService>();
 builder.Services.AddScoped<IMedicoService, MedicoService>();
 builder.Services.AddScoped<IDisponibilidadMedicoService, DisponibilidadMedicoService>();
 builder.Services.AddScoped<ITurnoService, TurnoService>();
+builder.Services.AddScoped<IAdministrativoService, AdministrativoService>();
+
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

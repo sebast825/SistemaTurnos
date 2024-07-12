@@ -18,7 +18,6 @@ namespace SistemaTurnos.Service
         }
         public async Task<MedicoResponseDTO> Create(MedicoCreateRequestDTO dto)
         {
-            Console.WriteLine(dto.NumeroDocumento);
 
             var medico = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
           

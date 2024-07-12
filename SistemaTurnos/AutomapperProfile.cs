@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaTurnos.Dal.Entities;
+using SistemaTurnos.Dto.Administrativo;
 using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Dto.Paciente;
@@ -45,6 +46,10 @@ namespace SistemaTurnos
                 .ForMember(dest => dest.PacienteDni, opt => opt.MapFrom(src => src.Paciente.NumeroDocumento));
             CreateMap<TurnoCreateRequestDTO, Turno>();
 
+
+            CreateMap<AdministrativoRequestCreateDTO, Administrativo>();
+            CreateMap<Administrativo, AdministrativoResponseDTO>()
+                .ForMember(dest => dest.Rol, opt => opt.MapFrom(src => src.Rol.Nombre));
 
 
         }

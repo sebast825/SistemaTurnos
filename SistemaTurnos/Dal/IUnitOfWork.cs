@@ -12,6 +12,7 @@ namespace SistemaTurnos.Dal
         IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
         IDiaSemanaRepository DiaSemanaRepository { get; }
         ITurnoRepository TurnoRepository { get; }
+        IAdministrativoRepository AdministrativoRepository { get; }
         Task<int> Save();
 
     }

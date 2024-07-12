@@ -17,12 +17,14 @@ namespace SistemaTurnos.Dal
         public IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
         public IDiaSemanaRepository DiaSemanaRepository { get; }
         public ITurnoRepository TurnoRepository { get; }
+        public IAdministrativoRepository AdministrativoRepository { get; }
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
             IEstadoUsuarioRepository estadoUsuarioRepository,
             IMedicoRepository medicoRepository,
                       IDisponibilidadMedicoRepository disponibilidadMedicoRepository,
                       IDiaSemanaRepository diaSemanaRepository,
-                      ITurnoRepository turnoRepository
+                      ITurnoRepository turnoRepository,
+                      IAdministrativoRepository administrativoRepository
 
             )
         {
@@ -34,6 +36,7 @@ namespace SistemaTurnos.Dal
             DisponibilidadMedicoRepository = disponibilidadMedicoRepository;
             DiaSemanaRepository = diaSemanaRepository;
             TurnoRepository = turnoRepository;
+            AdministrativoRepository = administrativoRepository;
         }
 
         public async Task<int> Save()
