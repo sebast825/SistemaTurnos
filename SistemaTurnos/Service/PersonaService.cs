@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration.Conventions;
 using SistemaTurnos.Dal;
+using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
@@ -63,6 +64,18 @@ namespace SistemaTurnos.Service
                 throw new ArgumentException("El apellido es obligatorio.", nameof(dto.Apellido));
 
             throw new NotImplementedException();
+        }
+
+        public async Task<string> GetTipoPersona(int id)
+        {
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
+
+            //switch(persona)
+            //{
+            //    case persona is Medico:
+            //        return "Medico";
+            //}
+            return "Asd";
         }
     }
 }

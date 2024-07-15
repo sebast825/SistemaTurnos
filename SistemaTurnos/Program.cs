@@ -108,7 +108,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 //----------------------------------------------------------------
 
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequiereAdministrativo", policy => policy.RequireRole("Administrativo"));
+    options.AddPolicy("RequiereMedico", policy => policy.RequireRole("Medico"));
+    options.AddPolicy("RequierePaciente", policy => policy.RequireRole("Paciente"));
+    // Agrega más políticas según sea necesario
+});
 
 var app = builder.Build();
 

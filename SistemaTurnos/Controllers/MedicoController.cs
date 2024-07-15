@@ -7,8 +7,8 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-
+    [Authorize(Policy = "RequiereMedico")]
+    
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoService _medicoService;

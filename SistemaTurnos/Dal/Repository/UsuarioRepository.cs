@@ -17,6 +17,7 @@ namespace SistemaTurnos.Dal.Repository
             Console.WriteLine("get by user");
             
             var usuario = await _context.Usuarios
+                .Include(x => x.Persona)
                 .Where(x => x.UserName == name)
                 .FirstOrDefaultAsync();
             return usuario;

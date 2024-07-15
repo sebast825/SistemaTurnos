@@ -36,6 +36,7 @@ namespace SistemaTurnos.Controllers
             var userEntity = await _logService.GetUsuarioByUserPass(login.UserName, login.Password);
             if (userEntity != null)
             {
+                var tipoUsuario = userEntity.Persona.GetType().Name.ToString();
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub,_configuration["Jwt:Subject"]),
@@ -43,6 +44,7 @@ namespace SistemaTurnos.Controllers
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("UserId", userEntity.Id.ToString()),
                                        // new Claim("DisplayName", userEntity.UserName),
+                     new Claim(ClaimTypes.Role, tipoUsuario),
 
                     new Claim("UserName", userEntity.UserName),
                 };
