@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Psz4nNhQsuNX6fWNWOQOxppYJpHHiUylqMijI8XRtXNqEHF8TJbdhlNlHduFt3TcJ1UL6ncmrlVc7krvpPWaqQ==",
+  "dgSpecHash": "iGelLi8/QibZfcgZ/hevMjND1gIcgNtx0KH4uMM1Pt/Ug0jWp9mcDET68KlP/FK2uZZh2Sz3A9H/dupyGLCHmQ==",
   "success": true,
   "projectFilePath": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\SistemaTurnos.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Sebastian\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Sebastian\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Sebastian\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Sebastian\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.11\\microsoft.aspnetcore.authentication.jwtbearer.7.0.11.nupkg.sha512",
     "C:\\Users\\Sebastian\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\Sebastian\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Sebastian\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

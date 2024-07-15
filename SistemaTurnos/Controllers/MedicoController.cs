@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Service.Interface;
 
@@ -6,6 +7,8 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoService _medicoService;

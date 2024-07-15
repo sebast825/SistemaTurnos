@@ -13,6 +13,8 @@ namespace SistemaTurnos.Dal
         IDiaSemanaRepository DiaSemanaRepository { get; }
         ITurnoRepository TurnoRepository { get; }
         IAdministrativoRepository AdministrativoRepository { get; }
+
+        IUsuarioRepository UsuarioRepository { get; }
         Task<int> Save();
 
     }

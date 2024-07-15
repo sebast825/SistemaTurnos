@@ -66,6 +66,7 @@ namespace SistemaTurnos.Dal.Data
                     .HasForeignKey(t => t.PacienteId)
                     .OnDelete(DeleteBehavior.NoAction);
             });
+            modelBuilder.ApplyConfiguration(new UsuarioSeed());
         }
 
         //Nombre de las  tablas
@@ -79,8 +80,10 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos{ get; set; }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Administrativo> Administrativos{ get; set; }
-
+        
         public DbSet<Turno> Turnos { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
 
