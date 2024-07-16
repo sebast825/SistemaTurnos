@@ -7,7 +7,6 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "RequiereMedico")]
     
     public class MedicoController : ControllerBase
     {
