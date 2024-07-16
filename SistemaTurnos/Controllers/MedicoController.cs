@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Authorization;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Service.Interface;
 
@@ -7,7 +9,8 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Authorize]
+
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoService _medicoService;
@@ -23,6 +26,8 @@ namespace SistemaTurnos.Controllers
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
         [HttpGet("GetAll")]
+        [RequirePermission(Permission.GetAllTurno)]
+
         public async Task<List<MedicoResponseDTO>> GetAll()
         {
             var rsta = await _medicoService.GetAll();

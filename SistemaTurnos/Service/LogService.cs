@@ -49,12 +49,8 @@ namespace SistemaTurnos.Service
             var userEntity = await GetUsuarioByUserPass(login.UserName, login.Password);
             if (userEntity != null)
             {
-                var tipoUsuario = userEntity.Persona.GetType().Name.ToString();
-                //if(tipoUsuario == "Administrativo")
-                //{
-                //    var getAdministrativo = await _unitOfWork.AdministrativoRepository.GetId(userEntity.PersonaId);
-                //    tipoUsuario = getAdministrativo.Rol.Nombre;
-                //}
+                var permiso = userEntity.Role.ToString();
+                                
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub,_configuration["Jwt:Subject"]),
@@ -62,7 +58,7 @@ namespace SistemaTurnos.Service
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("UserId", userEntity.Id.ToString()),
                                        // new Claim("DisplayName", userEntity.UserName),
-                     new Claim(ClaimTypes.Role, tipoUsuario),
+                     new Claim(ClaimTypes.Role, permiso),
 
                     new Claim("UserName", userEntity.UserName),
                 };
