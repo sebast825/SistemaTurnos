@@ -76,3 +76,4 @@ D:\Documentos\SistemaTurnos\SistemaTurnos\bin\Debug\net7.0\runtimes\win\lib\net6
 D:\Documentos\SistemaTurnos\SistemaTurnos\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\Documentos\SistemaTurnos\SistemaTurnos\bin\Debug\net7.0\AutoMapper.dll
 D:\Documentos\SistemaTurnos\SistemaTurnos\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Documentos\SistemaTurnos\SistemaTurnos\obj\Debug\net7.0\SistemaTurnos.sourcelink.json

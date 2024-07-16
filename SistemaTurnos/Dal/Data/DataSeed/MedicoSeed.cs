@@ -18,7 +18,6 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     FechaNacimiento = new DateTime(1980, 5, 20),
                     Telefono = "123456789",
                     NumeroDocumento = "DNI12345678",
-                    Email = "juan.perez@ejemplo.com",
                     SexoId = 1, // Hombre
                     NumeroLicencia = "LIC1234",
                     EspecialidadId = 1, // Cardiología
@@ -32,7 +31,6 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     FechaNacimiento = new DateTime(1975, 3, 15),
                     Telefono = "987654321",
                     NumeroDocumento = "DNI87654321",
-                    Email = "maria.gonzalez@ejemplo.com",
                     SexoId = 2, // Mujer
                     NumeroLicencia = "LIC5678",
                     EspecialidadId = 2, // Dermatología
@@ -46,7 +44,6 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     FechaNacimiento = new DateTime(1985, 12, 10),
                     Telefono = "555123456",
                     NumeroDocumento = "DNI23456789",
-                    Email = "carlos.lopez@ejemplo.com",
                     SexoId = 1, // Hombre
                     NumeroLicencia = "LIC9101",
                     EspecialidadId = 3, // Neurología
