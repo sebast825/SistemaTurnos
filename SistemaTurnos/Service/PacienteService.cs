@@ -36,8 +36,6 @@ namespace SistemaTurnos.Service
 
         public async Task<List<PacienteResponseDTO>> GetAll()
         {
-            await Task.CompletedTask;
-            Console.WriteLine("service");
             var pacientes = await _unitOfWork.PacienteRepository.GetAll();
             var rsta = _mapper.Map<List<PacienteResponseDTO>>(pacientes);
          

@@ -16,11 +16,12 @@ namespace SistemaTurnos.Dal.Repository
         }
         public async Task<List<Paciente>> GetAll()
         {
+        
+
             var pacientes = await _context.Personas
                    .OfType<Paciente>()
                 .Include(v => v.Sexo)
-                .Include(x => x.EstadoPersona)
-                .Where(s => s.EstadoPersona != EstadoPersona.Activo)
+                .Where(s => s.EstadoPersona == EstadoPersona.Activo)
                 .ToListAsync();
 
       
