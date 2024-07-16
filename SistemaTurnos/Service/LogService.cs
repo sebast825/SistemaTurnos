@@ -50,11 +50,11 @@ namespace SistemaTurnos.Service
             if (userEntity != null)
             {
                 var tipoUsuario = userEntity.Persona.GetType().Name.ToString();
-                if(tipoUsuario == "Administrativo")
-                {
-                    var getAdministrativo = await _unitOfWork.AdministrativoRepository.GetId(userEntity.PersonaId);
-                    tipoUsuario = getAdministrativo.Rol.Nombre;
-                }
+                //if(tipoUsuario == "Administrativo")
+                //{
+                //    var getAdministrativo = await _unitOfWork.AdministrativoRepository.GetId(userEntity.PersonaId);
+                //    tipoUsuario = getAdministrativo.Rol.Nombre;
+                //}
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub,_configuration["Jwt:Subject"]),

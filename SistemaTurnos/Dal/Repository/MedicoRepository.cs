@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -21,8 +22,8 @@ namespace SistemaTurnos.Dal.Repository
             var medicos = await _context.Personas
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)
-                                 .Include(x => x.EstadoUsuario)
-                                .Where(m => id == m.EspecialidadId && m.EstadoUsuarioId == _idMedicosActivos)
+                                 .Include(x => x.EstadoPersona)
+                                .Where(m => id == m.EspecialidadId && m.EstadoPersona == EstadoPersona.Activo)
                                 .Include(x => x.Especialidad)
                                 .ToListAsync();
             return medicos;
@@ -34,9 +35,9 @@ namespace SistemaTurnos.Dal.Repository
             var medicos = await _context.Personas
                     .OfType<Medico>()
                     .Include(v => v.Sexo)
-                    .Include(x => x.EstadoUsuario)
+                    .Include(x => x.EstadoPersona)
                     .Include(x => x.Especialidad)
-                    .Where(s => s.EstadoUsuarioId == _idMedicosActivos)
+                    .Where(s => s.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
 
             // Convertir List<Persona> a List<medico> si es necesario

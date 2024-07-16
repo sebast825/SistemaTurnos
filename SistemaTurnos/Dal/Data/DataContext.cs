@@ -67,6 +67,16 @@ namespace SistemaTurnos.Dal.Data
                     .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.ApplyConfiguration(new UsuarioSeed());
+
+            //convierte los enums en enteros para la db, se pueden realizar consultas de manera comun
+         /*   {
+                modelBuilder.Entity<Persona>()
+                    .Property(p => p.EstadoPersona)
+                    .HasConversion<int>();
+                modelBuilder.Entity<Usuario>()
+                  .Property(p => p.EstadoUsuario)
+                  .HasConversion<int>();
+            }*/
         }
 
         //Nombre de las  tablas

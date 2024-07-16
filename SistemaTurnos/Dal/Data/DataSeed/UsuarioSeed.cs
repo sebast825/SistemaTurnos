@@ -19,7 +19,9 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Password = "a",
                     PersonaId = 1,
                     Email = "persona@example.com",
-                    Role = Role.Paciente
+                    Role = Role.Paciente,
+                                EstadoUsuario = EstadoUsuario.Activo
+
                 },
                 new Usuario
                 {
@@ -28,7 +30,8 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Password = "a",
                     PersonaId = 3,
                     Email = "paciente@example.com",
-                    Role = Role.Paciente
+                    Role = Role.Paciente,
+                                EstadoUsuario = EstadoUsuario.Activo
                 },
                 new Usuario
                 {
@@ -37,7 +40,8 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Password = "a",
                     PersonaId = 5,
                     Email = "medico@example.com",
-                    Role = Role.Medico
+                    Role = Role.Medico,
+                                EstadoUsuario = EstadoUsuario.Activo
                 },
                 new Usuario
                 {
@@ -46,7 +50,8 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Password = "a",
                     PersonaId = 8,
                     Email = "secretario@example.com",
-                    Role = Role.Secretario
+                    Role = Role.Secretario,
+                                EstadoUsuario = EstadoUsuario.Activo
                 },
                 new Usuario
                 {
@@ -55,7 +60,8 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Password = "a",
                     PersonaId = 9,
                     Email = "admin@example.com",
-                    Role = Role.Admin
+                    Role = Role.Admin,
+                                EstadoUsuario = EstadoUsuario.Activo
                 }
             });
         }

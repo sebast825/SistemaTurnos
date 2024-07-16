@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -16,7 +17,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await _context.Turnos
                     .Include(x => x.Medico)
                     .Include(p => p.Paciente)
-                    .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                    .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Activo)
                     .ToListAsync();
             
             return turnos;
@@ -28,7 +29,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await _context.Turnos
                                       .Include(x => x.Medico)
                                       .Include(p => p.Paciente)
-                                      .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado
+                                      .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo
                                               && p.MedicoId == id)
                                       .ToListAsync();
 
@@ -40,7 +41,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await _context.Turnos
                                     .Include(x => x.Medico)
                                     .Include(p => p.Paciente)
-                                    .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado 
+                                    .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo
                                             && p.PacienteId == id)
                                     .ToListAsync();
 
@@ -52,7 +53,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await _context.Turnos
                              .Include(x => x.Medico)
                              .Include(p => p.Paciente)
-                             .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado && p.Estado == estado)
+                             .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo && p.Estado == estado)
                              .ToListAsync();
 
             return turnos;
@@ -68,7 +69,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnosQuery = _context.Turnos
                             .Include(x => x.Medico)
                             .Include(p => p.Paciente)
-                            .Where(p => p.Paciente.EstadoUsuarioId != _idEstadoUsuarioEliminado &&
+                            .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo &&
                                 p.Fecha >= startTime && p.Fecha <= endTime);
                       
             // Aplicar el filtro opcional por MedicoId

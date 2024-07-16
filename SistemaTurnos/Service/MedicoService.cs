@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Medico;
@@ -20,8 +21,8 @@ namespace SistemaTurnos.Service
         {
 
             var medico = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
-          
-            if (medico == null || medico.EstadoUsuario.Nombre == "Eliminado")
+          //checkiar validacion
+            if (medico == null || medico.EstadoPersona == EstadoPersona.Inactivo)
             {
                 var entity = _mapper.Map<Medico>(dto);
                 await _unitOfWork.MedicoRepository.Add(entity);

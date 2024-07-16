@@ -12,7 +12,6 @@ namespace SistemaTurnos.Dal
         public IPersonaRepository PersonaRepository { get; }
 
         public IPacienteRepository PacienteRepository { get; }
-        public IEstadoUsuarioRepository EstadoUsuarioRepository { get; }
         public IMedicoRepository MedicoRepository { get; }
         public IDisponibilidadMedicoRepository DisponibilidadMedicoRepository { get; }
         public IDiaSemanaRepository DiaSemanaRepository { get; }
@@ -20,7 +19,6 @@ namespace SistemaTurnos.Dal
         public IAdministrativoRepository AdministrativoRepository { get; }
         public IUsuarioRepository UsuarioRepository { get; }
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
-            IEstadoUsuarioRepository estadoUsuarioRepository,
             IMedicoRepository medicoRepository,
                       IDisponibilidadMedicoRepository disponibilidadMedicoRepository,
                       IDiaSemanaRepository diaSemanaRepository,
@@ -33,7 +31,6 @@ namespace SistemaTurnos.Dal
             _context = context;
             PacienteRepository = pacienteRepository;
             PersonaRepository = personaRepository;
-            EstadoUsuarioRepository = estadoUsuarioRepository;
             MedicoRepository = medicoRepository;
             DisponibilidadMedicoRepository = disponibilidadMedicoRepository;
             DiaSemanaRepository = diaSemanaRepository;

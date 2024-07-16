@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -18,8 +19,8 @@ namespace SistemaTurnos.Dal.Repository
             var pacientes = await _context.Personas
                    .OfType<Paciente>()
                 .Include(v => v.Sexo)
-                .Include(x => x.EstadoUsuario)
-                .Where(s => s.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                .Include(x => x.EstadoPersona)
+                .Where(s => s.EstadoPersona != EstadoPersona.Activo)
                 .ToListAsync();
 
       

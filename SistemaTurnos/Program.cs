@@ -59,7 +59,6 @@ builder.Services.AddDbContext<DataContext>(op => op.UseSqlServer(builder.Configu
 //-------------------------------Inyecciones-----| los repositorios creados
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
-builder.Services.AddScoped<IEstadoUsuarioRepository, EstadoUsuarioRepository>();
 builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 builder.Services.AddScoped<IDisponibilidadMedicoRepository, DisponibilidadMedicoRepository>();
 builder.Services.AddScoped<IDiaSemanaRepository, DiaSemanaRepository>();
@@ -70,7 +69,6 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
     x.GetRequiredService<IPersonaRepository>(),
-    x.GetRequiredService<IEstadoUsuarioRepository>(),
     x.GetRequiredService<IMedicoRepository>(),
         x.GetRequiredService<IDisponibilidadMedicoRepository>(),
         x.GetRequiredService<IDiaSemanaRepository>(),
