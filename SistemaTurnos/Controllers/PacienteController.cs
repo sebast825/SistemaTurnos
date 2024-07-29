@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
+
     [ApiController]
     public class PacienteController : ControllerBase
     {
@@ -15,14 +14,14 @@ namespace SistemaTurnos.Controllers
             _pacienteService = pacienteService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<ActionResult<PacienteResponseDTO>> GetAll()
         {
             var paciente =  await _pacienteService.GetAll();
             return Ok(paciente);
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
 
         public async Task<ActionResult<bool>> Create ( PacienteCreateRequestDTO paciente)
         {
