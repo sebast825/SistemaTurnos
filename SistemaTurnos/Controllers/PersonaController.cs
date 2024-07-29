@@ -29,6 +29,7 @@ namespace SistemaTurnos.Controllers
         //    var rsta = await _personaService.ActualizarEstadoEliminar(id);
         //    return rsta;
         //}
+
         [HttpPatch("ActualizarPersona")]
 
         public async Task<ActionResult<PersonaResponseDTO>> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)

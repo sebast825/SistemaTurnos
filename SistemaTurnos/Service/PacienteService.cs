@@ -41,6 +41,13 @@ namespace SistemaTurnos.Service
          
             return rsta;
         }
+        public async Task<List<PacienteResponseDTO>> GetById(int id)
+        {
+            var paciente = await _unitOfWork.PacienteRepository.GetById(id);
+            var rsta = _mapper.Map<List<PacienteResponseDTO>>(paciente);
+
+            return rsta;
+        }
         /*
         private List<PacienteResponseDTO> EntitiesToCamionResponseDtos(IEnumerable<Paciente> pacientes)
         {

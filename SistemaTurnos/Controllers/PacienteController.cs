@@ -30,5 +30,14 @@ namespace SistemaTurnos.Controllers
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }
+        [HttpPost("{id}")]
+
+        public async Task<ActionResult<bool>> GetById(int id)
+        {
+            var rsta = await _pacienteService.GetById(id);
+
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+
+        }
     }
 }
