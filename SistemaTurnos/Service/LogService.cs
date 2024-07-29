@@ -57,6 +57,8 @@ namespace SistemaTurnos.Service
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("UserId", userEntity.Id.ToString()),
+                    new Claim("PersonaId", userEntity.PersonaId.ToString()),
+
                                        // new Claim("DisplayName", userEntity.UserName),
                      new Claim(ClaimTypes.Role, permiso),
 
@@ -77,6 +79,27 @@ namespace SistemaTurnos.Service
             {
                 throw new Exception("Usuario invalido");
             }
+        }
+
+        public string GetClaimValueFromJwt(string token, string claimName)
+        {
+
+            // Verificar si el token es válido
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new Exception("Empty token"); // null devolver un error
+            }
+
+            // Usar una librería para decodificar el token JWT
+            // Ejemplo usando System.IdentityModel.Tokens.Jwt
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(token);
+
+            // Obtener el claim por nombre
+            var claim = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == claimName);
+
+            return claim.Value;
+          
         }
     }
 }

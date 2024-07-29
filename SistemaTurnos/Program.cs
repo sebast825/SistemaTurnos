@@ -93,8 +93,9 @@ builder.Services.AddScoped<IDisponibilidadMedicoService, DisponibilidadMedicoSer
 builder.Services.AddScoped<ITurnoService, TurnoService>();
 builder.Services.AddScoped<IAdministrativoService, AdministrativoService>();
 builder.Services.AddScoped<ILogService, LogService>();
-
+builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddHttpContextAccessor();
 
 //-----------------------------JWT---------------------------------------------
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

@@ -10,8 +10,10 @@ namespace SistemaTurnos.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly IPacienteService _pacienteService;
-        public PacienteController(IPacienteService pacienteService) {
+        private readonly IJwtService _jwtService;
+        public PacienteController(IPacienteService pacienteService, IJwtService jwtService) {
             _pacienteService = pacienteService;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
@@ -31,12 +33,24 @@ namespace SistemaTurnos.Controllers
 
         }
         [HttpPost("{id}")]
-
         public async Task<ActionResult<bool>> GetById(int id)
         {
-            var rsta = await _pacienteService.GetById(id);
+            //valida que el id coincida con su jwt
+            //var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
-            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+            bool jwtMatchiD = _jwtService.UserMatchRequestId(id);
+
+            if (jwtMatchiD)
+            {
+                var rsta = await _pacienteService.GetById(id);
+
+                return rsta != null ? Ok(rsta) : BadRequest(rsta);
+            }
+            else
+            {
+                return BadRequest("has no access");
+            }
+           
 
         }
     }

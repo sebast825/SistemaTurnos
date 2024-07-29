@@ -8,6 +8,7 @@ namespace SistemaTurnos.Service.Interface
         Task<Usuario> GetUsuarioByUserPass(string user, string pass);
 
         Task<Object> LogIn(LoginRequestDTO login);
+        string GetClaimValueFromJwt(string token, string claimName);
 
 
     }
