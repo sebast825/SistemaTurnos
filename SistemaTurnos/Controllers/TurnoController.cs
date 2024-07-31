@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Turno;
+using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
@@ -8,12 +10,16 @@ namespace SistemaTurnos.Controllers
     [ApiController]
     public class TurnoController : Controller
     {
-        ITurnoService _turnoService;
-        public TurnoController(ITurnoService turnoService) {
+        private readonly ITurnoService _turnoService;
+        private readonly IJwtService _jwtService;
+
+        public TurnoController(ITurnoService turnoService, IJwtService jwtService) {
             _turnoService = turnoService;
+            _jwtService = jwtService;
 
         }
-        [HttpGet("GetAll")]
+       
+        [HttpGet]
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
             var rsta = await _turnoService.GetAll();
@@ -34,17 +40,33 @@ namespace SistemaTurnos.Controllers
         }
         
 
-                  [HttpGet("FilterByDoctor")]
+        [HttpGet("FilterByDoctor")]
         public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
         {
             var rsta = await _turnoService.FilterByDoctor(id);
             return rsta;
         }
         [HttpGet("FilterByPaciente")]
-        public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
+        public async Task<ActionResult<List<TurnoResponseDTO>>> FilterByPaciente(int id)
         {
-            var rsta = await _turnoService.FilterByPaciente(id);
-            return rsta;
+            bool idJwtMatch = _jwtService.UserMatchRequestId(id);
+            if (idJwtMatch)
+            {
+                var rsta = await _turnoService.FilterByPaciente(id);
+                if (rsta != null)
+                {
+                    return Ok(rsta); 
+                }
+                else
+                {
+                    return NotFound(); 
+                }
+            }
+            else
+            {
+                return Unauthorized(ErrorMessages.NoAccess);
+            }
+
         }
         [HttpGet("FilterByDateTime")]
         public async Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime dt, int? idDoctor)
@@ -52,7 +74,7 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        [HttpPost("Create")]
+        [HttpPost]
         public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
         {
             var rsta = await _turnoService.Create(dto);

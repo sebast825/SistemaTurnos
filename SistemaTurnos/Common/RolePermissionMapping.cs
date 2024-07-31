@@ -6,7 +6,8 @@
     {
         { Role.Paciente, new List<Permission>
             {
-                Permission.CreateTurno
+                Permission.CreateTurno,
+                Permission.GetPacienteById
             }
         },
         { Role.Medico, new List<Permission>

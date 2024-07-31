@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Authorization;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
 
     [ApiController]
     public class PacienteController : ControllerBase
@@ -32,12 +36,11 @@ namespace SistemaTurnos.Controllers
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }
-        [HttpPost("{id}")]
+        [HttpGet("{id}")]
+        [RequirePermission(Permission.GetPacienteById)]
         public async Task<ActionResult<bool>> GetById(int id)
         {
-            //valida que el id coincida con su jwt
-            //var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
+           
             bool jwtMatchiD = _jwtService.UserMatchRequestId(id);
 
             if (jwtMatchiD)
@@ -48,7 +51,7 @@ namespace SistemaTurnos.Controllers
             }
             else
             {
-                return BadRequest("has no access");
+                return BadRequest(ErrorMessages.NoAccess);
             }
            
 
