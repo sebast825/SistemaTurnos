@@ -9,7 +9,7 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  
+    [Authorize]
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoService _medicoService;
@@ -23,20 +23,20 @@ namespace SistemaTurnos.Controllers
 
         [HttpPost("Create")]
 
-        [RequirePermission(Permission.CreatePersona)]
         public async Task<ActionResult<bool>> Create (MedicoCreateRequestDTO dto){
-
+            _jwtService.isAdmin();
             var rsta = await _medicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
-        [HttpGet("GetAll")]
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<List<MedicoResponseDTO>> GetAll()
         {
             var rsta = await _medicoService.GetAll();
             return rsta;
         }
         [HttpGet("FilterByEspecialidad")]
-
+        [AllowAnonymous]
         public async Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id)
         {
             //_jwtService.UserMatchType(Role.Paciente);

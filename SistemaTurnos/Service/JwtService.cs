@@ -35,7 +35,7 @@ namespace SistemaTurnos.Service
             return claim.Value;
         }
 
-        public bool UserMatchRequestId(int id)
+        private bool UserMatchRequestId(int id)
         {
             var tokenId = GetClaimValueFromJwt("PersonaId");
             return tokenId == id.ToString() ? true : false;
@@ -82,6 +82,27 @@ namespace SistemaTurnos.Service
                 if (!esAdministrativo) throw new Exception(ErrorMessages.NoAccess);
             }
 
+        }
+
+        public void PacienteMatchIdOrOthers(int id)
+        {
+            bool esPaciente = UserMatchType(Role.Paciente);
+            if (esPaciente)
+            {
+                bool matchId = UserMatchRequestId(id);
+                if (!matchId) throw new Exception(ErrorMessages.NoAccess);
+
+            }
+        }
+
+        public void isAdmin()
+        {
+            bool esAdmin = UserMatchType(Role.Admin);
+            if (!esAdmin)
+            {
+                throw new Exception(ErrorMessages.NoAccess);
+
+            }
         }
     }
 }

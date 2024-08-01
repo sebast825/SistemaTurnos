@@ -21,7 +21,7 @@ namespace SistemaTurnos.Controllers
         }
 
         [HttpGet]
-
+        [AllowAnonymous]
         public async Task<ActionResult<PacienteResponseDTO>> GetAll()
         {
             var paciente =  await _pacienteService.GetAll();

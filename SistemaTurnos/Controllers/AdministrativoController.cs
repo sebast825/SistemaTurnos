@@ -15,17 +15,20 @@ namespace SistemaTurnos.Controllers
     public class AdministrativoController : ControllerBase
     {
         private readonly IAdministrativoService _administrativoService;
-      public AdministrativoController(IAdministrativoService administrativoService) {
+        private readonly IJwtService _jwtService;
+
+        public AdministrativoController(IAdministrativoService administrativoService, IJwtService jwtService)
+        {
 
             _administrativoService = administrativoService;
-
+            _jwtService = jwtService;
         }
 
 
         [HttpPost("Create")]
-        [RequirePermission(Permission.CreatePersona)]
         public async Task<ActionResult<bool>> Create(AdministrativoRequestCreateDTO dto)
         {
+            _jwtService.isAdmin();
             var rsta = await _administrativoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }

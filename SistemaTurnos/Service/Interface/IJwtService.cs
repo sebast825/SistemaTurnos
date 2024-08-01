@@ -6,11 +6,11 @@ namespace SistemaTurnos.Service.Interface
     public interface IJwtService
     {
 
-        bool UserMatchRequestId(int id);
-
+     
         void isPaciente();
         void isNotPaciente();
-  
+        void PacienteMatchIdOrOthers(int id);
+        void isAdmin();
         void PacienteMatchIdOrAdministrativo(int id);
 
     }
