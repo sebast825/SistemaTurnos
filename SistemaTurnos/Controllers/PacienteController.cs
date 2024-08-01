@@ -21,6 +21,7 @@ namespace SistemaTurnos.Controllers
         }
 
         [HttpGet]
+
         public async Task<ActionResult<PacienteResponseDTO>> GetAll()
         {
             var paciente =  await _pacienteService.GetAll();
@@ -37,24 +38,14 @@ namespace SistemaTurnos.Controllers
 
         }
         [HttpGet("{id}")]
-        [RequirePermission(Permission.GetPacienteById)]
         public async Task<ActionResult<bool>> GetById(int id)
         {
            
-            bool jwtMatchiD = _jwtService.UserMatchRequestId(id);
-
-            if (jwtMatchiD)
-            {
-                var rsta = await _pacienteService.GetById(id);
-
-                return rsta != null ? Ok(rsta) : BadRequest(rsta);
-            }
-            else
-            {
-                return BadRequest(ErrorMessages.NoAccess);
-            }
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
+        
+            var rsta = await _pacienteService.GetById(id);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
            
-
         }
     }
 }

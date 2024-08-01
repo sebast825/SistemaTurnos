@@ -3,8 +3,8 @@
 
     public enum Permission
     {
-        CreateTurno,
-        GetPacienteById,
+        CreateTurno,        
+        CreatePersona,
         CreateDisponibilidadMedico,
         GetEstadosTurno,
         FilterByDoctorTurno,

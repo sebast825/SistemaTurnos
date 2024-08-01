@@ -1,5 +1,7 @@
-﻿using SistemaTurnos.Service.Interface;
+﻿using SistemaTurnos.Common;
+using SistemaTurnos.Service.Interface;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace SistemaTurnos.Service
 {
@@ -38,6 +40,47 @@ namespace SistemaTurnos.Service
             var tokenId = GetClaimValueFromJwt("PersonaId");
             return tokenId == id.ToString() ? true : false;
 
+
+        }
+
+    
+        private bool UserMatchType(Role role)
+        {
+            //var roleToString = role.ToString();
+            var tokenRole = GetClaimValueFromJwt(ClaimTypes.Role);
+            return tokenRole == role.ToString() ? true : false;
+            if (tokenRole != role.ToString()) throw new Exception(ErrorMessages.NoAccess);
+            return true;
+        }
+
+     
+
+        public void isPaciente()
+        {
+            bool esPaciente = UserMatchType(Role.Paciente);
+            if (!esPaciente) throw new Exception(ErrorMessages.NoAccess);
+        }
+
+        public void isNotPaciente()
+        {
+            bool esPaciente = UserMatchType(Role.Paciente);
+            if (esPaciente) throw new Exception(ErrorMessages.NoAccess);
+        }
+
+        public void PacienteMatchIdOrAdministrativo(int id)
+        {
+            bool esPaciente = UserMatchType(Role.Paciente);
+            if (esPaciente)
+            {
+                bool matchId = UserMatchRequestId(id);
+                if (!matchId) throw new Exception(ErrorMessages.NoAccess);
+
+            }
+            else
+            {
+                bool esAdministrativo = UserMatchType(Role.Admin) || UserMatchType(Role.Secretario);
+                if (!esAdministrativo) throw new Exception(ErrorMessages.NoAccess);
+            }
 
         }
     }

@@ -6,8 +6,7 @@
     {
         { Role.Paciente, new List<Permission>
             {
-                Permission.CreateTurno,
-                Permission.GetPacienteById
+                Permission.CreateTurno
             }
         },
         { Role.Medico, new List<Permission>
@@ -36,7 +35,8 @@
                 Permission.FilterByDoctorTurno,
                 Permission.FilterByDateTimeTurno,
                 Permission.GetAllTurno,
-                Permission.CreateTurno
+                Permission.CreateTurno,
+                Permission.CreatePersona
             }
         }
     };
