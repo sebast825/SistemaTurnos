@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -15,17 +16,28 @@ namespace SistemaTurnos.Dal.Repository
         }
         public async Task<List<Paciente>> GetAll()
         {
+        
+
             var pacientes = await _context.Personas
                    .OfType<Paciente>()
                 .Include(v => v.Sexo)
-                .Include(x => x.EstadoUsuario)
-                .Where(s => s.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                .Where(s => s.EstadoPersona == EstadoPersona.Activo)
                 .ToListAsync();
 
       
 
             return pacientes;
 
+        }
+
+        public async Task<List<Paciente>> GetById(int id)
+        {
+            var paciente = await _context.Personas
+                    .OfType<Paciente>()
+                    .Include(v => v.Sexo)
+                    .Where(s => s.EstadoPersona == EstadoPersona.Activo && s.Id == id)
+                    .ToListAsync();
+            return paciente;
         }
     }
 }

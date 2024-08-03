@@ -38,8 +38,8 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new MedicoSeed());
             modelBuilder.ApplyConfiguration(new EspecialidadSeed());
             modelBuilder.ApplyConfiguration(new AdministrativoSeed());
-            modelBuilder.ApplyConfiguration(new RolSeed());
-            modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
+            //modelBuilder.ApplyConfiguration(new RolSeed());
+            //modelBuilder.ApplyConfiguration(new EstadoUsuarioSeed());
             modelBuilder.ApplyConfiguration(new DiaSemanaSeed());
             modelBuilder.ApplyConfiguration(new DisponibilidadMedicoSeed());
             modelBuilder.ApplyConfiguration(new TurnoSeed());
@@ -66,6 +66,17 @@ namespace SistemaTurnos.Dal.Data
                     .HasForeignKey(t => t.PacienteId)
                     .OnDelete(DeleteBehavior.NoAction);
             });
+            modelBuilder.ApplyConfiguration(new UsuarioSeed());
+
+            //convierte los enums en enteros para la db, se pueden realizar consultas de manera comun
+         /*   {
+                modelBuilder.Entity<Persona>()
+                    .Property(p => p.EstadoPersona)
+                    .HasConversion<int>();
+                modelBuilder.Entity<Usuario>()
+                  .Property(p => p.EstadoUsuario)
+                  .HasConversion<int>();
+            }*/
         }
 
         //Nombre de las  tablas
@@ -73,14 +84,16 @@ namespace SistemaTurnos.Dal.Data
         public virtual DbSet<Sexo> Sexos{ get; set; }
         public virtual DbSet<Paciente> Pacientes { get; set; }
         public virtual DbSet<Especialidad> Especialidades { get; set; }
-        public virtual DbSet<Rol> Roles { get; set; }
-        public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
+        //public virtual DbSet<Rol> Roles { get; set; }
+       // public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
         public virtual DbSet<DiaSemana> DiasSemana { get; set; }
         public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos{ get; set; }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Administrativo> Administrativos{ get; set; }
-
+        
         public DbSet<Turno> Turnos { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
 

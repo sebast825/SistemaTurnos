@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -18,7 +19,7 @@ namespace SistemaTurnos.Dal.Repository
                                         .Include(s => s.Medico)
 
                                        .Include(x => x.DiaSemana)
-                                       .Where(s => s.Medico.EspecialidadId == idEspecialidad && s.Medico.EstadoUsuarioId == _idMedicosActivos)
+                                       .Where(s => s.Medico.EspecialidadId == idEspecialidad && s.Medico.EstadoPersona == EstadoPersona.Activo)
                                        .ToListAsync();
 
 
@@ -31,7 +32,7 @@ namespace SistemaTurnos.Dal.Repository
                                 .Include(s => s.Medico)
 
                                .Include(x => x.DiaSemana)
-                               .Where(s => s.MedicoId == idMedico && s.Medico.EstadoUsuarioId == _idMedicosActivos)
+                               .Where(s => s.MedicoId == idMedico && s.Medico.EstadoPersona == EstadoPersona.Activo)
                                .ToListAsync();
 
 
@@ -45,7 +46,7 @@ namespace SistemaTurnos.Dal.Repository
                      .Include(s => s.Medico)
 
                     .Include(x => x.DiaSemana)
-                    .Where(s => s.Medico.EstadoUsuarioId == _idMedicosActivos)
+                    .Where(s => s.Medico.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
            
 
@@ -59,7 +60,7 @@ namespace SistemaTurnos.Dal.Repository
 
                                        .Include(x => x.DiaSemana)
                                        .Where(s => s.MedicoId == idMedico &&
-                                       s.Medico.EstadoUsuarioId == _idMedicosActivos &&
+                                       s.Medico.EstadoPersona == EstadoPersona.Activo &&
                                        s.DiaSemanaId == dia 
                                        &&
                                        s.StartTime <= horario && s.EndTime >= horario

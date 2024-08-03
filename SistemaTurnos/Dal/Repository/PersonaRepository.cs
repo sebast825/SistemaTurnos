@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -13,8 +14,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var persona = await _context.Personas
                 .Include(x => x.Sexo)
-                .Include(s => s.EstadoUsuario)
-                .Where(m => m.NumeroDocumento == numeroDocumento && m.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                .Where(m => m.NumeroDocumento == numeroDocumento && m.EstadoPersona != EstadoPersona.Activo)
                 .FirstOrDefaultAsync();
 
             return persona;
@@ -24,8 +24,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var persona = await _context.Personas
                         .Include(x => x.Sexo)
-                        .Include(s => s.EstadoUsuario)
-                        .Where(m => m.Id == id && m.EstadoUsuarioId != _idEstadoUsuarioEliminado)
+                        .Where(m => m.Id == id && m.EstadoPersona != EstadoPersona.Inactivo)
                         .FirstOrDefaultAsync();
 
             return persona;

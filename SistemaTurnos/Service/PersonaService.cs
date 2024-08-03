@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration.Conventions;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
+using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
@@ -15,20 +17,16 @@ namespace SistemaTurnos.Service
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-        public async Task<PersonaResponseDTO> ActualizarEstado(int id, int estado)
+        public async Task<PersonaResponseDTO> ActualizarEstado(int id, EstadoPersona estado)
         {
 
-            if(estado  == 4) {
-                throw new Exception("no puedes eliminar un usuario");
-
-            }
+            
           
 
             var persona = await _unitOfWork.PersonaRepository.GetId(id);
             if(persona != null) {
 
-                persona.EstadoUsuarioId = estado;
-                persona.EstadoUsuario = await _unitOfWork.EstadoUsuarioRepository.GetId(estado);
+                persona.EstadoPersona = estado;
                 await _unitOfWork.Save();
                 return _mapper.Map<PersonaResponseDTO>(persona);
             }
@@ -37,7 +35,7 @@ namespace SistemaTurnos.Service
 
             
         }
-       
+       /*
         public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
         {
 
@@ -53,7 +51,7 @@ namespace SistemaTurnos.Service
 
             throw new Exception("no se encontro el usuario");
         }
-
+       */
         public Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Nombre))
@@ -63,6 +61,18 @@ namespace SistemaTurnos.Service
                 throw new ArgumentException("El apellido es obligatorio.", nameof(dto.Apellido));
 
             throw new NotImplementedException();
+        }
+
+        public async Task<string> GetTipoPersona(int id)
+        {
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
+
+            //switch(persona)
+            //{
+            //    case persona is Medico:
+            //        return "Medico";
+            //}
+            return "Asd";
         }
     }
 }

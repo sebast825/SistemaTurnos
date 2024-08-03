@@ -15,19 +15,19 @@ namespace SistemaTurnos
 
             CreateMap<Paciente, PacienteResponseDTO>()
                 .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
-                    .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+                    .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoPersona));
 
             CreateMap<PacienteCreateRequestDTO, Paciente>();
             //.ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => new Sexo { Id = src.SexoId }));
 
             CreateMap<Persona, PersonaResponseDTO>()
                  .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
-                 .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+                 .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoPersona));
 
             CreateMap<Medico, MedicoResponseDTO>()
              .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
                 .ForMember(dest => dest.Especialidad, opt => opt.MapFrom(src => src.Especialidad.Nombre))
-                   .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoUsuario.Nombre));
+                   .ForMember(dest => dest.EstadoUsuario, opt => opt.MapFrom(src => src.EstadoPersona));
             CreateMap<MedicoCreateRequestDTO, Medico>();
 
             CreateMap<DisponibilidadMedico, DisponibilidadMedicoResponseDTO>()
@@ -49,8 +49,7 @@ namespace SistemaTurnos
 
 
             CreateMap<AdministrativoRequestCreateDTO, Administrativo>();
-            CreateMap<Administrativo, AdministrativoResponseDTO>()
-                .ForMember(dest => dest.Rol, opt => opt.MapFrom(src => src.Rol.Nombre));
+            CreateMap<Administrativo, AdministrativoResponseDTO>();
 
 
         }

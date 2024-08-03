@@ -17,7 +17,6 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                        FechaNacimiento = new DateTime(1985, 5, 10),
                        Telefono = "123456789",
                        NumeroDocumento = "12345678",
-                       Email = "juan.perez@example.com",
                        SexoId = 1 // Hombre
                    },
             new Persona
@@ -28,7 +27,6 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                 FechaNacimiento = new DateTime(1990, 8, 15),
                 Telefono = "987654321",
                 NumeroDocumento = "87654321",
-                Email = "maria.gomez@example.com",
                 SexoId = 2 // Mujer
             }
             ) ; 

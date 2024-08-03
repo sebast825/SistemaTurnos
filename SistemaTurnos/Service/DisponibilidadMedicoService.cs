@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Server.IIS.Core;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
@@ -36,7 +37,7 @@ namespace SistemaTurnos.Service
 
             var idMedicoActivos =  _unitOfWork.DisponibilidadMedicoRepository.GetIdMedicosActivos();
 
-            if (medico == null || medico.EstadoUsuarioId == idMedicoActivos)
+            if (medico == null || medico.EstadoPersona == EstadoPersona.Activo)
             {
                 /*    var newEntity = new DisponibilidadMedico
                     {

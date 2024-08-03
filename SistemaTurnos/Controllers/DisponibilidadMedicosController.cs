@@ -11,13 +11,15 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DisponibilidadMedicoController : ControllerBase
+    public class DisponibilidadMedicosController : ControllerBase
     {
         private readonly IDisponibilidadMedicoService _disponibilidadMedicoService;
+        private readonly IJwtService _jwtService;
 
-        public DisponibilidadMedicoController(IDisponibilidadMedicoService disponibilidadMedicoService)
+        public DisponibilidadMedicosController(IDisponibilidadMedicoService disponibilidadMedicoService, IJwtService jwtService)
         {
             _disponibilidadMedicoService = disponibilidadMedicoService;
+            _jwtService = jwtService;
         }
 
         [HttpGet("GetAll")]
@@ -43,6 +45,7 @@ namespace SistemaTurnos.Controllers
         [HttpPost("Create")]
         public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
         {
+            _jwtService.isAdmin();
             var rsta = await _disponibilidadMedicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }

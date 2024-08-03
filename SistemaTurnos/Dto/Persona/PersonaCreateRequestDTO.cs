@@ -9,7 +9,6 @@ namespace SistemaTurnos.Dto.Persona
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string NumeroDocumento { get; set; }
-        public string Email { get; set; }
         public int SexoId { get; set; }
 
     }

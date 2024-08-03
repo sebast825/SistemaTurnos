@@ -12,8 +12,8 @@ using SistemaTurnos.Dal.Data;
 namespace SistemaTurnos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240708192550_disponibilidadSeed")]
-    partial class disponibilidadSeed
+    [Migration("20240716193735_userEstado")]
+    partial class userEstado
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,45 +191,6 @@ namespace SistemaTurnos.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SistemaTurnos.Dal.Entities.EstadoUsuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadoUsuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Nombre = "Activo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Nombre = "Inactivo"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Nombre = "Suspendido"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Nombre = "Eliminado"
-                        });
-                });
-
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Persona", b =>
                 {
                     b.Property<int>("Id")
@@ -246,11 +207,7 @@ namespace SistemaTurnos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EstadoUsuarioId")
+                    b.Property<int>("EstadoPersona")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FechaCreacion")
@@ -276,8 +233,6 @@ namespace SistemaTurnos.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EstadoUsuarioId");
-
                     b.HasIndex("SexoId");
 
                     b.ToTable("Personas");
@@ -291,9 +246,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 1,
                             Apellido = "Pérez",
-                            Email = "juan.perez@example.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(2100),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 701, DateTimeKind.Local).AddTicks(9946),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "12345678",
@@ -304,43 +258,13 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 2,
                             Apellido = "Gómez",
-                            Email = "maria.gomez@example.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(2123),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 701, DateTimeKind.Local).AddTicks(9962),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "87654321",
                             SexoId = 2,
                             Telefono = "987654321"
-                        });
-                });
-
-            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Rol", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Nombre = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Nombre = "Secretario"
                         });
                 });
 
@@ -378,14 +302,195 @@ namespace SistemaTurnos.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Turno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MedicoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicoId");
+
+                    b.HasIndex("PacienteId");
+
+                    b.ToTable("Turnos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Estado = "Programada",
+                            Fecha = new DateTime(2024, 7, 17, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3878),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3875),
+                            MedicoId = 5,
+                            PacienteId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Estado = "Cancelada",
+                            Fecha = new DateTime(2024, 7, 18, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3885),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3884),
+                            MedicoId = 6,
+                            PacienteId = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Estado = "Completada",
+                            Fecha = new DateTime(2024, 7, 19, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3887),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3886),
+                            MedicoId = 7,
+                            PacienteId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Estado = "LLamando",
+                            Fecha = new DateTime(2024, 7, 20, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3889),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3888),
+                            MedicoId = 5,
+                            PacienteId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Estado = "EnProgreso",
+                            Fecha = new DateTime(2024, 7, 21, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3891),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3890),
+                            MedicoId = 6,
+                            PacienteId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Estado = "Finalizada",
+                            Fecha = new DateTime(2024, 7, 22, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3894),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3893),
+                            MedicoId = 7,
+                            PacienteId = 4
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Estado = "NoAsistida",
+                            Fecha = new DateTime(2024, 7, 23, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3896),
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3895),
+                            MedicoId = 5,
+                            PacienteId = 3
+                        });
+                });
+
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstadoUsuario")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonaId");
+
+                    b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "persona@example.com",
+                            EstadoUsuario = 2,
+                            Password = "a",
+                            PersonaId = 1,
+                            Role = 0,
+                            UserName = "persona"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "paciente@example.com",
+                            EstadoUsuario = 0,
+                            Password = "a",
+                            PersonaId = 3,
+                            Role = 0,
+                            UserName = "paciente"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "medico@example.com",
+                            EstadoUsuario = 0,
+                            Password = "a",
+                            PersonaId = 5,
+                            Role = 1,
+                            UserName = "medico"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "secretario@example.com",
+                            EstadoUsuario = 0,
+                            Password = "a",
+                            PersonaId = 8,
+                            Role = 2,
+                            UserName = "secretario"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Email = "admin@example.com",
+                            EstadoUsuario = 0,
+                            Password = "a",
+                            PersonaId = 9,
+                            Role = 3,
+                            UserName = "admin"
+                        });
+                });
+
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Administrativo", b =>
                 {
                     b.HasBaseType("SistemaTurnos.Dal.Entities.Persona");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("RolId");
 
                     b.HasDiscriminator().HasValue("Administrativo");
 
@@ -394,29 +499,25 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 8,
                             Apellido = "Martínez",
-                            Email = "laura.martinez@ejemplo.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(5305),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2864),
                             FechaNacimiento = new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Laura",
                             NumeroDocumento = "DNI65432100",
                             SexoId = 2,
-                            Telefono = "111222333",
-                            RolId = 1
+                            Telefono = "111222333"
                         },
                         new
                         {
                             Id = 9,
                             Apellido = "Sánchez",
-                            Email = "pedro.sanchez@ejemplo.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(5308),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2867),
                             FechaNacimiento = new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Pedro",
                             NumeroDocumento = "DNI12345001",
                             SexoId = 1,
-                            Telefono = "444555666",
-                            RolId = 2
+                            Telefono = "444555666"
                         });
                 });
 
@@ -440,9 +541,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 5,
                             Apellido = "Pérez",
-                            Email = "juan.perez@ejemplo.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4757),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2231),
                             FechaNacimiento = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "DNI12345678",
@@ -455,9 +555,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 6,
                             Apellido = "González",
-                            Email = "maria.gonzalez@ejemplo.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4759),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2234),
                             FechaNacimiento = new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "DNI87654321",
@@ -470,9 +569,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 7,
                             Apellido = "López",
-                            Email = "carlos.lopez@ejemplo.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4762),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2237),
                             FechaNacimiento = new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Carlos",
                             NumeroDocumento = "DNI23456789",
@@ -502,9 +600,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 3,
                             Apellido = "Pérez",
-                            Email = "juan.perez@example.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4421),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(1838),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "45345678",
@@ -517,9 +614,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 4,
                             Apellido = "Gómez",
-                            Email = "maria.gomez@example.com",
-                            EstadoUsuarioId = 1,
-                            FechaCreacion = new DateTime(2024, 7, 8, 16, 25, 50, 695, DateTimeKind.Local).AddTicks(4427),
+                            EstadoPersona = 0,
+                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(1845),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "12345678",
@@ -551,32 +647,41 @@ namespace SistemaTurnos.Migrations
 
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Persona", b =>
                 {
-                    b.HasOne("SistemaTurnos.Dal.Entities.EstadoUsuario", "EstadoUsuario")
-                        .WithMany()
-                        .HasForeignKey("EstadoUsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SistemaTurnos.Dal.Entities.Sexo", "Sexo")
                         .WithMany()
                         .HasForeignKey("SexoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EstadoUsuario");
-
                     b.Navigation("Sexo");
                 });
 
-            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Administrativo", b =>
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Turno", b =>
                 {
-                    b.HasOne("SistemaTurnos.Dal.Entities.Rol", "Rol")
+                    b.HasOne("SistemaTurnos.Dal.Entities.Medico", "Medico")
                         .WithMany()
-                        .HasForeignKey("RolId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("MedicoId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Rol");
+                    b.HasOne("SistemaTurnos.Dal.Entities.Paciente", "Paciente")
+                        .WithMany()
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Medico");
+
+                    b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("SistemaTurnos.Dal.Entities.Usuario", b =>
+                {
+                    b.HasOne("SistemaTurnos.Dal.Entities.Persona", "Persona")
+                        .WithMany()
+                        .HasForeignKey("PersonaId");
+
+                    b.Navigation("Persona");
                 });
 
             modelBuilder.Entity("SistemaTurnos.Dal.Entities.Medico", b =>
