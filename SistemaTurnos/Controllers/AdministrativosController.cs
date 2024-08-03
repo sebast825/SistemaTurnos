@@ -12,12 +12,12 @@ namespace SistemaTurnos.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class AdministrativoController : ControllerBase
+    public class AdministrativosController : ControllerBase
     {
         private readonly IAdministrativoService _administrativoService;
         private readonly IJwtService _jwtService;
 
-        public AdministrativoController(IAdministrativoService administrativoService, IJwtService jwtService)
+        public AdministrativosController(IAdministrativoService administrativoService, IJwtService jwtService)
         {
 
             _administrativoService = administrativoService;

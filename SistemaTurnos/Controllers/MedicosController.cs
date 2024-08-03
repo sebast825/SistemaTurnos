@@ -10,12 +10,12 @@ namespace SistemaTurnos.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class MedicoController : ControllerBase
+    public class MedicosController : ControllerBase
     {
         private readonly IMedicoService _medicoService;
         private readonly IJwtService _jwtService;
 
-        public MedicoController(IMedicoService medicicoService, IJwtService jwtService)
+        public MedicosController(IMedicoService medicicoService, IJwtService jwtService)
         {
             _medicoService = medicicoService;
             _jwtService = jwtService;

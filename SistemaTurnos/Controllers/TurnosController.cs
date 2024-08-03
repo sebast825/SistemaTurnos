@@ -10,12 +10,12 @@ namespace SistemaTurnos.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class TurnoController : Controller
+    public class TurnosController : Controller
     {
         private readonly ITurnoService _turnoService;
         private readonly IJwtService _jwtService;
 
-        public TurnoController(ITurnoService turnoService, IJwtService jwtService) {
+        public TurnosController(ITurnoService turnoService, IJwtService jwtService) {
             _turnoService = turnoService;
             _jwtService = jwtService;
 

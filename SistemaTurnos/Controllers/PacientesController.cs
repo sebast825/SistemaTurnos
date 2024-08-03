@@ -11,11 +11,11 @@ namespace SistemaTurnos.Controllers
     [Authorize]
 
     [ApiController]
-    public class PacienteController : ControllerBase
+    public class PacientesController : ControllerBase
     {
         private readonly IPacienteService _pacienteService;
         private readonly IJwtService _jwtService;
-        public PacienteController(IPacienteService pacienteService, IJwtService jwtService) {
+        public PacientesController(IPacienteService pacienteService, IJwtService jwtService) {
             _pacienteService = pacienteService;
             _jwtService = jwtService;
         }

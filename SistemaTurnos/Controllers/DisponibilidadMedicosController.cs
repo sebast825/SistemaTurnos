@@ -11,12 +11,12 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DisponibilidadMedicoController : ControllerBase
+    public class DisponibilidadMedicosController : ControllerBase
     {
         private readonly IDisponibilidadMedicoService _disponibilidadMedicoService;
         private readonly IJwtService _jwtService;
 
-        public DisponibilidadMedicoController(IDisponibilidadMedicoService disponibilidadMedicoService, IJwtService jwtService)
+        public DisponibilidadMedicosController(IDisponibilidadMedicoService disponibilidadMedicoService, IJwtService jwtService)
         {
             _disponibilidadMedicoService = disponibilidadMedicoService;
             _jwtService = jwtService;

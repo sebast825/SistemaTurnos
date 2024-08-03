@@ -8,11 +8,11 @@ namespace SistemaTurnos.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class PersonaController : ControllerBase
+    public class PersonasController : ControllerBase
     {
         private readonly IPersonaService _personaService;
         private readonly IJwtService _jwtService;
-        public PersonaController(IPersonaService personaService, IJwtService jwtService)
+        public PersonasController(IPersonaService personaService, IJwtService jwtService)
         {
             _personaService = personaService;
             _jwtService = jwtService;
