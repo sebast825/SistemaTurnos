@@ -115,7 +115,7 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-        public async Task<DisponibilidadMedicoTurnoResponseDTO> ObtenerHorariosDisponibles(int medicoId)
+        public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId)
         {
             //int diaSemanaId = (int)fecha.DayOfWeek;
 
@@ -133,10 +133,9 @@ namespace SistemaTurnos.Service
 
 
 
-            var horariosDisponiblesPorDia = new DisponibilidadMedicoTurnoResponseDTO();
-            horariosDisponiblesPorDia.IdMedico = medicoId;
-             horariosDisponiblesPorDia.Medico= "nombreMedico";
-            horariosDisponiblesPorDia.Disponibilidades = new List<HorarioDisponibilidadTurnoDTO>();
+            var horariosDisponiblesPorDia = new List<HorarioMedicoLibreResponseDTO>();
+      
+             
             // Procesar cada día del mes
             for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
             {
@@ -154,18 +153,18 @@ namespace SistemaTurnos.Service
                     {
                         TimeSpan turnoInicio = turno.Fecha.TimeOfDay;
                         TimeSpan turnoFin = turnoInicio.Add(TimeSpan.FromMinutes(20)); // Duración estimada de un turno
-                        var horarioDisponible = new HorarioDisponibilidadTurnoDTO();
+                        var horarioDisponible = new HorarioMedicoLibreResponseDTO();
 
                         if (start < turnoInicio)
                         {
 
-
+                            horarioDisponible.IdMedico = medicoId;
                             horarioDisponible.Fecha = dia;
                             horarioDisponible.HoraInicio = start;
                             horarioDisponible.HoraFin = turnoInicio;
 
                             //horariosDisponibles.Add((start, turnoInicio));
-                            horariosDisponiblesPorDia.Disponibilidades.Add(horarioDisponible);
+                            horariosDisponiblesPorDia.Add(horarioDisponible);
 
                         }
 
@@ -174,14 +173,15 @@ namespace SistemaTurnos.Service
 
                     if (start < disp.EndTime)
                     {
-                        var horarioDisponible = new HorarioDisponibilidadTurnoDTO();
+                        var horarioDisponible = new HorarioMedicoLibreResponseDTO();
 
+                        horarioDisponible.IdMedico = medicoId;
 
                         horarioDisponible.Fecha = dia;
                         horarioDisponible.HoraInicio = start;
                         horarioDisponible.HoraFin = disp.EndTime;
                         //horariosDisponibles.Add((start, disp.EndTime));
-                        horariosDisponiblesPorDia.Disponibilidades.Add(horarioDisponible);
+                        horariosDisponiblesPorDia.Add(horarioDisponible);
 
                     }
                 }

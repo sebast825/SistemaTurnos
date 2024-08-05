@@ -86,7 +86,7 @@ namespace SistemaTurnos.Controllers
         }
 
         [HttpPost("nuevito")]
-        public async Task<DisponibilidadMedicoTurnoResponseDTO> ObtenerHorariosDisponibles(int idMedico)
+        public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
         {
             var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
             return rsta;
