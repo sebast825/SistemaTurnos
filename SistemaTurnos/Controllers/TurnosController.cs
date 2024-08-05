@@ -9,7 +9,7 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class TurnosController : Controller
     {
         private readonly ITurnoService _turnoService;
@@ -24,7 +24,7 @@ namespace SistemaTurnos.Controllers
         [HttpGet]
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
-            _jwtService.isNotPaciente();
+            //_jwtService.isNotPaciente();
             var rsta = await _turnoService.GetAll();
             return rsta;
         }
@@ -82,6 +82,13 @@ namespace SistemaTurnos.Controllers
         {
             _jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
             var rsta = await _turnoService.Create(dto);
+            return rsta;
+        }
+
+        [HttpPost("nuevito")]
+        public async Task<DisponibilidadMedicoTurnoResponseDTO> ObtenerHorariosDisponibles(int idMedico)
+        {
+            var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
             return rsta;
         }
 
