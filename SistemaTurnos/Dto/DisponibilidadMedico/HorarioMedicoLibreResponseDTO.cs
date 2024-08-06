@@ -1,4 +1,4 @@
-﻿namespace SistemaTurnos.Dto.Turno
+﻿namespace SistemaTurnos.Dto.DisponibilidadMedico
 {
     public class HorarioMedicoLibreResponseDTO
     {

@@ -17,7 +17,7 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await _context.Turnos
                     .Include(x => x.Medico)
                     .Include(p => p.Paciente)
-                    .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo)
+                    .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo && p.Estado == EstadoTurno.Programada)
                     .ToListAsync();
             
             return turnos;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Common;
+using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
@@ -91,6 +92,13 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
             return rsta;
         }
+        [HttpPost("TurnosDisponiblesByMedico")]
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
+        {
+            var rsta = await _turnoService.TurnosDisponiblesByMedico(5);
+            return rsta;
+        }
+
 
     }
 }

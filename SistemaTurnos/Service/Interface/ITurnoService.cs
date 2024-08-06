@@ -1,4 +1,5 @@
 ﻿using SistemaTurnos.Dal.Entities;
+using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Turno;
 
 namespace SistemaTurnos.Service.Interface
@@ -15,6 +16,7 @@ namespace SistemaTurnos.Service.Interface
         Task<bool> MedicoIsAviable(TurnoCreateRequestDTO dto);
         Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId);
 
+        Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId);
     }
 }
 
