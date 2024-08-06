@@ -82,8 +82,7 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Repository\\Interface\\ITurnoRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T14:48:00.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T14:48:00.682Z"
             },
             {
               "$type": "Document",
@@ -144,8 +143,7 @@
               "RelativeToolTip": "SistemaTurnos\\Controllers\\TurnosController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAuwGEAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T01:31:43.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T01:31:43.671Z"
             },
             {
               "$type": "Document",
@@ -169,8 +167,7 @@
               "RelativeToolTip": "SistemaTurnos\\Service\\Interface\\ITurnoService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T01:25:52.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T01:25:52.762Z"
             },
             {
               "$type": "Document",
@@ -180,7 +177,7 @@
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\TurnoService.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
               "RelativeToolTip": "SistemaTurnos\\Service\\TurnoService.cs",
-              "ViewState": "AQIAALUAAAAAAAAAAAArwLwAAABJAAAA",
+              "ViewState": "AQIAAPgAAAAAAAAAAAAqwAkBAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-05T01:25:13.379Z",
               "EditorCaption": ""

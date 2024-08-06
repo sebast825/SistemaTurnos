@@ -9,6 +9,7 @@ using SistemaTurnos.Dto.Turno;
 
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 
 namespace SistemaTurnos.Service
 {
@@ -182,70 +183,88 @@ namespace SistemaTurnos.Service
 
             return horariosDisponiblesPorDia;
         }
+      
+        private bool HayTurno(TimeSpan i, TimeSpan tiempoTurno, List<Turno> turnosDia)
+        {
+            return turnosDia.Any(turno =>
+            {
+                var diferenciaDeTiempoTurnoPrevio = (turno.Fecha.TimeOfDay - i).Duration();
+                var diferenciaDeTiempoTurnoProximo = (i - turno.Fecha.TimeOfDay).Duration();
+                return diferenciaDeTiempoTurnoPrevio < tiempoTurno || diferenciaDeTiempoTurnoProximo < tiempoTurno;
+            });
+            
+        }
+        private TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos, 
+            DateTime dia, TurnoHorarioDisponibleResponseDTO horarioDisponible)
+        {
+            TimeSpan startShift = disp.StartTime;
+            TimeSpan endShift = disp.EndTime;
+            TimeSpan tiempoTurno = new TimeSpan(0, 20, 0);
 
+            DateTime fechaReferencia = DateTime.Today.Add(startShift);
+            DateTime finTurno = fechaReferencia.Add(tiempoTurno);
+
+            var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
+
+            //recorre cada franja de tiempo disponible (en relacion con el tiempo del turno) para ver sie sta disponible
+            for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
+            {
+                if (!HayTurno(i, tiempoTurno, turnosDia))
+                {
+                    horarioDisponible.Horario.Add(i);
+                }
+            }
+            return horarioDisponible;
+            }
+        private TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
+            List<Turno> turnos,DateTime dia, int medicoId)
+        {
+            int diaSemanaId = (int)dia.DayOfWeek;
+
+            // Filtrar disponibilidades y turnos para el día específico
+            var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == diaSemanaId).ToList();
+            if (disponibilidadDelDia.Count == 0) return null;
+
+            var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
+            horarioDisponible.MedicoId = medicoId;
+            horarioDisponible.Fecha = dia;
+
+            foreach (var disp in disponibilidadDelDia)
+            {
+                ObtenerHorariosDisponiblesPorDisponibilidad(disp,turnos,dia,horarioDisponible);
+            }
+
+            return horarioDisponible;
+            }
+
+
+        private List<TurnoHorarioDisponibleResponseDTO> GenerarHorariosDisponiblesPorMes(int medicoId, List<Turno> turnos,
+            List<DisponibilidadMedico> horariosDisponibilidadMedico)
+        {
+            var fechaInicio = DateTime.Today.AddDays(-1);
+            //reccorre hasta fin de mes
+            var fechaFin = new DateTime(fechaInicio.Year, fechaInicio.Month, 1).AddMonths(1).AddDays(-1);
+
+            var horariosDisponiblesPorDia = new List<TurnoHorarioDisponibleResponseDTO>();
+
+            // Procesar cada día del mes
+            for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
+            {                
+                var horariosDia = GenerarHorariosDisponiblesPorDia(horariosDisponibilidadMedico, turnos,dia, medicoId);
+                if (horariosDia != null)
+                {
+                    horariosDisponiblesPorDia.Add(horariosDia);
+                }
+            }
+            return horariosDisponiblesPorDia;
+        }
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {
             var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
             var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId, EstadoTurno.Programada);
 
-            var fechaInicio = DateTime.Today;
-            var fechaFin = DateTime.Today.AddDays(10);
-            var horariosDisponiblesPorDia = new List<TurnoHorarioDisponibleResponseDTO>();
-            var asd = turnos[0].Fecha.DayOfWeek;
-           
-            
-            // Procesar cada día del mes
-            for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
-            {
-                int diaSemanaId = (int)dia.DayOfWeek;
+            return GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
 
-                // Filtrar disponibilidades y turnos para el día específico
-                var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == diaSemanaId).ToList();
-
-                var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
-                horarioDisponible.MedicoId = medicoId;
-                horarioDisponible.Fecha = dia;
-                
-
-                foreach (var disp in disponibilidadDelDia)
-                {
-                    TimeSpan startShift = disp.StartTime;
-                    TimeSpan endShift = disp.EndTime;
-                    TimeSpan tiempoTurno = new TimeSpan(0, 20, 0);
-
-                    DateTime fechaReferencia = DateTime.Today.Add(startShift);
-                    DateTime finTurno = fechaReferencia.Add(tiempoTurno);
-
-                    var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
-
-                    //recorre cada franja de tiempo disponible (en relacion con el tiempo del turno) para ver sie sta disponible
-                    for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
-                    {
-                        var r = i;
-                        var hayTurno = turnosDia.Where((turno) =>{
-                            var diferenciaDeTiempoTurnoPrevio = (turno.Fecha.TimeOfDay - i).Duration();
-                            var diferenciaDeTiempoTurnoProximo = (i - turno.Fecha.TimeOfDay).Duration();
-                            if(diferenciaDeTiempoTurnoPrevio < tiempoTurno || diferenciaDeTiempoTurnoProximo < tiempoTurno)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                            
-                        }).ToList();
-
-                        if (hayTurno.Count == 0)
-                        {
-                            horarioDisponible.Horario.Add(i);
-                        }                                    
-                    }                                    
-                    horariosDisponiblesPorDia.Add(horarioDisponible);
-
-                }               
-            }
-            return horariosDisponiblesPorDia;
         }
     }
 }
