@@ -75,7 +75,7 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-        public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
+        public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id, EstadoTurno? estadoTurno)
         {
 
             var medico = await _unitOfWork.MedicoRepository.GetId(id);
@@ -122,7 +122,6 @@ namespace SistemaTurnos.Service
 
         public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId)
         {
-             await TurnosDisponiblesByMedico(medicoId);
             var disponibilidades = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
             var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId);
 
@@ -187,7 +186,7 @@ namespace SistemaTurnos.Service
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {
             var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
-            var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId);
+            var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId, EstadoTurno.Programada);
 
             var fechaInicio = DateTime.Today;
             var fechaFin = DateTime.Today.AddDays(10);

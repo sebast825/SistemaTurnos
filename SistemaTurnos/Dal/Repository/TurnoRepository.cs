@@ -24,17 +24,24 @@ namespace SistemaTurnos.Dal.Repository
 
         }
 
-        public async Task<List<Turno>> FilterByDoctor(int id)
+        public async Task<List<Turno>> FilterByDoctor(int id, EstadoTurno? estadoTurno)
         {
-            var turnos = await _context.Turnos
+            var turnosQuery = _context.Turnos
                                       .Include(x => x.Medico)
                                       .Include(p => p.Paciente)
                                       .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo
-                                              && p.MedicoId == id)
-                                       .OrderBy(t => t.Fecha)
-                                      .ToListAsync();
+                                              && p.MedicoId == id);                                   
+
+         
+            if (estadoTurno.HasValue)
+            {
+                turnosQuery = turnosQuery.Where(p => p.Estado == estadoTurno.Value);
+
+            }
+            var turnos = await turnosQuery.OrderBy(t => t.Fecha).ToListAsync();
 
             return turnos;
+
         }
 
         public async Task<List<Turno>> FilterByPaciente(int id)
