@@ -122,16 +122,12 @@ namespace SistemaTurnos.Service
 
         public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId)
         {
-            //int diaSemanaId = (int)fecha.DayOfWeek;
              await TurnosDisponiblesByMedico(medicoId);
             var disponibilidades = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
             var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId);
 
             var fechaInicio = DateTime.Today;
-            //var fechaFin = DateTime.Today.AddMonths(1).AddDays(-1);
             var fechaFin = DateTime.Today.AddDays(10);
-
-
 
             var horariosDisponiblesPorDia = new List<HorarioMedicoLibreResponseDTO>();
 
@@ -155,9 +151,9 @@ namespace SistemaTurnos.Service
                         TimeSpan turnoFin = turnoInicio.Add(TimeSpan.FromMinutes(20)); // Duración estimada de un turno
                         var horarioDisponible = new HorarioMedicoLibreResponseDTO();
 
+                        //si el tiempo es menor al inicio del turno crea una nueva franja horaria
                         if (start < turnoInicio)
                         {
-
                             horarioDisponible.IdMedico = medicoId;
                             horarioDisponible.Fecha = dia;
                             horarioDisponible.HoraInicio = start;
@@ -170,24 +166,19 @@ namespace SistemaTurnos.Service
 
                         start = turnoFin;
                     }
-
+                    //es para la utlima franja horaria entre el ultimo turno y la finalizacion del la jornada laboral
                     if (start < disp.EndTime)
                     {
                         var horarioDisponible = new HorarioMedicoLibreResponseDTO();
 
                         horarioDisponible.IdMedico = medicoId;
-
                         horarioDisponible.Fecha = dia;
                         horarioDisponible.HoraInicio = start;
                         horarioDisponible.HoraFin = disp.EndTime;
                         //horariosDisponibles.Add((start, disp.EndTime));
                         horariosDisponiblesPorDia.Add(horarioDisponible);
-
                     }
                 }
-
-
-
             }
 
             return horariosDisponiblesPorDia;
@@ -198,8 +189,7 @@ namespace SistemaTurnos.Service
             var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
             var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId);
 
-          var fechaInicio = DateTime.Today;
-            //var fechaFin = DateTime.Today.AddMonths(1).AddDays(-1);
+            var fechaInicio = DateTime.Today;
             var fechaFin = DateTime.Today.AddDays(10);
             var horariosDisponiblesPorDia = new List<TurnoHorarioDisponibleResponseDTO>();
             var asd = turnos[0].Fecha.DayOfWeek;
@@ -218,29 +208,24 @@ namespace SistemaTurnos.Service
                 horarioDisponible.Fecha = dia;
                 
 
-
                 foreach (var disp in disponibilidadDelDia)
                 {
                     TimeSpan startShift = disp.StartTime;
                     TimeSpan endShift = disp.EndTime;
                     TimeSpan tiempoTurno = new TimeSpan(0, 20, 0);
-                    //TimeSpan comienzoTurno = startShift;
+
                     DateTime fechaReferencia = DateTime.Today.Add(startShift);
                     DateTime finTurno = fechaReferencia.Add(tiempoTurno);
 
                     var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
 
-
-                    //TimeSpan turnoInicio = turno.Fecha.TimeOfDay;
-                    //TimeSpan endShift= startShift.Add(TimeSpan.FromMinutes(20)); // Duración estimada de un turno
-                  
-                    
+                    //recorre cada franja de tiempo disponible (en relacion con el tiempo del turno) para ver sie sta disponible
                     for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
                     {
                         var r = i;
                         var hayTurno = turnosDia.Where((turno) =>{
                             var diferenciaDeTiempoTurnoPrevio = (turno.Fecha.TimeOfDay - i).Duration();
-                        var diferenciaDeTiempoTurnoProximo = (i - turno.Fecha.TimeOfDay).Duration();
+                            var diferenciaDeTiempoTurnoProximo = (i - turno.Fecha.TimeOfDay).Duration();
                             if(diferenciaDeTiempoTurnoPrevio < tiempoTurno || diferenciaDeTiempoTurnoProximo < tiempoTurno)
                             {
                                 return true;
@@ -251,97 +236,17 @@ namespace SistemaTurnos.Service
                             }
                             
                         }).ToList();
+
                         if (hayTurno.Count == 0)
                         {
                             horarioDisponible.Horario.Add(i);
-
-                            Console.WriteLine("hola");
-                        }
-                        else
-                        {
-
-                        }
-                        
-                      
-                        //var medicoDisponible = await _unitOfWork.DisponibilidadMedicoRepository.MedicoIsAviable(dto.MedicoId, indiceDiaSemana, tiempo);
-                        //var asd = medicoDisponible.Count() > 0 ? true : false;
-                    }
-
-                    //if (startShift)
-                    //{
-
-
-
-                    //}
-
+                        }                                    
+                    }                                    
                     horariosDisponiblesPorDia.Add(horarioDisponible);
 
-
-                }
-                if (horarioDisponible.Horario.Count > 0)
-                {
-                    //horariosDisponiblesPorDia.Add(horarioDisponible);
-
-                }
-
-
-
+                }               
             }
             return horariosDisponiblesPorDia;
         }
     }
 }
-
-
-/*
-
-
-var fechaInicio = DateTime.Today;
-//var fechaFin = DateTime.Today.AddMonths(1).AddDays(-1);
-var fechaFin = DateTime.Today.AddDays(1);
-
-
-
-var horariosDisponiblesPorDia = new DisponibilidadMedicoTurnoResponseDTO();
-
-// Procesar cada día del mes
-for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
-{
-    int diaSemanaId = (int)dia.DayOfWeek;
-
-    // Filtrar disponibilidades y turnos para el día específico
-    var disponibilidadDelDia = disponibilidades.Where(d => d.DiaSemanaId == diaSemanaId).ToList();
-    var turnosDelDia = turnos.Where(t => t.Fecha.Date == dia.Date).ToList();
-
-    var horariosDisponibles = new List<(TimeSpan StartTime, TimeSpan EndTime)>();
-
-    foreach (var disp in disponibilidadDelDia)
-    {
-        TimeSpan start = disp.StartTime;
-        foreach (var turno in turnosDelDia)
-        {
-            TimeSpan turnoInicio = turno.Fecha.TimeOfDay;
-            TimeSpan turnoFin = turnoInicio.Add(TimeSpan.FromMinutes(20)); // Duración estimada de un turno
-
-            if (start < turnoInicio)
-            {
-                horariosDisponibles.Add((start, turnoInicio));
-            }
-
-            start = turnoFin;
-        }
-
-        if (start < disp.EndTime)
-        {
-            horariosDisponibles.Add((start, disp.EndTime));
-        }
-    }
-
-    if (horariosDisponibles.Any())
-    {
-        horariosDisponiblesPorDia[dia] = horariosDisponibles;
-    }
-}
-
-return horariosDisponiblesPorDia;
-*/

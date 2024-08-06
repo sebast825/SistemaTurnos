@@ -87,8 +87,7 @@
               "RelativeToolTip": "SistemaTurnos\\Dto\\Turno\\TurnoHorarioDisponibleResponseDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T21:03:05.811Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T21:03:05.811Z"
             },
             {
               "$type": "Document",
@@ -100,8 +99,7 @@
               "RelativeToolTip": "SistemaTurnos\\Dto\\DisponibilidadMedico\\HorarioMedicoLibreResponseDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T16:40:02.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T16:40:02.826Z"
             },
             {
               "$type": "Document",
@@ -113,8 +111,7 @@
               "RelativeToolTip": "SistemaTurnos\\Controllers\\TurnosController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAuwGEAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T01:31:43.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T01:31:43.671Z"
             },
             {
               "$type": "Document",
@@ -138,8 +135,7 @@
               "RelativeToolTip": "SistemaTurnos\\Service\\Interface\\ITurnoService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T01:25:52.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-05T01:25:52.762Z"
             },
             {
               "$type": "Document",
@@ -149,7 +145,7 @@
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\TurnoService.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
               "RelativeToolTip": "SistemaTurnos\\Service\\TurnoService.cs",
-              "ViewState": "AQIAALgAAAAAAAAAAAAhwMMAAABcAAAA",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAUwKsAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-05T01:25:13.379Z",
               "EditorCaption": ""
