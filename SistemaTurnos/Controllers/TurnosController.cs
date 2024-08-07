@@ -8,7 +8,7 @@ using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     //[Authorize]
     public class TurnosController : Controller
@@ -22,7 +22,7 @@ namespace SistemaTurnos.Controllers
 
         }
        
-        [HttpGet]
+        [HttpGet("/turnos")]
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
             //_jwtService.isNotPaciente();
@@ -54,21 +54,29 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDoctor(id);
             return rsta;
         }
-        [HttpGet("FilterByPaciente")]
+        [HttpGet("api/pacientes/{id}/turnos")]
         public async Task<ActionResult<List<TurnoResponseDTO>>> FilterByPaciente(int id)
         {
-             _jwtService.PacienteMatchIdOrOthers(id);
-            
-                var rsta = await _turnoService.FilterByPaciente(id);
-                if (rsta != null)
-                {
-                    return Ok(rsta); 
-                }
-                else
-                {
-                    return NotFound(); 
-                }
-          
+           
+            try
+            {
+                 _jwtService.PacienteMatchIdOrOthers(id);           
+            }
+            catch(Exception err)
+            {
+                return Unauthorized(new { Message = ErrorMessages.NoAccess });
+            }
+
+            var rsta = await _turnoService.FilterByPaciente(id);
+            if (rsta != null)
+            {
+                return Ok(rsta);
+            }
+            else
+            {
+                return NotFound();
+            }
+
 
         }
         [HttpGet("FilterByDateTime")]
