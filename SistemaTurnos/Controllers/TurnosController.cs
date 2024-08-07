@@ -86,7 +86,7 @@ namespace SistemaTurnos.Controllers
             return rsta;
         }
 
-        [HttpPost("nuevito")]
+        [HttpPost("ObtenerHorariosDisponibles")]
         public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
         {
             var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
@@ -98,7 +98,13 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.TurnosDisponiblesByMedico(5);
             return rsta;
         }
+        [HttpPost("TurnosDisponiblesByEspecialidad")]
 
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(int idEspecialidad)
+        {
+            var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(idEspecialidad);
+            return rsta;    
+        }
 
     }
 }

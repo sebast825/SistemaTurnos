@@ -16,9 +16,7 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<List<Medico>> FilterByEspecialidad(int id)
         {
-            var asd = await GetAll();
-            var filtrados = asd.Where(j => j.EspecialidadId == id);
-
+           
             var medicos = await _context.Personas
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)

@@ -266,5 +266,21 @@ namespace SistemaTurnos.Service
             return GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
 
         }
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(int idEspecialidad)
+        {
+            var medicosEspecialidad = await _unitOfWork.MedicoRepository.FilterByEspecialidad(idEspecialidad);
+            if (!medicosEspecialidad.Any()) throw new Exception(ErrorMessages.EspecialdiadNotFound);
+
+            var turnosDisponibles = new List<TurnoHorarioDisponibleResponseDTO>();
+            foreach(Medico medico in medicosEspecialidad)
+            {
+                var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medico.Id);
+                var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medico.Id, EstadoTurno.Programada);
+                turnosDisponibles.AddRange(GenerarHorariosDisponiblesPorMes(medico.Id, turnos, horariosDisponibilidadMedico));
+
+            }
+            return turnosDisponibles;
+
+        }
     }
 }
