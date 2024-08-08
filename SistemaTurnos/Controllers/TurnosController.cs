@@ -113,6 +113,13 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(idEspecialidad);
             return rsta;    
         }
+        [HttpPatch("api/pacientes/{idPaciente}/turnos/{idTurno}/cancelar")]
+
+        public async Task<TurnoResponseDTO> CancelarTurno(int idTurno, int idPaciente)
+        {
+            var rsta = await _turnoService.CancelarTurno(idTurno);
+            return rsta;
+        }
 
     }
 }

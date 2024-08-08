@@ -18,7 +18,7 @@ namespace SistemaTurnos.Dal.Repository
                     .Include(x => x.Medico)
                     .Include(x => x.Medico.Especialidad)
                     .Include(p => p.Paciente)
-                    .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo && p.Estado == EstadoTurno.Programada)
+                    .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
             
             return turnos;
@@ -113,6 +113,20 @@ namespace SistemaTurnos.Dal.Repository
             }
             var turnos = await turnosQuery.ToListAsync();
             return turnos;
+        }
+
+        public async Task<Turno> UpdateEstado(int id, EstadoTurno estadoTurno)
+        {
+            var updateTurno = await _context.Turnos
+                .Where(p => p.Id == id)
+                .FirstOrDefaultAsync();
+            if (updateTurno != null)
+            {
+                updateTurno.Estado = estadoTurno;
+                await _context.SaveChangesAsync();
+            }
+
+            return updateTurno;
         }
     }
 }
