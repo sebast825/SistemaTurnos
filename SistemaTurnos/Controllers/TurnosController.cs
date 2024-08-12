@@ -22,7 +22,7 @@ namespace SistemaTurnos.Controllers
 
         }
        
-        [HttpGet("/turnos")]
+        [HttpGet("api/turnos")]
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
             //_jwtService.isNotPaciente();
@@ -86,27 +86,28 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        [HttpPost]
+        [HttpPost("api/turnos/{dto}")]
         public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
         {
-            _jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
+            
+            //_jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
             var rsta = await _turnoService.Create(dto);
             return rsta;
         }
 
-        [HttpPost("ObtenerHorariosDisponibles")]
+        [HttpGet("ObtenerHorariosDisponibles")]
         public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
         {
             var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
             return rsta;
         }
-        [HttpPost("TurnosDisponiblesByMedico")]
+        [HttpGet("api/medicos/{medicoId}/turnosdisponible")]
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {
-            var rsta = await _turnoService.TurnosDisponiblesByMedico(5);
+            var rsta = await _turnoService.TurnosDisponiblesByMedico(medicoId);
             return rsta;
         }
-        [HttpPost("TurnosDisponiblesByEspecialidad")]
+        [HttpGet("TurnosDisponiblesByEspecialidad")]
 
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(int idEspecialidad)
         {
