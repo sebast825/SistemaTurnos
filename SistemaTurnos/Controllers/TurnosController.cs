@@ -86,11 +86,11 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        [HttpPost("api/turnos/{dto}")]
-        public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
+        [HttpPost("api/turnos/")]
+        public async Task<ActionResult<TurnoResponseDTO>> Create(TurnoCreateRequestDTO dto)
         {
-            
-            //_jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
+           
+            _jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
             var rsta = await _turnoService.Create(dto);
             return rsta;
         }
@@ -98,7 +98,7 @@ namespace SistemaTurnos.Controllers
         [HttpGet("ObtenerHorariosDisponibles")]
         public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
         {
-            var rsta = await _turnoService.ObtenerHorariosDisponibles(5);
+            var rsta = await _turnoService.ObtenerHorariosDisponibles(idMedico);
             return rsta;
         }
         [HttpGet("api/medicos/{medicoId}/turnosdisponible")]
