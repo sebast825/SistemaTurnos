@@ -7,6 +7,7 @@ using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Filter;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 using System.Reflection;
@@ -96,6 +97,13 @@ builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddHttpContextAccessor();
+//para cada controlador agrega el manejo de exepciones
+builder.Services.AddControllers(options =>
+{
+    //le indica que debe usar este filtro para cada accion del controlador
+
+    options.Filters.Add<ExceptionHandlerFilter>();
+});
 
 //-----------------------------JWT---------------------------------------------
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

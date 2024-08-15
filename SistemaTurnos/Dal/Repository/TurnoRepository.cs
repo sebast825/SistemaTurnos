@@ -103,7 +103,7 @@ namespace SistemaTurnos.Dal.Repository
                             .Include(x => x.Medico)
                             .Include(p => p.Paciente)
                             .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo &&
-                                p.Fecha >= startTime && p.Fecha <= endTime);
+                                p.Fecha > startTime && p.Fecha < endTime);
 
             // Aplicar el filtro opcional por MedicoId
             if (medicoId.HasValue)

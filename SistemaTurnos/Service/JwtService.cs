@@ -21,7 +21,7 @@ namespace SistemaTurnos.Service
             // Verificar si el token es válido
             if (string.IsNullOrEmpty(token))
             {
-                throw new Exception("Empty token"); // null devolver un error
+                throw new UnauthorizedAccessException("Empty token"); // null devolver un error
             }
 
             // Usar una librería para decodificar el token JWT
@@ -49,7 +49,7 @@ namespace SistemaTurnos.Service
             //var roleToString = role.ToString();
             var tokenRole = GetClaimValueFromJwt(ClaimTypes.Role);
             return tokenRole == role.ToString() ? true : false;
-            if (tokenRole != role.ToString()) throw new Exception(ErrorMessages.NoAccess);
+            if (tokenRole != role.ToString()) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
             return true;
         }
 
@@ -58,13 +58,13 @@ namespace SistemaTurnos.Service
         public void isPaciente()
         {
             bool esPaciente = UserMatchType(Role.Paciente);
-            if (!esPaciente) throw new Exception(ErrorMessages.NoAccess);
+            if (!esPaciente) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
         }
 
         public void isNotPaciente()
         {
             bool esPaciente = UserMatchType(Role.Paciente);
-            if (esPaciente) throw new Exception(ErrorMessages.NoAccess);
+            if (esPaciente) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
         }
 
         public void PacienteMatchIdOrAdministrativo(int id)
@@ -73,13 +73,13 @@ namespace SistemaTurnos.Service
             if (esPaciente)
             {
                 bool matchId = UserMatchRequestId(id);
-                if (!matchId) throw new Exception(ErrorMessages.NoAccess);
+                if (!matchId) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
 
             }
             else
             {
                 bool esAdministrativo = UserMatchType(Role.Admin) || UserMatchType(Role.Secretario);
-                if (!esAdministrativo) throw new Exception(ErrorMessages.NoAccess);
+                if (!esAdministrativo) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
             }
 
         }
@@ -90,7 +90,7 @@ namespace SistemaTurnos.Service
             if (esPaciente)
             {
                 bool matchId = UserMatchRequestId(id);
-                if (!matchId) throw new Exception(ErrorMessages.NoAccess);
+                if (!matchId) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
 
             }
         }
@@ -100,7 +100,7 @@ namespace SistemaTurnos.Service
             bool esAdmin = UserMatchType(Role.Admin);
             if (!esAdmin)
             {
-                throw new Exception(ErrorMessages.NoAccess);
+                throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
 
             }
         }

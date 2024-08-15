@@ -57,27 +57,11 @@ namespace SistemaTurnos.Controllers
         [HttpGet("api/pacientes/{id}/turnos")]
         public async Task<ActionResult<List<TurnoResponseDTO>>> FilterByPaciente(int id)
         {
-           
-            try
-            {
-                 _jwtService.PacienteMatchIdOrOthers(id);           
-            }
-            catch(Exception err)
-            {
-                return Unauthorized(new { Message = ErrorMessages.NoAccess });
-            }
-
+            _jwtService.PacienteMatchIdOrOthers(id);    
             var rsta = await _turnoService.FilterByPaciente(id);
-            if (rsta != null)
-            {
-                return Ok(rsta);
-            }
-            else
-            {
-                return NotFound();
-            }
+            return rsta;
 
-
+        
         }
         [HttpGet("FilterByDateTime")]
         public async Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime dt, int? idDoctor)

@@ -10,6 +10,7 @@ using SistemaTurnos.Dto.Turno;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace SistemaTurnos.Service
 {
@@ -104,6 +105,7 @@ namespace SistemaTurnos.Service
 
         public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
         {
+
             var paciente = await _unitOfWork.PacienteRepository.GetId(id);
             if (paciente == null)
                 throw new Exception(ErrorMessages.MedicoNotFound);
