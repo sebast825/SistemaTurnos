@@ -6,6 +6,7 @@ namespace SistemaTurnos.Dal.Repository.Interface
     {
         Task<List<Medico>> GetAll();
         Task<List<Medico>> FilterByEspecialidad(int id);
+        Task<List<Medico>> FilterByEspecialidad(string especialidad);
 
     }
 }

@@ -107,11 +107,11 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.TurnosDisponiblesByMedico(medicoId);
             return rsta;
         }
-        [HttpGet("TurnosDisponiblesByEspecialidad")]
+        [HttpGet("api/especialidad/{especialidad}/turnosdisponible")]
 
-        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(int idEspecialidad)
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad)
         {
-            var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(idEspecialidad);
+            var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(especialidad);
             return rsta;    
         }
         [HttpPatch("api/pacientes/{idPaciente}/turnos/{idTurno}/cancelar")]
