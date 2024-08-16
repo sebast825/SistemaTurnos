@@ -130,7 +130,12 @@ builder.Services.AddAuthorization(options =>
     // Agrega más políticas según sea necesario
 });
 
+
+
 var app = builder.Build();
+
+//maneja los erroes del [authorize] de c#
+app.UseMiddleware<CustomAuthorizationMiddleware>();
 
 // Use CORS
 app.UseCors("AllowAll");

@@ -12,6 +12,7 @@ namespace SistemaTurnos.Filter
             {
                 context.Result = new UnauthorizedObjectResult(ErrorMessages.NoAccess);
             }
+
             else if (context.Exception is Exception)
             {
                 context.Result = new NotFoundObjectResult(context.Exception.Message);

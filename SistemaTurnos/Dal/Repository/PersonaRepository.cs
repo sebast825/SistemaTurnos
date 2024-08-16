@@ -3,6 +3,7 @@ using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Dto.Persona;
 
 namespace SistemaTurnos.Dal.Repository
 {
@@ -28,6 +29,11 @@ namespace SistemaTurnos.Dal.Repository
                         .FirstOrDefaultAsync();
 
             return persona;
+        }
+
+        public Task<Persona> Update(PersonaUpdateRequestDTO dtoUpdate)
+        {
+            throw new NotImplementedException();
         }
     }
 }
