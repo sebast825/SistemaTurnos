@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace SistemaTurnos.Filter
 {
@@ -17,10 +18,15 @@ namespace SistemaTurnos.Filter
             {
                 context.Result = new NotFoundObjectResult(context.Exception.Message);
             }
-            // Puedes agregar más tipos de excepciones según sea necesario
-
+            else if (context.Exception is ValidationException)
+            {
+                context.Result = new NotFoundObjectResult(context.Exception.Message);
+            }
             context.ExceptionHandled = true;
             return Task.CompletedTask;
         }
+
+
+        
     }
 }

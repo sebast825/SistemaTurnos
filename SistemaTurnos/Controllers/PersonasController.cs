@@ -7,7 +7,7 @@ namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PersonasController : ControllerBase
     {
         private readonly IPersonaService _personaService;
@@ -35,11 +35,12 @@ namespace SistemaTurnos.Controllers
         //    return rsta;
         //}
 
-        [HttpPatch("ActualizarPersona")]
+        [HttpPut("/api/personas/{id}")]
 
         public async Task<ActionResult<PersonaResponseDTO>> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
-            _jwtService.PacienteMatchIdOrAdministrativo(id);
+            
+            //_jwtService.PacienteMatchIdOrAdministrativo(id);
             var rsta = await _personaService.ActualizarPersona(id, dto);
 
             return rsta;

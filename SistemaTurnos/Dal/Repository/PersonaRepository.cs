@@ -15,7 +15,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var persona = await _context.Personas
                 .Include(x => x.Sexo)
-                .Where(m => m.NumeroDocumento == numeroDocumento && m.EstadoPersona != EstadoPersona.Activo)
+                .Where(m => m.NumeroDocumento == numeroDocumento && m.EstadoPersona == EstadoPersona.Activo)
                 .FirstOrDefaultAsync();
 
             return persona;
