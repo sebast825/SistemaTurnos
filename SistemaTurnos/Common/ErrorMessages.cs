@@ -10,6 +10,6 @@
         public const string NeedLogIn = "Debes loguiarte para realizar esta accion.";
 
         public const string EspecialdiadNotFound = "No se encontró la especialidad seleccionada.";
-
+     
     }
 }

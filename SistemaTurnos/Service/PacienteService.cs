@@ -5,6 +5,7 @@ using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
+using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
 using System.Security.Cryptography;
 
@@ -55,9 +56,14 @@ namespace SistemaTurnos.Service
 
             if(paciente != null)
             {
-           
+                paciente.NombreEmergencia = dto.NombreEmergencia;
+                paciente.TelefonoEmergencia = dto.TelefonoEmergencia;
+                await _unitOfWork.Save();
+                var pacienteUpdated = await _unitOfWork.PacienteRepository.GetById(id);
+                var rsta = _mapper.Map<PacienteResponseDTO>(pacienteUpdated);
+                return rsta;
             }
-            throw new NotImplementedException();
+            throw new Exception(ErrorMessages.PacienteNotFound);
         }
         /*
 private List<PacienteResponseDTO> EntitiesToCamionResponseDtos(IEnumerable<Paciente> pacientes)

@@ -54,7 +54,7 @@ namespace SistemaTurnos.Controllers
 
             _jwtService.PacienteMatchIdOrAdministrativo(id);
 
-            var rsta = await _pacienteService.GetById(id);
+            var rsta = await _pacienteService.Update(id,dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }
