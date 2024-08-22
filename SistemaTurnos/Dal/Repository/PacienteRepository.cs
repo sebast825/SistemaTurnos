@@ -30,13 +30,13 @@ namespace SistemaTurnos.Dal.Repository
 
         }
 
-        public async Task<List<Paciente>> GetById(int id)
+        public async Task<Paciente> GetById(int id)
         {
             var paciente = await _context.Personas
                     .OfType<Paciente>()
                     .Include(v => v.Sexo)
                     .Where(s => s.EstadoPersona == EstadoPersona.Activo && s.Id == id)
-                    .ToListAsync();
+                    .FirstOrDefaultAsync();
             return paciente;
         }
     }

@@ -41,39 +41,50 @@ namespace SistemaTurnos.Service
          
             return rsta;
         }
-        public async Task<List<PacienteResponseDTO>> GetById(int id)
+        public async Task<PacienteResponseDTO> GetById(int id)
         {
             var paciente = await _unitOfWork.PacienteRepository.GetById(id);
-            var rsta = _mapper.Map<List<PacienteResponseDTO>>(paciente);
+            var rsta = _mapper.Map<PacienteResponseDTO>(paciente);
 
             return rsta;
         }
-        /*
-        private List<PacienteResponseDTO> EntitiesToCamionResponseDtos(IEnumerable<Paciente> pacientes)
-        {
-            var responseDtos = new List<PacienteResponseDTO>();
-            foreach (Paciente paciente in pacientes)
-            {
-                responseDtos.Add(EntityToPacienteResponseDto(paciente));
-            }
-            return responseDtos;
-        }
-        private PacienteResponseDTO EntityToPacienteResponseDto(Paciente paciente)
-        {
-            var responseDto = new PacienteResponseDTO
-            {
-                Nombre = paciente.Nombre,
-                Apellido = paciente.Apellido,
-                FechaNacimiento = paciente.FechaNacimiento,
-                Telefono = paciente.Telefono,
-                NumeroDocumento = paciente.NumeroDocumento,
-                Email = paciente.Email,
-                //Sexo = paciente.Sexo,
-                TelefonoEmergencia = paciente.TelefonoEmergencia,
-                NombreEmergencia = paciente.NombreEmergencia
 
-            };
-            return responseDto;
-        }*/
+        public async Task<PacienteResponseDTO> Update(int id, PacienteUpdateRequestDTO dto)
+        {
+            var paciente = await _unitOfWork.PacienteRepository.GetById(id);
+
+            if(paciente != null)
+            {
+           
+            }
+            throw new NotImplementedException();
+        }
+        /*
+private List<PacienteResponseDTO> EntitiesToCamionResponseDtos(IEnumerable<Paciente> pacientes)
+{
+   var responseDtos = new List<PacienteResponseDTO>();
+   foreach (Paciente paciente in pacientes)
+   {
+       responseDtos.Add(EntityToPacienteResponseDto(paciente));
+   }
+   return responseDtos;
+}
+private PacienteResponseDTO EntityToPacienteResponseDto(Paciente paciente)
+{
+   var responseDto = new PacienteResponseDTO
+   {
+       Nombre = paciente.Nombre,
+       Apellido = paciente.Apellido,
+       FechaNacimiento = paciente.FechaNacimiento,
+       Telefono = paciente.Telefono,
+       NumeroDocumento = paciente.NumeroDocumento,
+       Email = paciente.Email,
+       //Sexo = paciente.Sexo,
+       TelefonoEmergencia = paciente.TelefonoEmergencia,
+       NombreEmergencia = paciente.NombreEmergencia
+
+   };
+   return responseDto;
+}*/
     }
 }

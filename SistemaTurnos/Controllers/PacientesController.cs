@@ -47,5 +47,16 @@ namespace SistemaTurnos.Controllers
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
            
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<bool>> Update(int id, PacienteUpdateRequestDTO dto )
+        {
+
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
+
+            var rsta = await _pacienteService.GetById(id);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+
+        }
     }
 }
