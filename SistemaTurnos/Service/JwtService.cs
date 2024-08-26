@@ -64,7 +64,7 @@ namespace SistemaTurnos.Service
         public void isNotPaciente()
         {
             bool esPaciente = UserMatchType(Role.Paciente);
-            if (esPaciente) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
+            if (esPaciente){ throw new UnauthorizedAccessException(ErrorMessages.NoAccess); }
         }
 
         public void PacienteMatchIdOrAdministrativo(int id)
