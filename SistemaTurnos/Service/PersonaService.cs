@@ -171,7 +171,15 @@ namespace SistemaTurnos.Service
         
         }
 
+        public async Task<PersonaResponseDTO> GetById(int id)
+        {
+          
+                var persona = await _unitOfWork.PersonaRepository.GetId(id);
+                var rsta = _mapper.Map<PersonaResponseDTO>(persona);
 
+                return rsta;
+            
 
+        }
     }
 }

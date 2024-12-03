@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dto.Persona;
+using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
@@ -34,7 +35,16 @@ namespace SistemaTurnos.Controllers
         //    var rsta = await _personaService.ActualizarEstadoEliminar(id);
         //    return rsta;
         //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<bool>> GetById(int id)
+        {
 
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
+
+            var rsta = await _personaService.GetById(id);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+
+        }
         [HttpPut("/api/personas/{id}")]
 
         public async Task<ActionResult<PersonaResponseDTO>> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)

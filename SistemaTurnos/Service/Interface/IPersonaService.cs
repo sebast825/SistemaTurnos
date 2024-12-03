@@ -11,6 +11,8 @@ namespace SistemaTurnos.Service.Interface
         Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto);
 
         Task<string> GetTipoPersona (int id);
+        Task<PersonaResponseDTO> GetById(int id);
+
 
     }
 }

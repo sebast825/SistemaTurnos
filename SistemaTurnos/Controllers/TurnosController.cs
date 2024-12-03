@@ -73,7 +73,6 @@ namespace SistemaTurnos.Controllers
         [HttpPost("api/turnos/")]
         public async Task<ActionResult<TurnoResponseDTO>> Create(TurnoCreateRequestDTO dto)
         {
-           
             _jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
             var rsta = await _turnoService.Create(dto);
             return rsta;
