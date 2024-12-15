@@ -43,5 +43,12 @@ namespace SistemaTurnos.Controllers
             var rsta = await _medicoService.FilterByEspecialidad(id);
             return rsta;
         }
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<MedicoResponseDTO>> GetById(int id)
+        {
+            var rsta = await _medicoService.GetById(id);
+            return Ok(rsta);
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace SistemaTurnos.Service.Interface
         Task<MedicoResponseDTO> Create(MedicoCreateRequestDTO medico);
 
         Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id);
-     
+        Task<MedicoResponseDTO> GetById(int id);
 
     }
 }

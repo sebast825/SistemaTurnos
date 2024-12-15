@@ -55,5 +55,16 @@ namespace SistemaTurnos.Dal.Repository
 
             return medicos;
         }
+        public async Task<Medico> GetById(int id)
+        {
+            var medico = await _context.Personas
+                    .OfType<Medico>()
+                    .Include(v => v.Sexo)
+                    .Include(x => x.Especialidad)
+                    .Where(s => s.Id == id)
+                    .FirstOrDefaultAsync();
+
+            return medico;
+        }
     }
 }

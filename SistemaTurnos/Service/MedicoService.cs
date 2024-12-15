@@ -47,5 +47,11 @@ namespace SistemaTurnos.Service
             var rsta = _mapper.Map<List<MedicoResponseDTO>>(medicos);
             return rsta;
         }
+        public async Task<MedicoResponseDTO> GetById(int id)
+        {
+            var medicos = await _unitOfWork.MedicoRepository.GetById(id);
+            var rsta = _mapper.Map<MedicoResponseDTO>(medicos);
+            return rsta;
+        }
     }
 }
