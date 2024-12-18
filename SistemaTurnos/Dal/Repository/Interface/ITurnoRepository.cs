@@ -12,7 +12,7 @@ namespace SistemaTurnos.Dal.Repository.Interface
         Task<List<Turno>> FilterByDateTime (DateTime dt, int? medicoId);
         Task<List<Turno>> FilterByDate(DateTime dt, int? medicoId = null);
         Task<Turno> UpdateEstado(int id, EstadoTurno estadoTurno);
-        Task<List<Turno>> DoctorTurnosHoy(int medicoId);
+        Task<List<Turno>> DoctorTurnosByDate(DateTime dt,int medicoId);
 
     }
 }

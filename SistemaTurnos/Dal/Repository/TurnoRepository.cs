@@ -129,17 +129,16 @@ namespace SistemaTurnos.Dal.Repository
             return updateTurno;
         }
 
-        public async Task<List<Turno>> DoctorTurnosHoy(int medicoId)
+        public async Task<List<Turno>> DoctorTurnosByDate(DateTime dt,int medicoId)
         {
-            DateTime fechaHoy =  DateTime.Now.Date;
-         
+                   
 
             var turnosQuery = _context.Turnos
                             .Include(x => x.Medico)
                             .Include(p => p.Paciente)
                             .Include(e => e.Medico.Especialidad)
                             .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo &&
-                               p.MedicoId == medicoId && p.Fecha.Date == fechaHoy);
+                               p.MedicoId == medicoId && p.Fecha.Date == dt.Date);
 
             var turnos = await turnosQuery.ToListAsync();
             return turnos;

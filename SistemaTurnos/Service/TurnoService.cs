@@ -300,9 +300,9 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-        public async Task<List<TurnoResponseDTO>> DoctorTurnosHoy(int idMedico)
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt,int idMedico)
         {
-            var turnos = await _unitOfWork.TurnoRepository.DoctorTurnosHoy(idMedico);
+            var turnos = await _unitOfWork.TurnoRepository.DoctorTurnosByDate(dt,idMedico);
             var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
             return rsta;
         }

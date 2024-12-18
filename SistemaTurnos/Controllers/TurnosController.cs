@@ -70,11 +70,12 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        [HttpGet("/medico/turnosHoy")]
-        public async Task<List<TurnoResponseDTO>> DoctorTurnosHoy(int idDoctor)
+  
+        [HttpGet("/medico/{idDoctor}/turnosHoy/{dt}")]
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idDoctor)
         {
-           // _jwtService.isNotPaciente();
-            var rsta = await _turnoService.DoctorTurnosHoy(idDoctor);
+            // _jwtService.isNotPaciente();
+            var rsta = await _turnoService.DoctorTurnosByDate(dt,idDoctor);
             return rsta;
         }
         [HttpPost("api/turnos/")]
