@@ -20,6 +20,10 @@ namespace SistemaTurnos.Service.Interface
         Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad);
 
         Task<TurnoResponseDTO> CancelarTurno(int idTurno);
+        Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno);
+
+        Task<List<TurnoResponseDTO>> DoctorTurnosHoy(int idMedico);
+
     }
 }
 

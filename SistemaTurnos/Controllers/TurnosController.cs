@@ -70,6 +70,13 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
+        [HttpGet("/medico/turnosHoy")]
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosHoy(int idDoctor)
+        {
+           // _jwtService.isNotPaciente();
+            var rsta = await _turnoService.DoctorTurnosHoy(idDoctor);
+            return rsta;
+        }
         [HttpPost("api/turnos/")]
         public async Task<ActionResult<TurnoResponseDTO>> Create(TurnoCreateRequestDTO dto)
         {
@@ -97,11 +104,19 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(especialidad);
             return rsta;    
         }
-        [HttpPatch("api/pacientes/{idPaciente}/turnos/{idTurno}/cancelar")]
+        [HttpPatch("api/pacientes/turnos/{idTurno}/cancelar")]
 
-        public async Task<TurnoResponseDTO> CancelarTurno(int idTurno, int idPaciente)
+        public async Task<TurnoResponseDTO> CancelarTurno(int idTurno)
         {
             var rsta = await _turnoService.CancelarTurno(idTurno);
+            return rsta;
+        }
+        [HttpPatch("api/pacientes/turnos/{idTurno}/{estadoTurno}")]
+
+        public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
+        {
+            _jwtService.isNotPaciente();
+            var rsta = await _turnoService.ActualizarEstadoTurno(idTurno, estadoTurno);
             return rsta;
         }
 

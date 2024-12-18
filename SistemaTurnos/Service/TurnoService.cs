@@ -292,5 +292,19 @@ namespace SistemaTurnos.Service
             var rsta = _mapper.Map<TurnoResponseDTO>(updateTurno);
             return rsta;
         }
+
+        public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
+        {
+            var updateTurno = await _unitOfWork.TurnoRepository.UpdateEstado(idTurno, estadoTurno);
+            var rsta = _mapper.Map<TurnoResponseDTO>(updateTurno);
+            return rsta;
+        }
+
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosHoy(int idMedico)
+        {
+            var turnos = await _unitOfWork.TurnoRepository.DoctorTurnosHoy(idMedico);
+            var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
+            return rsta;
+        }
     }
 }
