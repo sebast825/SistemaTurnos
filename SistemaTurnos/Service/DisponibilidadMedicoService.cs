@@ -88,6 +88,26 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-      
+        public async Task<DisponibilidadMedicoResponseDTO> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
+        {
+            var convert = _mapper.Map<DisponibilidadMedico>(dto);
+
+            var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetById(dto.id);
+
+            disponibildiadMedicos.DiaSemanaId = convert.DiaSemanaId;
+            disponibildiadMedicos.StartTime = convert.StartTime;
+            disponibildiadMedicos.EndTime = convert.EndTime;
+
+            //await _unitOfWork.DisponibilidadMedicoRepository.Edit(disponibildiadMedicos);
+            await _unitOfWork.Save();
+
+          //  var disponibildiadMedicos2 = await _unitOfWork.DisponibilidadMedicoRepository.GetId(dto.id);
+
+            var rsta = _mapper.Map<DisponibilidadMedicoResponseDTO>(disponibildiadMedicos);
+
+            return rsta;
+
+            throw new NotImplementedException();
+        }
     }
 }

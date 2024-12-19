@@ -37,6 +37,10 @@ namespace SistemaTurnos
                  .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")))
                     .ForMember(dest => dest.Especialidad, opt => opt.MapFrom(src => src.Medico.Especialidad.Nombre));
 
+            CreateMap<DisponibilidadMedico, DisponibilidadMedicoUpdateeRequestDTO>()
+             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString(@"hh\:mm")))
+           .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm"))).ReverseMap();
+
 
             CreateMap<DisponibilidadMedicoCreateRequestDTO, DisponibilidadMedico>()
                     .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => TimeSpan.Parse(src.StartTime)))
@@ -68,4 +72,11 @@ namespace SistemaTurnos
   "endTime": "13:40"
 }
 
+
+{
+  "id": 1001,
+  "diaSemanaId": 4,
+  "startTime": "14:20",
+  "endTime": "16"
+}
  */

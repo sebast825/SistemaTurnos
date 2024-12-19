@@ -41,13 +41,21 @@ namespace SistemaTurnos.Controllers
             var rsta = await _disponibilidadMedicoService.FilterByEspecialidad(idEspecialidad);
             return rsta;
         }
-     
+        
         [HttpPost("Create")]
         public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
         {
-            _jwtService.isAdmin();
+           // _jwtService.isAdmin();
             var rsta = await _disponibilidadMedicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
+        [HttpPut()]
+        public async Task<ActionResult<bool>> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
+        {
+           // _jwtService.isAdmin();
+            var rsta = await _disponibilidadMedicoService.Update(dto);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+        }
+
     }
 }
