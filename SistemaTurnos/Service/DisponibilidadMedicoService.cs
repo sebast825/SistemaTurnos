@@ -96,6 +96,11 @@ namespace SistemaTurnos.Service
 
             var convert = _mapper.Map<DisponibilidadMedico>(dto);
 
+            if(convert.StartTime >= convert.EndTime)
+            {
+                throw new Exception("La hora de inicio debe ser menor a la de finalizacion");
+            }
+
             var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetById(dto.id);
 
             disponibildiadMedicos.DiaSemanaId = convert.DiaSemanaId;

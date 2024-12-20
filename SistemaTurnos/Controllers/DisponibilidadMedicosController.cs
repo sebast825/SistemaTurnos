@@ -49,7 +49,7 @@ namespace SistemaTurnos.Controllers
             var rsta = await _disponibilidadMedicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
-        [HttpPut()]
+        [HttpPut]
         public async Task<ActionResult<bool>> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
         {
            // _jwtService.isAdmin();
