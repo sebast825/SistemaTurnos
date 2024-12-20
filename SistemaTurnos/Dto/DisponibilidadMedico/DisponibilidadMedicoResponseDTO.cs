@@ -6,6 +6,7 @@ namespace SistemaTurnos.Dto.DisponibilidadMedico
     {
         public int Id { get; set; }
 
+        public int MedicoId { get; set; }
         public string Medico { get; set; }
         public string Especialidad { get; set; }
         public string DiaSemana { get; set; }

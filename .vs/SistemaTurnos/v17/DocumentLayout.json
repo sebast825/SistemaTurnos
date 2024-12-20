@@ -7,6 +7,22 @@
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\disponibilidadmedicoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\administrativoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\administrativoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dto\\disponibilidadmedico\\disponibilidadmedicoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dto\\disponibilidadmedico\\disponibilidadmedicoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,16 +43,8 @@
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\data\\dataseed\\disponibilidadmedicoseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dto\\disponibilidadmedico\\disponibilidadmedicoupdaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dto\\disponibilidadmedico\\disponibilidadmedicoupdaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\data\\dataseed\\turnoseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\data\\dataseed\\turnoseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\administrativoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\administrativoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,11 +66,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "DisponibilidadMedicoResponseDTO.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoResponseDTO.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoResponseDTO.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoResponseDTO.cs",
+              "RelativeToolTip": "SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoResponseDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T22:11:01.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Repository.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Repository\\Repository.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Repository\\Repository.cs",
@@ -74,12 +91,11 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Repository\\Repository.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAQwBUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T22:05:50.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-20T22:05:50.147Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "DisponibilidadMedico.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\DisponibilidadMedico.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\DisponibilidadMedico.cs",
@@ -87,12 +103,11 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\DisponibilidadMedico.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T20:34:20.101Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-20T20:34:20.101Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "DisponibilidadMedicoSeed.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Data\\DataSeed\\DisponibilidadMedicoSeed.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Data\\DataSeed\\DisponibilidadMedicoSeed.cs",
@@ -104,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "DisponibilidadMedicoUpdateRequestDTO.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoUpdateRequestDTO.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoUpdateRequestDTO.cs",
@@ -116,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "DisponibilidadMedicoCreateRequestDTO.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoCreateRequestDTO.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoCreateRequestDTO.cs",
@@ -124,12 +139,11 @@
               "RelativeToolTip": "SistemaTurnos\\Dto\\DisponibilidadMedico\\DisponibilidadMedicoCreateRequestDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T20:04:41.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-20T20:04:41.297Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "DiaSemana.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
@@ -137,12 +151,11 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T19:16:31.894Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-20T19:16:31.894Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TurnosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\TurnosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\TurnosController.cs",
@@ -154,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "TurnoSeed.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Data\\DataSeed\\TurnoSeed.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Data\\DataSeed\\TurnoSeed.cs",
@@ -166,19 +179,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "DisponibilidadMedicosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "RelativeToolTip": "SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAA1wC0AAABaAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAQwCsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T19:12:21.492Z"
+              "WhenOpened": "2024-12-20T19:12:21.492Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "AdministrativoService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\AdministrativoService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\AdministrativoService.cs",
@@ -191,15 +205,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "AutomapperProfile.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\AutomapperProfile.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\AutomapperProfile.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\AutomapperProfile.cs",
               "RelativeToolTip": "SistemaTurnos\\AutomapperProfile.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwCMAAABzAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAxwCMAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-20T19:05:10.139Z"
+              "WhenOpened": "2024-12-20T19:05:10.139Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -209,14 +224,14 @@
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\DisponibilidadMedicoService.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\DisponibilidadMedicoService.cs",
               "RelativeToolTip": "SistemaTurnos\\Service\\DisponibilidadMedicoService.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAqwCUAAAA+AAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-20T18:52:26.646Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "TurnoService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\TurnoService.cs",

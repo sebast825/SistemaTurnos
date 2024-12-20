@@ -42,7 +42,7 @@ namespace SistemaTurnos.Controllers
             return rsta;
         }
         
-        [HttpPost("Create")]
+        [HttpPost()]
         public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
         {
            // _jwtService.isAdmin();

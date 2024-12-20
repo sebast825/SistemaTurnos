@@ -22,14 +22,22 @@ namespace SistemaTurnos.Service
         public async Task<DisponibilidadMedicoResponseDTO> Create(DisponibilidadMedicoCreateRequestDTO dto)
         {
 
-            var dia = await _unitOfWork.DiaSemanaRepository.GetId(dto.DiaSemanaId);
+            dto.StartTime = FormatHora(dto.StartTime);
+            dto.EndTime = FormatHora(dto.EndTime);
+
+            var entity = _mapper.Map<DisponibilidadMedico>(dto);
+
+            if (entity.StartTime >= entity.EndTime)
+            {
+                throw new Exception("La hora de inicio debe ser menor a la de finalizacion");
+            }
+
             var medico = await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
 
             if (medico == null) {
                 throw new Exception("Medico invalido");
             }
-
-            var entity = _mapper.Map<DisponibilidadMedico>(dto);        
+            
             await _unitOfWork.DisponibilidadMedicoRepository.Add(entity);
             await _unitOfWork.Save();
 
