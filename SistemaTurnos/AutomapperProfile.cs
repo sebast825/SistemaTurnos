@@ -40,7 +40,6 @@ namespace SistemaTurnos
             CreateMap<DisponibilidadMedico, DisponibilidadMedicoUpdateeRequestDTO>()
              .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString(@"hh\:mm")))
            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")))
-            .ForMember(dest => dest.DiaSemanaId, opt => opt.MapFrom(src => src.DiaSemanaId))
            .ReverseMap();
 
 

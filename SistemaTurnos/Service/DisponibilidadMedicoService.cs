@@ -103,7 +103,6 @@ namespace SistemaTurnos.Service
 
             var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetById(dto.id);
 
-            disponibildiadMedicos.DiaSemanaId = convert.DiaSemanaId;
             disponibildiadMedicos.StartTime = convert.StartTime;
             disponibildiadMedicos.EndTime = convert.EndTime;
 

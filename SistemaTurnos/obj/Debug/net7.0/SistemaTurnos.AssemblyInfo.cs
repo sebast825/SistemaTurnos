@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaTurnos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8da29f9d60f6639904504affcb329f26cb9822c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cccd46cb1af81e16cf22a31359326cea0c54ba0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaTurnos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaTurnos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
