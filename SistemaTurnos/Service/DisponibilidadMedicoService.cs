@@ -90,6 +90,10 @@ namespace SistemaTurnos.Service
 
         public async Task<DisponibilidadMedicoResponseDTO> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
         {
+
+            dto.StartTime = FormatHora(dto.StartTime);
+            dto.EndTime = FormatHora(dto.EndTime);
+
             var convert = _mapper.Map<DisponibilidadMedico>(dto);
 
             var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetById(dto.id);
@@ -109,5 +113,15 @@ namespace SistemaTurnos.Service
 
             throw new NotImplementedException();
         }
+
+        private string FormatHora(string fecha)
+        {
+            if(fecha.Length <= 2 && !fecha.Contains(":"))
+            {
+              
+                return fecha + ":00";
+            }
+            return fecha;
+        } 
     }
 }
