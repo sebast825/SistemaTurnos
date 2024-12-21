@@ -12,18 +12,17 @@ namespace SistemaTurnos.Dal.Repository
 
         }
 
-        public async Task<Usuario> GetById(int id)
+        public async Task<Usuario> GetByPersonaId(int id)
         {
             var usuario = await _context.Usuarios
                           .Include(x => x.Persona)
-                          .Where(x => x.Id == id)
+                          .Where(x => x.PersonaId == id)
                           .FirstOrDefaultAsync();
             return usuario;
         }
 
         public async Task<Usuario> GetByUser(string name)
         {
-            Console.WriteLine("get by user");
             
             var usuario = await _context.Usuarios
                 .Include(x => x.Persona)

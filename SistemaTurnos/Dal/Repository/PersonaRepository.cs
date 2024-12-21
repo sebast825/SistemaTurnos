@@ -24,8 +24,9 @@ namespace SistemaTurnos.Dal.Repository
         public async Task<Persona> GetId(int id)
         {
             var persona = await _context.Personas
-                        .Include(x => x.Sexo)                        
-                        .FirstOrDefaultAsync();
+                        .Include(x => x.Sexo)
+                        .Where(i => i.Id == id)
+                        .FirstAsync();
 
             return persona;
         }

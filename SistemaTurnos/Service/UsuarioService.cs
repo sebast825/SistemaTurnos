@@ -18,16 +18,21 @@ namespace SistemaTurnos.Service
         } 
         public async Task<PersonaResponseDTO> UpdateEstado(int id, EstadoUsuario estado)
         {
-            var user = await _unitOfWork.UsuarioRepository.GetById(id);
-            var persona = await _unitOfWork.PersonaRepository.GetId(user.Id);
+            
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
 
-            if (user.EstadoUsuario == EstadoUsuario.Eliminado)
-            {
-                throw new Exception("El usuario ya ha sido eliminado");
-            }
+            var user = await _unitOfWork.UsuarioRepository.GetByPersonaId(persona.Id);
+
+
+           
 
             if (user != null && persona != null)
             {
+
+                if (user.EstadoUsuario == EstadoUsuario.Eliminado)
+                {
+                    throw new Exception("El usuario ya ha sido eliminado");
+                }
                 user.EstadoUsuario = estado;
               
                 if ((estado == EstadoUsuario.Eliminado || estado == EstadoUsuario.Suspendido))
@@ -38,7 +43,7 @@ namespace SistemaTurnos.Service
                     persona.EstadoPersona = EstadoPersona.Activo;
 
                 }
-                _unitOfWork.Save();                            
+                await _unitOfWork.Save();                            
                 var rsta = _mapper.Map<PersonaResponseDTO>(persona);
                 return rsta;
 
