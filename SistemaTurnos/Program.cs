@@ -95,6 +95,8 @@ builder.Services.AddScoped<ITurnoService, TurnoService>();
 builder.Services.AddScoped<IAdministrativoService, AdministrativoService>();
 builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddHttpContextAccessor();
 //para cada controlador agrega el manejo de exepciones

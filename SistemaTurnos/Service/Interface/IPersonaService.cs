@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 
@@ -12,6 +13,7 @@ namespace SistemaTurnos.Service.Interface
 
         Task<string> GetTipoPersona (int id);
         Task<PersonaResponseDTO> GetById(int id);
+
 
 
     }

@@ -11,7 +11,16 @@ namespace SistemaTurnos.Dal.Repository
         {
 
         }
-      
+
+        public async Task<Usuario> GetById(int id)
+        {
+            var usuario = await _context.Usuarios
+                          .Include(x => x.Persona)
+                          .Where(x => x.Id == id)
+                          .FirstOrDefaultAsync();
+            return usuario;
+        }
+
         public async Task<Usuario> GetByUser(string name)
         {
             Console.WriteLine("get by user");
@@ -22,5 +31,7 @@ namespace SistemaTurnos.Dal.Repository
                 .FirstOrDefaultAsync();
             return usuario;
         }
+
+        
     }
 }

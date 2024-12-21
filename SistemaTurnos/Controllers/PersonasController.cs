@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
@@ -56,5 +57,6 @@ namespace SistemaTurnos.Controllers
             return rsta;
         }
 
+    
     }
 }
