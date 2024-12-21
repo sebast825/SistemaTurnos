@@ -48,6 +48,21 @@ namespace SistemaTurnos.Service
 
         }
 
+        public async Task Delete(int id)
+        {
+            var disponibildiadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetById(id);
+            try
+            {
+                _unitOfWork.DisponibilidadMedicoRepository.Delete(disponibildiadMedico);
+                await _unitOfWork.Save();
+                
+            }
+            catch (Exception ex) {
+                throw new Exception("No se puedo eliminar el horario del medico");
+            }
+            
+        }
+
         public async Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
         {
             var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.FilterByEspecialidad(idEspecialidad);
