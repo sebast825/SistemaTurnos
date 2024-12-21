@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using SistemaTurnos.Common;
 
 namespace SistemaTurnos.Service
 {
@@ -49,6 +50,7 @@ namespace SistemaTurnos.Service
             var userEntity = await GetUsuarioByUserPass(login.UserName, login.Password);
             if (userEntity != null)
             {
+                isUserActive(userEntity.EstadoUsuario);
                 var permiso = userEntity.Role.ToString();
                                 
                 var claims = new[]
@@ -80,7 +82,13 @@ namespace SistemaTurnos.Service
                 throw new Exception("Usuario invalido");
             }
         }
-
+        private void isUserActive(EstadoUsuario estado)
+        {
+            if(estado != EstadoUsuario.Activo)
+            {
+                throw new Exception("El usuario esta bloqueado.");
+            }
+        }
         public string GetClaimValueFromJwt(string token, string claimName)
         {
 
