@@ -1,4 +1,5 @@
-﻿using SistemaTurnos.Dto.Medico;
+﻿using SistemaTurnos.Dto.Especialidad;
+using SistemaTurnos.Dto.Medico;
 
 namespace SistemaTurnos.Service.Interface
 {
@@ -11,6 +12,7 @@ namespace SistemaTurnos.Service.Interface
         Task<MedicoResponseDTO> GetById(int id);
         Task<MedicoResponseDTO> Update(int id, MedicoUpdateRequestDTO dto);
 
+        Task<List<EspecialidadResponseDTO>> EspecialidadGetAll();
 
     }
 }

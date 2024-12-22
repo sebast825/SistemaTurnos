@@ -2,6 +2,7 @@
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Administrativo;
 using SistemaTurnos.Dto.DisponibilidadMedico;
+using SistemaTurnos.Dto.Especialidad;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
@@ -58,7 +59,7 @@ namespace SistemaTurnos
 
             CreateMap<AdministrativoRequestCreateDTO, Administrativo>();
             CreateMap<Administrativo, AdministrativoResponseDTO>();
-
+            CreateMap<Especialidad,EspecialidadResponseDTO>();
 
         }
 

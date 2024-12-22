@@ -73,6 +73,7 @@ builder.Services.AddScoped<IDiaSemanaRepository, DiaSemanaRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 builder.Services.AddScoped<IAdministrativoRepository,AdministrativoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IEspecialidadRepository, EspecialidadRepository>();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
@@ -82,7 +83,9 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequ
         x.GetRequiredService<IDiaSemanaRepository>(),
         x.GetRequiredService<ITurnoRepository>(),
         x.GetRequiredService<IAdministrativoRepository>(),
-        x.GetRequiredService<IUsuarioRepository>()
+        x.GetRequiredService<IUsuarioRepository>(),
+                x.GetRequiredService<IEspecialidadRepository>()
+
 
         ));
 

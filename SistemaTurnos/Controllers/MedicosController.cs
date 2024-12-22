@@ -58,5 +58,13 @@ namespace SistemaTurnos.Controllers
             return Ok(rsta);
         }
 
+        [HttpGet("/api/medicos/especialidad/getAll")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<MedicoResponseDTO>>> EspecialidadGetAll()
+        {
+            var rsta = await _medicoService.EspecialidadGetAll();
+            return Ok(rsta);
+        }
+
     }
 }

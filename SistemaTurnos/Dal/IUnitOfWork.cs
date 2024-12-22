@@ -14,6 +14,7 @@ namespace SistemaTurnos.Dal
         IAdministrativoRepository AdministrativoRepository { get; }
 
         IUsuarioRepository UsuarioRepository { get; }
+        IEspecialidadRepository EspecialidadRepository { get; } 
         Task<int> Save();
 
     }
