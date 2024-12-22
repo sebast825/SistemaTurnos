@@ -26,7 +26,7 @@ namespace SistemaTurnos.Dal.Repository
             var persona = await _context.Personas
                         .Include(x => x.Sexo)
                         .Where(i => i.Id == id)
-                        .FirstAsync();
+                        .FirstOrDefaultAsync();
 
             return persona;
         }

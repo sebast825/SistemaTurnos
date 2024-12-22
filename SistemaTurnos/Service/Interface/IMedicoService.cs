@@ -9,7 +9,8 @@ namespace SistemaTurnos.Service.Interface
 
         Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id);
         Task<MedicoResponseDTO> GetById(int id);
-        
+        Task<MedicoResponseDTO> Update(int id, MedicoUpdateRequestDTO dto);
+
 
     }
 }

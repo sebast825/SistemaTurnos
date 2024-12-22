@@ -53,5 +53,26 @@ namespace SistemaTurnos.Service
             var rsta = _mapper.Map<MedicoResponseDTO>(medicos);
             return rsta;
         }
+
+        public async Task<MedicoResponseDTO> Update(int id, MedicoUpdateRequestDTO dto)
+        {
+
+            var medico = await _unitOfWork.MedicoRepository.GetById(id);
+
+            if(medico != null)
+            {
+                medico.NumeroLicencia = dto.NumeroLicencia;
+                medico.EspecialidadId = dto.EspecialidadId;
+            }
+            else
+            {
+                throw new Exception("No se encontró el medico");
+            }
+
+             _unitOfWork.MedicoRepository.Edit(medico);
+            await _unitOfWork.Save();
+            var rsta = _mapper.Map<MedicoResponseDTO>(medico);
+            return rsta;
+        }
     }
 }

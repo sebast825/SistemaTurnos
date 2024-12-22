@@ -50,5 +50,13 @@ namespace SistemaTurnos.Controllers
             var rsta = await _medicoService.GetById(id);
             return Ok(rsta);
         }
+        [HttpPut("{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<MedicoResponseDTO>> Update(int id, MedicoUpdateRequestDTO dto)
+        {
+            var rsta = await _medicoService.Update(id,dto);
+            return Ok(rsta);
+        }
+
     }
 }
