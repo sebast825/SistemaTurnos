@@ -46,7 +46,7 @@ namespace SistemaTurnos.Controllers
                 int pacienteId = await _pacienteService.Create(data.Paciente);
                 await _usuarioService.CreatePaciente(data.Usuario, pacienteId);
                 await transaction.CommitAsync();
-                return Ok(new { Message = "Usuario y paciente creados correctamente", pacienteId });
+                return Ok(new { Message = "Usuario y paciente creados correctamente" });
 
             }
             catch (Exception ex)

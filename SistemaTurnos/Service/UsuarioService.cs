@@ -34,7 +34,7 @@ namespace SistemaTurnos.Service
             await _unitOfWork.UsuarioRepository.Add(usuario);
             await _unitOfWork.Save();
 
-          
+            return;
             throw new NotImplementedException();
         }
         public async Task<PersonaResponseDTO> UpdateEstado(int id, EstadoUsuario estado)

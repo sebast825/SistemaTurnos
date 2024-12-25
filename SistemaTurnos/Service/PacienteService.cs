@@ -22,18 +22,13 @@ namespace SistemaTurnos.Service
 
         public async Task<int> Create(PacienteCreateRequestDTO dto)
         {
-            var paciente = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
-            if(paciente == null || paciente.EstadoPersona == EstadoPersona.Inactivo)
-            {
-                var entity = _mapper.Map<Paciente>(dto);
-                await _unitOfWork.PacienteRepository.Add(entity);
-                await _unitOfWork.Save();
-                // return _mapper.Map<PacienteResponseDTO>(entity);
-                return entity.Id;
-       
-            }
-            throw new Exception("ya existe");
+        
+            var entity = _mapper.Map<Paciente>(dto);
+            entity.ValidarAtributos();
 
+            await _unitOfWork.PacienteRepository.Add(entity);
+            await _unitOfWork.Save();
+            return entity.Id;
         }
 
         public async Task<List<PacienteResponseDTO>> GetAll()
