@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -52,5 +53,11 @@ namespace SistemaTurnos.Dal
         {
             _context?.Dispose();
         }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
+
     }
 }

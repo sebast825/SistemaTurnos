@@ -20,7 +20,7 @@ namespace SistemaTurnos.Service
             _mapper = mapper;
         }
 
-        public async Task<PacienteResponseDTO> Create(PacienteCreateRequestDTO dto)
+        public async Task<int> Create(PacienteCreateRequestDTO dto)
         {
             var paciente = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
             if(paciente == null || paciente.EstadoPersona == EstadoPersona.Inactivo)
@@ -28,7 +28,8 @@ namespace SistemaTurnos.Service
                 var entity = _mapper.Map<Paciente>(dto);
                 await _unitOfWork.PacienteRepository.Add(entity);
                 await _unitOfWork.Save();
-                return _mapper.Map<PacienteResponseDTO>(entity);
+                // return _mapper.Map<PacienteResponseDTO>(entity);
+                return entity.Id;
        
             }
             throw new Exception("ya existe");

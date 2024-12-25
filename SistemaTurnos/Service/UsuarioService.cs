@@ -4,6 +4,7 @@ using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Dto.Turno;
+using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Service
@@ -15,7 +16,27 @@ namespace SistemaTurnos.Service
         public UsuarioService(IUnitOfWork unitOfWork, IMapper mapper) {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-        } 
+        }
+
+
+
+        public async Task CreatePaciente(UserCreateRequestDTO userDto, int pacietneId)
+        {
+
+
+            Usuario usuario = new(Role.Paciente)
+            {
+                UserName = userDto.UserName,
+                Password = userDto.Password,
+                Email = userDto.Email,
+                PersonaId = pacietneId
+            };
+            await _unitOfWork.UsuarioRepository.Add(usuario);
+            await _unitOfWork.Save();
+
+            return;
+            throw new NotImplementedException();
+        }
         public async Task<PersonaResponseDTO> UpdateEstado(int id, EstadoUsuario estado)
         {
             
