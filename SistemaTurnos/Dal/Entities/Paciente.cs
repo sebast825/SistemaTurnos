@@ -22,7 +22,7 @@ namespace SistemaTurnos.Dal.Entities
 
             try
             {
-                int esNumero = int.Parse(this.TelefonoEmergencia);
+                long esNumero = long.Parse(this.TelefonoEmergencia);
 
             }
             catch (Exception ex)

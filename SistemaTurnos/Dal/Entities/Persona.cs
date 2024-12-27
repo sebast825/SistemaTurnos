@@ -100,10 +100,10 @@ namespace SistemaTurnos.Dal.Entities
 
         try
         {
-            int esNumero = int.Parse(this.Telefono);
+            long esNumero = long.Parse(this.Telefono);
 
         }
-        catch (Exception ex)
+            catch (Exception ex)
         {
             throw new ValidationException("El telefono es invalido");
 

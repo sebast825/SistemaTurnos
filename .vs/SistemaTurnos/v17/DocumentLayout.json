@@ -7,20 +7,28 @@
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\entities\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\entities\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\entities\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\entities\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\entities\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\entities\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dto\\user\\userandpatientcreaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dto\\user\\userandpatientcreaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dto\\user\\usercreaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dto\\user\\usercreaterequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\data\\dataseed\\pacienteseed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,11 +42,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "UserAndPatientCreateRequestDto.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\User\\UserAndPatientCreateRequestDto.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Dto\\User\\UserAndPatientCreateRequestDto.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\User\\UserAndPatientCreateRequestDto.cs",
+              "RelativeToolTip": "SistemaTurnos\\Dto\\User\\UserAndPatientCreateRequestDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T22:39:13.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserCreateRequestDTO.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\User\\UserCreateRequestDTO.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Dto\\User\\UserCreateRequestDTO.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dto\\User\\UserCreateRequestDTO.cs",
+              "RelativeToolTip": "SistemaTurnos\\Dto\\User\\UserCreateRequestDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T22:39:13.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "UsuarioService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\UsuarioService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\UsuarioService.cs",
@@ -46,8 +80,7 @@
               "RelativeToolTip": "SistemaTurnos\\Service\\UsuarioService.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAvwCQAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T22:30:03.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-25T22:30:03.534Z"
             },
             {
               "$type": "Document",
@@ -57,53 +90,53 @@
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\UsuarioController.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\UsuarioController.cs",
               "RelativeToolTip": "SistemaTurnos\\Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAvwC4AAAAQAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAYwDgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T22:28:39.921Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PacienteService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\PacienteService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\PacienteService.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\PacienteService.cs",
               "RelativeToolTip": "SistemaTurnos\\Service\\PacienteService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAB4AAAAdAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAvwBoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T22:27:07.717Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Persona.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\Persona.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\Persona.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\Persona.cs",
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\Persona.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAA3wCEAAAABAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAiwGMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T22:24:35.115Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Paciente.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\Paciente.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\Paciente.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\Paciente.cs",
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\Paciente.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAApAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T22:24:33.853Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "PacienteSeed.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Data\\DataSeed\\PacienteSeed.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Data\\DataSeed\\PacienteSeed.cs",
@@ -111,8 +144,7 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Data\\DataSeed\\PacienteSeed.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T22:24:31.836Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-25T22:24:31.836Z"
             }
           ]
         }
