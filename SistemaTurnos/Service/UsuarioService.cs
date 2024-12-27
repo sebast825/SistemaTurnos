@@ -23,7 +23,11 @@ namespace SistemaTurnos.Service
         public async Task CreatePaciente(UserCreateRequestDTO userDto, int pacietneId)
         {
 
+            var existUser = await _unitOfWork.UsuarioRepository.GetByUser(userDto.UserName);
+            if (existUser != null) {
 
+                throw new Exception("El nombre de usuario no esta disponible");
+            }
             Usuario usuario = new(Role.Paciente)
             {
                 UserName = userDto.UserName,

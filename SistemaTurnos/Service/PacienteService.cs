@@ -24,7 +24,7 @@ namespace SistemaTurnos.Service
         {
         
             var entity = _mapper.Map<Paciente>(dto);
-            entity.ValidarAtributos();
+            //entity.ValidarAtributos();
 
             await _unitOfWork.PacienteRepository.Add(entity);
             await _unitOfWork.Save();
