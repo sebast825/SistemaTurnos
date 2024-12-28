@@ -43,7 +43,7 @@ namespace SistemaTurnos.Controllers
             
             try
             {
-               // await using var transaction = await _unitOfWork.BeginTransactionAsync();
+                await using var transaction = await _unitOfWork.BeginTransactionAsync();
 
                 int pacienteId = await _pacienteService.Create(data.Paciente);
 
@@ -51,7 +51,7 @@ namespace SistemaTurnos.Controllers
                     await _usuarioService.CreatePaciente(data.Usuario, pacienteId);
                 }
 
-                //await transaction.CommitAsync();
+                await transaction.CommitAsync();
                 return Ok(new { Message = "Usuario y paciente creados correctamente" });
 
             }
