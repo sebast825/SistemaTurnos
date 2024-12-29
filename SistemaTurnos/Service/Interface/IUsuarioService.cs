@@ -11,5 +11,7 @@ namespace SistemaTurnos.Service.Interface
         Task<PersonaResponseDTO> UpdateEstado(int id, EstadoUsuario estado);
         Task CreatePaciente(UserCreateRequestDTO userDto, int pacietneId);
 
+        Task StartRecoveryPassword(RecoveryEmailRequestDo dto);
+
     }
 }

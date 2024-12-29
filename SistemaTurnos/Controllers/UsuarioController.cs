@@ -6,6 +6,8 @@ using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SistemaTurnos.Controllers
 {
@@ -61,7 +63,28 @@ namespace SistemaTurnos.Controllers
             }
         }
 
+        [HttpPost("/api/usuario/RecuperarClave")]
+        public ActionResult StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)
+        {
+            //valida el formato del dto
+            if (ModelState.IsValid) {
 
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("El email no es valido");
+            }
+            
+        }
+        [HttpPost("/api/usuario/asd")]
 
+        public ActionResult RecoveryPassword()
+        {
+            return Ok();
+        }
+
+      
+        
     }
 }

@@ -6,6 +6,8 @@ using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service.Interface;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SistemaTurnos.Service
 {
@@ -41,6 +43,20 @@ namespace SistemaTurnos.Service
             return;
             throw new NotImplementedException();
         }
+
+        public async Task StartRecoveryPassword(RecoveryEmailRequestDo dto)
+        {
+            var user = await _unitOfWork.UsuarioRepository.GetByEmail(dto.Email);
+            if (user != null) {
+                #region Helpers
+                string token = GetSha256(Guid.NewGuid().ToString());
+                user.TokenRecovery = token;
+
+                await _unitOfWork.Save();
+               
+                }
+        }
+
         public async Task<PersonaResponseDTO> UpdateEstado(int id, EstadoUsuario estado)
         {
             
@@ -80,6 +96,23 @@ namespace SistemaTurnos.Service
             }
 
 
+        }
+        //encriptado
+        private string GetSha256(string str)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(str);
+                byte[] hash = sha256.ComputeHash(bytes);
+
+                StringBuilder result = new StringBuilder();
+                foreach (byte b in hash)
+                {
+                    result.Append(b.ToString("x2"));
+                }
+
+                return result.ToString();
+            }
         }
     }
 }

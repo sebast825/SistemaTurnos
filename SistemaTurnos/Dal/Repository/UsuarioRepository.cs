@@ -12,6 +12,15 @@ namespace SistemaTurnos.Dal.Repository
 
         }
 
+        public async Task<Usuario> GetByEmail(string email)
+        {
+            var usuario = await _context.Usuarios
+                               .Include(x => x.Persona)
+                               .Where(x => x.Email == email)
+                               .FirstOrDefaultAsync();
+            return usuario;
+        }
+
         public async Task<Usuario> GetByPersonaId(int id)
         {
             var usuario = await _context.Usuarios
