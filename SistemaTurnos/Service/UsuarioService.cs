@@ -9,6 +9,7 @@ using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service.Interface;
 using System.Net;
 using System.Net.Mail;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -18,9 +19,11 @@ namespace SistemaTurnos.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public UsuarioService(IUnitOfWork unitOfWork, IMapper mapper) {
+        private readonly IConfiguration _configuration;
+        public UsuarioService(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration) {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
 
@@ -49,8 +52,8 @@ namespace SistemaTurnos.Service
 
         public async Task StartRecoveryPassword(RecoveryEmailRequestDo dto)
         {
-            var email = "sebamolina825@gmail.com";
-            var user = await _unitOfWork.UsuarioRepository.GetByEmail(email);
+           
+            var user = await _unitOfWork.UsuarioRepository.GetByEmail(dto.Email);
             if (user != null) {
             
                 //genero token
@@ -59,7 +62,7 @@ namespace SistemaTurnos.Service
                 await _unitOfWork.Save();
 
                 //enviar email
-                SendEmail(email);
+                SendEmail(dto.Email);
                 }
         }
 
@@ -109,9 +112,8 @@ namespace SistemaTurnos.Service
           
             try
             {
-                string EmailOrigen = "clinicahorizontedemo@gmail.com";
-                //contraseña de aplicación
-                string Contrasenia = "dvgq hldq bpvc ezmt";
+                string EmailOrigen = _configuration["CorreoSettings:EmailOrigen"];               
+                string Contrasenia = _configuration["CorreoSettings:Contrasenia"];
                 string url = "http://localhost:3000/";
                 
                 MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contraseña",
@@ -122,7 +124,6 @@ namespace SistemaTurnos.Service
                     "Si tienes alguna duda o necesitas asistencia adicional, no dudes en contactarnos.</p>"+
                     "<p>Saludos, Clinica Horizonte Demo</p>");
                 oMailMessage.IsBodyHtml = true;
-
                 SmtpClient oSmtpClient = new SmtpClient();
                 oSmtpClient.Host = "smtp.gmail.com";
                 oSmtpClient.EnableSsl = true;
