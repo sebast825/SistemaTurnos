@@ -64,11 +64,11 @@ namespace SistemaTurnos.Controllers
         }
 
         [HttpPost("/api/usuario/RecuperarClave")]
-        public ActionResult StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)
+        async public Task<ActionResult> StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)
         {
             //valida el formato del dto
             if (ModelState.IsValid) {
-
+                await _usuarioService.StartRecoveryPassword(dto);
                 return Ok();
             }
             else

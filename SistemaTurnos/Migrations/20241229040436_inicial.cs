@@ -156,7 +156,8 @@ namespace SistemaTurnos.Migrations
                     PersonaId = table.Column<int>(type: "int", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
-                    EstadoUsuario = table.Column<int>(type: "int", nullable: false)
+                    EstadoUsuario = table.Column<int>(type: "int", nullable: false),
+                    TokenRecovery = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -175,10 +176,10 @@ namespace SistemaTurnos.Migrations
                 {
                     { 1, "Lunes" },
                     { 2, "Martes" },
-                    { 3, "Miercoles" },
+                    { 3, "Miércoles" },
                     { 4, "Jueves" },
                     { 5, "Viernes" },
-                    { 6, "Sabado" },
+                    { 6, "Sábado" },
                     { 7, "Domingo" }
                 });
 
@@ -207,8 +208,8 @@ namespace SistemaTurnos.Migrations
                 columns: new[] { "Id", "Apellido", "Discriminator", "EstadoPersona", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 1, "Pérez", "Persona", 0, new DateTime(2024, 7, 16, 16, 35, 54, 66, DateTimeKind.Local).AddTicks(9602), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "12345678", 1, "123456789" },
-                    { 2, "Gómez", "Persona", 0, new DateTime(2024, 7, 16, 16, 35, 54, 66, DateTimeKind.Local).AddTicks(9619), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "87654321", 2, "987654321" }
+                    { 1, "Pérez", "Persona", 0, new DateTime(2024, 12, 29, 1, 4, 36, 638, DateTimeKind.Local).AddTicks(9888), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "12345678", 1, "123456789" },
+                    { 2, "Gómez", "Persona", 0, new DateTime(2024, 12, 29, 1, 4, 36, 638, DateTimeKind.Local).AddTicks(9907), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "87654321", 2, "987654321" }
                 });
 
             migrationBuilder.InsertData(
@@ -216,8 +217,8 @@ namespace SistemaTurnos.Migrations
                 columns: new[] { "Id", "Apellido", "Discriminator", "EstadoPersona", "FechaCreacion", "FechaNacimiento", "Nombre", "NombreEmergencia", "NumeroDocumento", "SexoId", "Telefono", "TelefonoEmergencia" },
                 values: new object[,]
                 {
-                    { 3, "Pérez", "Paciente", 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(1990), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "Ana Pérez", "45345678", 1, "123452389", "1122334455" },
-                    { 4, "Gómez", "Paciente", 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2000), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "Carlos Gómez", "12345678", 2, "123456756", "2233445566" }
+                    { 3, "Pérez", "Paciente", 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(2890), new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "Ana Pérez", "45345678", 1, "123452389", "1122334455" },
+                    { 4, "Gómez", "Paciente", 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(2903), new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "Carlos Gómez", "12345678", 2, "123456756", "2233445566" }
                 });
 
             migrationBuilder.InsertData(
@@ -225,9 +226,9 @@ namespace SistemaTurnos.Migrations
                 columns: new[] { "Id", "Apellido", "Discriminator", "EspecialidadId", "EstadoPersona", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "NumeroLicencia", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 5, "Pérez", "Medico", 1, 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2335), new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "DNI12345678", "LIC1234", 1, "123456789" },
-                    { 6, "González", "Medico", 2, 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2339), new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "DNI87654321", "LIC5678", 2, "987654321" },
-                    { 7, "López", "Medico", 3, 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2342), new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "DNI23456789", "LIC9101", 1, "555123456" }
+                    { 5, "Pérez", "Medico", 1, 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3404), new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Juan", "DNI12345678", "LIC1234", 1, "123456789" },
+                    { 6, "González", "Medico", 2, 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3408), new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "María", "DNI87654321", "LIC5678", 2, "987654321" },
+                    { 7, "López", "Medico", 3, 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3413), new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carlos", "DNI23456789", "LIC9101", 1, "555123456" }
                 });
 
             migrationBuilder.InsertData(
@@ -235,8 +236,8 @@ namespace SistemaTurnos.Migrations
                 columns: new[] { "Id", "Apellido", "Discriminator", "EstadoPersona", "FechaCreacion", "FechaNacimiento", "Nombre", "NumeroDocumento", "SexoId", "Telefono" },
                 values: new object[,]
                 {
-                    { 8, "Martínez", "Administrativo", 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2986), new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Laura", "DNI65432100", 2, "111222333" },
-                    { 9, "Sánchez", "Administrativo", 0, new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(2990), new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pedro", "DNI12345001", 1, "444555666" }
+                    { 8, "Martínez", "Administrativo", 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(4340), new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Laura", "DNI65432100", 2, "111222333" },
+                    { 9, "Sánchez", "Administrativo", 0, new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(4347), new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pedro", "DNI12345001", 1, "444555666" }
                 });
 
             migrationBuilder.InsertData(
@@ -256,25 +257,25 @@ namespace SistemaTurnos.Migrations
                 columns: new[] { "Id", "Estado", "Fecha", "FechaCreacion", "MedicoId", "PacienteId" },
                 values: new object[,]
                 {
-                    { 1, "Programada", new DateTime(2024, 7, 17, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3936), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3933), 5, 3 },
-                    { 2, "Cancelada", new DateTime(2024, 7, 18, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3944), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3943), 6, 4 },
-                    { 3, "Completada", new DateTime(2024, 7, 19, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3946), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3945), 7, 3 },
-                    { 4, "LLamando", new DateTime(2024, 7, 20, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3949), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3948), 5, 4 },
-                    { 5, "EnProgreso", new DateTime(2024, 7, 21, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3951), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3950), 6, 3 },
-                    { 6, "Finalizada", new DateTime(2024, 7, 22, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3953), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3952), 7, 4 },
-                    { 7, "NoAsistida", new DateTime(2024, 7, 23, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3955), new DateTime(2024, 7, 16, 16, 35, 54, 67, DateTimeKind.Local).AddTicks(3954), 5, 3 }
+                    { 1, "Programada", new DateTime(2024, 12, 30, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5550), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5547), 5, 3 },
+                    { 2, "Cancelada", new DateTime(2024, 12, 31, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5558), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5557), 6, 4 },
+                    { 3, "Completada", new DateTime(2025, 1, 1, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5561), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5560), 7, 3 },
+                    { 4, "LLamando", new DateTime(2025, 1, 2, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5564), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5562), 5, 4 },
+                    { 5, "EnProgreso", new DateTime(2025, 1, 3, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5567), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5566), 6, 3 },
+                    { 6, "Finalizada", new DateTime(2025, 1, 4, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5569), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5568), 7, 4 },
+                    { 7, "NoAsistida", new DateTime(2025, 1, 5, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5571), new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5570), 5, 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "Id", "Email", "EstadoUsuario", "Password", "PersonaId", "Role", "UserName" },
+                columns: new[] { "Id", "Email", "EstadoUsuario", "Password", "PersonaId", "Role", "TokenRecovery", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "persona@example.com", 0, "a", 1, 0, "persona" },
-                    { 2, "paciente@example.com", 0, "a", 3, 0, "paciente" },
-                    { 3, "medico@example.com", 0, "a", 5, 1, "medico" },
-                    { 4, "secretario@example.com", 0, "a", 8, 2, "secretario" },
-                    { 5, "admin@example.com", 0, "a", 9, 3, "admin" }
+                    { 1, "persona@example.com", 0, "a", 1, 0, null, "persona" },
+                    { 2, "paciente@example.com", 0, "a", 3, 0, null, "paciente" },
+                    { 3, "medico@example.com", 0, "a", 5, 1, null, "medico" },
+                    { 4, "secretario@example.com", 0, "a", 8, 2, null, "secretario" },
+                    { 5, "admin@example.com", 0, "a", 9, 3, null, "admin" }
                 });
 
             migrationBuilder.CreateIndex(

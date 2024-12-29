@@ -48,7 +48,7 @@ namespace SistemaTurnos.Service
         {
             var user = await _unitOfWork.UsuarioRepository.GetByEmail(dto.Email);
             if (user != null) {
-                #region Helpers
+            
                 string token = GetSha256(Guid.NewGuid().ToString());
                 user.TokenRecovery = token;
 
@@ -97,7 +97,7 @@ namespace SistemaTurnos.Service
 
 
         }
-        //encriptado
+#region encriptado
         private string GetSha256(string str)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -114,5 +114,7 @@ namespace SistemaTurnos.Service
                 return result.ToString();
             }
         }
+#endregion
     }
 }
+
