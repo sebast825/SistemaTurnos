@@ -79,9 +79,18 @@ namespace SistemaTurnos.Controllers
         }
         [HttpPost("/api/usuario/asd")]
 
-        public ActionResult RecoveryPassword()
+        async public Task<ActionResult> RecoveryPassword([FromBody] NuevaClaveRequestDTO dto)
         {
-            return Ok();
+            //valida el formato del dto
+            if (ModelState.IsValid)
+            {
+                 await _usuarioService.ActualizarClave(dto);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
       

@@ -30,6 +30,14 @@ namespace SistemaTurnos.Dal.Repository
             return usuario;
         }
 
+        public async Task<Usuario> GetByToken(string token)
+        {
+            var usuario = await _context.Usuarios                    
+                       .Where(x => x.TokenRecovery == token)
+                       .FirstOrDefaultAsync();
+            return usuario;
+        }
+
         public async Task<Usuario> GetByUser(string name)
         {
             

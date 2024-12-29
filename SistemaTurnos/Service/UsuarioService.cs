@@ -158,7 +158,23 @@ namespace SistemaTurnos.Service
                 return result.ToString();
             }
         }
-#endregion
+
+        public async Task ActualizarClave(NuevaClaveRequestDTO dto)
+        {
+            var user = await _unitOfWork.UsuarioRepository.GetByToken(dto.Token);
+
+            if(user != null)
+            {
+                user.Password = dto.Password;
+                user.TokenRecovery = null;
+                await _unitOfWork.Save();
+            }
+            else
+            {
+                throw new Exception("El token no es valido. Intenta recuperar tu clave nuevamente.");
+            }
+        }
+        #endregion
     }
 }
 
