@@ -63,7 +63,7 @@ namespace SistemaTurnos.Controllers
             }
         }
 
-        [HttpPost("/api/usuario/RecuperarClave")]
+        [HttpPost("/api/usuario/requestUpdatePassword")]
         async public Task<ActionResult> StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)
         {
             //valida el formato del dto
@@ -77,7 +77,7 @@ namespace SistemaTurnos.Controllers
             }
             
         }
-        [HttpPost("/api/usuario/asd")]
+        [HttpPost("/api/usuario/updatePassword")]
 
         async public Task<ActionResult> RecoveryPassword([FromBody] NuevaClaveRequestDTO dto)
         {

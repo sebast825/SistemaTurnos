@@ -62,7 +62,7 @@ namespace SistemaTurnos.Service
                 await _unitOfWork.Save();
 
                 //enviar email
-                SendEmail(dto.Email);
+                SendEmail(dto.Email,token);
                 }
         }
 
@@ -107,16 +107,16 @@ namespace SistemaTurnos.Service
 
         }
 
-        private void SendEmail (string EmailDestino)
+        private void SendEmail (string EmailDestino,string token)
         {
           
             try
             {
                 string EmailOrigen = _configuration["CorreoSettings:EmailOrigen"];               
                 string Contrasenia = _configuration["CorreoSettings:Contrasenia"];
-                string url = "http://localhost:3000/";
+                string url = "http://localhost:3000/recuperarClave/?token=" + token;
                 
-                MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contraseña",
+                MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contrasea",
                     "<p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Si fuiste " +
                     "tú quien solicitó este cambio, haz clic en el siguiente enlace para establecer una nueva contraseña:</p>" +
                     "<a href= '" + url + "'>Recuperar contraseña</a>"+
