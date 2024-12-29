@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
@@ -6,6 +7,7 @@ using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service.Interface;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
@@ -47,7 +49,8 @@ namespace SistemaTurnos.Service
 
         public async Task StartRecoveryPassword(RecoveryEmailRequestDo dto)
         {
-            var user = await _unitOfWork.UsuarioRepository.GetByEmail(dto.Email);
+            var email = "sebamolina825@gmail.com";
+            var user = await _unitOfWork.UsuarioRepository.GetByEmail(email);
             if (user != null) {
             
                 //genero token
@@ -56,7 +59,7 @@ namespace SistemaTurnos.Service
                 await _unitOfWork.Save();
 
                 //enviar email
-                SendEmail(dto.Email);
+                SendEmail(email);
                 }
         }
 
@@ -103,20 +106,39 @@ namespace SistemaTurnos.Service
 
         private void SendEmail (string EmailDestino)
         {
-            string EmailOrigen = "sebastian.molina@istea.com.ar";
-            string Contrasenia = "";
-            string url = "http://localhost:3000/home";
-            MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contraseña",
-                "<p>Correo pa recueprar clave</p><br>" +
-                "<a href= '" + url + "'>Click para recuperar</a>");
-            oMailMessage.IsBodyHtml = true;
-            SmtpClient oSmtpClient = new SmtpClient("smtp.gmail.com");
-            oSmtpClient.EnableSsl = true;
-            oSmtpClient.UseDefaultCredentials = false;
-            oSmtpClient.Port = 587;
-            oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, Contrasenia);
-            oSmtpClient.Send(oMailMessage);
-            oSmtpClient.Dispose();
+          
+            try
+            {
+                string EmailOrigen = "clinicahorizontedemo@gmail.com";
+                //contraseña de aplicación
+                string Contrasenia = "dvgq hldq bpvc ezmt";
+                string url = "http://localhost:3000/";
+                
+                MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contraseña",
+                    "<p>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. Si fuiste " +
+                    "tú quien solicitó este cambio, haz clic en el siguiente enlace para establecer una nueva contraseña:</p>" +
+                    "<a href= '" + url + "'>Recuperar contraseña</a>"+
+                    "<p>Si no solicitaste este cambio, por favor ignora este correo. Tu cuenta seguirá estando protegida."+
+                    "Si tienes alguna duda o necesitas asistencia adicional, no dudes en contactarnos.</p>"+
+                    "<p>Saludos, Clinica Horizonte Demo</p>");
+                oMailMessage.IsBodyHtml = true;
+
+                SmtpClient oSmtpClient = new SmtpClient();
+                oSmtpClient.Host = "smtp.gmail.com";
+                oSmtpClient.EnableSsl = true;
+                oSmtpClient.UseDefaultCredentials = false;
+                oSmtpClient.Port = 587;
+                oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, Contrasenia);
+               
+                oSmtpClient.Send(oMailMessage);
+                oSmtpClient.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                
+                throw new Exception(ex.ToString());
+            }       
         }
 #region encriptado
         private string GetSha256(string str)
