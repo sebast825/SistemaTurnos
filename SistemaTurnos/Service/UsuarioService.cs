@@ -6,6 +6,7 @@ using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service.Interface;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -49,11 +50,13 @@ namespace SistemaTurnos.Service
             var user = await _unitOfWork.UsuarioRepository.GetByEmail(dto.Email);
             if (user != null) {
             
+                //genero token
                 string token = GetSha256(Guid.NewGuid().ToString());
                 user.TokenRecovery = token;
-
                 await _unitOfWork.Save();
-               
+
+                //enviar email
+                SendEmail(dto.Email);
                 }
         }
 
@@ -96,6 +99,24 @@ namespace SistemaTurnos.Service
             }
 
 
+        }
+
+        private void SendEmail (string EmailDestino)
+        {
+            string EmailOrigen = "sebastian.molina@istea.com.ar";
+            string Contrasenia = "";
+            string url = "http://localhost:3000/home";
+            MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperacion de Contraseña",
+                "<p>Correo pa recueprar clave</p><br>" +
+                "<a href= '" + url + "'>Click para recuperar</a>");
+            oMailMessage.IsBodyHtml = true;
+            SmtpClient oSmtpClient = new SmtpClient("smtp.gmail.com");
+            oSmtpClient.EnableSsl = true;
+            oSmtpClient.UseDefaultCredentials = false;
+            oSmtpClient.Port = 587;
+            oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, Contrasenia);
+            oSmtpClient.Send(oMailMessage);
+            oSmtpClient.Dispose();
         }
 #region encriptado
         private string GetSha256(string str)
