@@ -8,6 +8,6 @@ namespace SistemaTurnos.Dal.Repository.Interface
         Task<Persona> GetByDni(string numeroDocumento);
         Task<Persona> GetId(int id);
         Task<Persona> Update(PersonaUpdateRequestDTO dtoUpdate);
-
+        Task<List<Persona>> GetAllIncludeInactive();
     }
 }

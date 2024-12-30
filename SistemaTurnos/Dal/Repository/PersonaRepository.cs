@@ -20,7 +20,14 @@ namespace SistemaTurnos.Dal.Repository
 
             return persona;
         }
+        public async Task<List<Persona>> GetAllIncludeInactive()
+        {
+            var pacientes = await _context.Personas
+                .Include(v => v.Sexo)
+                .ToListAsync();
+            return pacientes;
 
+        }
         public async Task<Persona> GetId(int id)
         {
             var persona = await _context.Personas

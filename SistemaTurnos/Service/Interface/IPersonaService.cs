@@ -14,6 +14,7 @@ namespace SistemaTurnos.Service.Interface
         Task<string> GetTipoPersona (int id);
         Task<PersonaResponseDTO> GetById(int id);
 
+        Task<List<PersonaResponseDTO>> GetAllPersonaIncludeInactive();
 
 
     }

@@ -29,7 +29,7 @@ namespace SistemaTurnos.Dal.Repository
             return pacientes;
 
         }
-
+       
         public async Task<Paciente> GetById(int id)
         {
             var paciente = await _context.Personas

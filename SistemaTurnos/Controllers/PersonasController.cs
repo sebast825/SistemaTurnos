@@ -20,22 +20,14 @@ namespace SistemaTurnos.Controllers
             _jwtService = jwtService;
         }
 
-        //[HttpPatch("ActualizarEstado")]
+        [HttpGet]
 
-        //public async Task<PersonaResponseDTO> ActualizarEstado(int id, int estado)
-        //{
-        //    var rsta = await _personaService.ActualizarEstado(id, estado);
+        public async Task<ActionResult<List<PersonaResponseDTO>>> GetAllIncludeInactive()
+        {
+            var rsta = await _personaService.GetAllPersonaIncludeInactive();
 
-        //    return rsta;
-        //}
-
-        //[HttpPatch("ActualizarEstadoEliminar")]
-
-        //public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
-        //{
-        //    var rsta = await _personaService.ActualizarEstadoEliminar(id);
-        //    return rsta;
-        //}
+            return rsta;
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<bool>> GetById(int id)
         {

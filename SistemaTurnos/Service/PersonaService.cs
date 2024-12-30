@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration.Conventions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
@@ -105,6 +106,13 @@ namespace SistemaTurnos.Service
 
 
         }
+  
+        public async Task<List<PersonaResponseDTO>> GetAllPersonaIncludeInactive()
+        {
+            var personas = await _unitOfWork.PersonaRepository.GetAllIncludeInactive();
+            var rsta = _mapper.Map<List<PersonaResponseDTO>>(personas);
 
+            return rsta;
+        }
     }
 }
