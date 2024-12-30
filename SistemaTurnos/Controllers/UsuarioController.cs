@@ -41,26 +41,13 @@ namespace SistemaTurnos.Controllers
         }
         [HttpPost("/api/usuario/paciente")]
         public async Task<ActionResult> CreatePaciente([FromBody] UserAndPatientCreateRequestDto data)
-        {   
-            
-            try
-            {
+        {  
                 await using var transaction = await _unitOfWork.BeginTransactionAsync();
-
-                int pacienteId = await _pacienteService.Create(data.Paciente);
-
-                if (data != null) {
-                    await _usuarioService.CreatePaciente(data.Usuario, pacienteId);
-                }
-
+                int pacienteId = await _pacienteService.Create(data.Paciente);               
+                await _usuarioService.CreatePaciente(data.Usuario, pacienteId);           
                 await transaction.CommitAsync();
                 return Ok(new { Message = "Usuario y paciente creados correctamente" });
 
-            }
-            catch (Exception ex)
-            {                
-                return StatusCode(500, new { Message = ex });
-            }
         }
 
         [HttpPost("/api/usuario/requestUpdatePassword")]

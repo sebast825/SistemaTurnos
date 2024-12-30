@@ -40,8 +40,6 @@ namespace SistemaTurnos.Service
 
         public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
         {
-
-
             var medico = await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
             if (medico == null)
                 throw new Exception(ErrorMessages.MedicoNotFound);
