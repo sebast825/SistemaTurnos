@@ -108,7 +108,7 @@ namespace SistemaTurnos.Service
 
             var paciente = await _unitOfWork.PacienteRepository.GetId(id);
             if (paciente == null)
-                throw new Exception(ErrorMessages.MedicoNotFound);
+                throw new Exception(ErrorMessages.PacienteNotFound);
 
             var turnos = await _unitOfWork.TurnoRepository.FilterByPaciente(id);
             var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);

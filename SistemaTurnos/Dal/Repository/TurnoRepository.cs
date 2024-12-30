@@ -52,7 +52,7 @@ namespace SistemaTurnos.Dal.Repository
                                     .Include(p => p.Paciente)
                                     .Include(x => x.Medico.Especialidad)
                                     .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo
-                                            && p.PacienteId == id)
+                                            && p.PacienteId == id && p.Estado != EstadoTurno.Cancelada)
                                     .ToListAsync();
 
             return turnos;
