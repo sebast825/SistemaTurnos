@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Server.IIS.Core;
+using Microsoft.Data.SqlClient;
 
 namespace SistemaTurnos.Service
 {
@@ -288,6 +289,7 @@ namespace SistemaTurnos.Service
 
         public async Task<TurnoResponseDTO> CancelarTurno(int idTurno)
         {
+
             var updateTurno = await _unitOfWork.TurnoRepository.UpdateEstado(idTurno, EstadoTurno.Cancelada);
             var rsta = _mapper.Map<TurnoResponseDTO>(updateTurno);
             return rsta;

@@ -16,7 +16,10 @@ namespace SistemaTurnos.Filter
 
             else if (context.Exception is Exception)
             {
-                context.Result = new NotFoundObjectResult(context.Exception.Message);
+                context.Result = new ObjectResult("Error de base de datos")
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
             }
             else if (context.Exception is ValidationException)
             {

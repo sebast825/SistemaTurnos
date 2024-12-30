@@ -74,6 +74,8 @@ namespace SistemaTurnos.Controllers
         [HttpGet("/medico/{idDoctor}/turnosHoy/{dt}")]
         public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idDoctor)
         {
+
+            var data = DateTime.Now;
             // _jwtService.isNotPaciente();
             var rsta = await _turnoService.DoctorTurnosByDate(dt,idDoctor);
             return rsta;
@@ -107,7 +109,7 @@ namespace SistemaTurnos.Controllers
         }
         [HttpPatch("api/pacientes/turnos/{idTurno}/cancelar")]
 
-        public async Task<TurnoResponseDTO> CancelarTurno(int idTurno)
+        public async Task<ActionResult<TurnoResponseDTO>> CancelarTurno(int idTurno)
         {
             var rsta = await _turnoService.CancelarTurno(idTurno);
             return rsta;
@@ -116,6 +118,7 @@ namespace SistemaTurnos.Controllers
 
         public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
         {
+
             _jwtService.isNotPaciente();
             var rsta = await _turnoService.ActualizarEstadoTurno(idTurno, estadoTurno);
             return rsta;
