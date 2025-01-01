@@ -242,9 +242,14 @@ namespace SistemaTurnos.Service
         private List<TurnoHorarioDisponibleResponseDTO> GenerarHorariosDisponiblesPorMes(int medicoId, List<Turno> turnos,
             List<DisponibilidadMedico> horariosDisponibilidadMedico)
         {
-            var fechaInicio = DateTime.Today.AddDays(-1);
+            var fechaInicio = DateTime.Today;
+
+            var transformFechaFin = fechaInicio.AddMonths(1);
             //reccorre hasta fin de mes
-            var fechaFin = new DateTime(fechaInicio.Year, fechaInicio.Month, 1).AddMonths(1).AddDays(-1);
+            var fechaFin = new DateTime(transformFechaFin.Year, transformFechaFin.Month, transformFechaFin.Day);
+            Console.WriteLine("/////////////////////////////////////////////////////");
+            Console.WriteLine(fechaInicio);
+            Console.WriteLine(fechaFin);
 
             var horariosDisponiblesPorDia = new List<TurnoHorarioDisponibleResponseDTO>();
 
