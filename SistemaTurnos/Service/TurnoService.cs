@@ -288,15 +288,26 @@ namespace SistemaTurnos.Service
         public async Task<TurnoResponseDTO> CancelarTurno(int idTurno)
         {
 
-            var updateTurno = await _unitOfWork.TurnoRepository.UpdateEstado(idTurno, EstadoTurno.Cancelada);
-            var rsta = _mapper.Map<TurnoResponseDTO>(updateTurno);
+            var turno = await _unitOfWork.TurnoRepository.GetById(idTurno);
+            if (turno != null)
+            {
+                turno.Estado = EstadoTurno.Cancelada;
+                await _unitOfWork.Save();
+
+            }
+            var rsta = _mapper.Map<TurnoResponseDTO>(turno);
             return rsta;
         }
 
         public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
         {
-            var updateTurno = await _unitOfWork.TurnoRepository.UpdateEstado(idTurno, estadoTurno);
-            var rsta = _mapper.Map<TurnoResponseDTO>(updateTurno);
+            var turno = await _unitOfWork.TurnoRepository.GetById(idTurno);
+            if(turno != null)
+            {
+                turno.Estado = estadoTurno;
+                await _unitOfWork.Save();
+            }
+            var rsta = _mapper.Map<TurnoResponseDTO>(turno);
             return rsta;
         }
 

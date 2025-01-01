@@ -143,5 +143,17 @@ namespace SistemaTurnos.Dal.Repository
             var turnos = await turnosQuery.ToListAsync();
             return turnos;
         }
+
+        public async Task<Turno> GetById(int id)
+        {
+            var turnos = await _context.Turnos
+                          .Include(x => x.Medico)
+                          .Include(x => x.Medico.Especialidad)
+                          .Include(p => p.Paciente)
+                          .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo && p.Id == id)
+                          .FirstOrDefaultAsync();
+
+            return turnos;
+        }
     }
 }
