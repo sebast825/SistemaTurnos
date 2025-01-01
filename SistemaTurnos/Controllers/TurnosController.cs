@@ -46,7 +46,7 @@ namespace SistemaTurnos.Controllers
         }
         
 
-        [HttpGet("FilterByDoctor")]
+        [HttpGet("api/turnos/FilterByDoctor")]
         public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
         {
             _jwtService.isNotPaciente();
