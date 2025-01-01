@@ -39,16 +39,16 @@ namespace SistemaTurnos.Controllers
             return Ok(rsta);
 
         }
-        [HttpPost("/api/usuario/paciente")]
-        public async Task<ActionResult> CreatePaciente([FromBody] UserAndPatientCreateRequestDto data)
-        {  
-                await using var transaction = await _unitOfWork.BeginTransactionAsync();
-                int pacienteId = await _pacienteService.Create(data.Paciente);               
-                await _usuarioService.CreatePaciente(data.Usuario, pacienteId);           
-                await transaction.CommitAsync();
-                return Ok(new { Message = "Usuario y paciente creados correctamente" });
+            [HttpPost("/api/usuario/paciente")]
+            public async Task<ActionResult> CreatePaciente([FromBody] UserAndPatientCreateRequestDto data)
+            {  
+                    await using var transaction = await _unitOfWork.BeginTransactionAsync();
+                    int pacienteId = await _pacienteService.Create(data.Paciente);               
+                    await _usuarioService.CreatePaciente(data.Usuario, pacienteId);           
+                    await transaction.CommitAsync();
+                    return Ok(new { Message = "Usuario y paciente creados correctamente" });
 
-        }
+            }
 
         [HttpPost("/api/usuario/requestUpdatePassword")]
         async public Task<ActionResult> StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)

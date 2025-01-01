@@ -31,15 +31,12 @@ namespace SistemaTurnos.Service
             var usuario = await _unitOfWork.UsuarioRepository.GetByUser(user);
             if (usuario == null)
             {
-                //Usuario No Existe
-                Console.WriteLine("El usuario no existe");
+             
                 return null;
             }
-            else if (usuario.Password != pass)
+            else if (!VerifyPassword(pass, usuario.Password))
             {
-                //Pass err
-                Console.WriteLine("Clave invalida");
-
+                
                 return null;
             }
             return usuario;
@@ -60,10 +57,7 @@ namespace SistemaTurnos.Service
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("UserId", userEntity.Id.ToString()),
                     new Claim("PersonaId", userEntity.PersonaId.ToString()),
-
-                                       // new Claim("DisplayName", userEntity.UserName),
                      new Claim(ClaimTypes.Role, permiso),
-
                     new Claim("UserName", userEntity.UserName),
                 };
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -79,7 +73,7 @@ namespace SistemaTurnos.Service
             }
             else
             {
-                throw new Exception("Usuario invalido");
+                throw new Exception("Usuario o contraseña invalida");
             }
         }
         private void isUserActive(EstadoUsuario estado)
@@ -108,6 +102,13 @@ namespace SistemaTurnos.Service
 
             return claim.Value;
           
+        }
+
+      
+
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
     }
 }

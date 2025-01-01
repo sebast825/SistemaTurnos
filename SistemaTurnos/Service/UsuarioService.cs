@@ -39,7 +39,7 @@ namespace SistemaTurnos.Service
             Usuario usuario = new(Role.Paciente)
             {
                 UserName = userDto.UserName,
-                Password = userDto.Password,
+                Password = HashPassword(userDto.Password),
                 Email = userDto.Email,
                 PersonaId = pacietneId
             };
@@ -141,7 +141,11 @@ namespace SistemaTurnos.Service
                 throw new Exception(ex.ToString());
             }       
         }
-#region encriptado
+        #region encriptado
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
         private string GetSha256(string str)
         {
             using (SHA256 sha256 = SHA256.Create())
