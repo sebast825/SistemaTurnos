@@ -189,7 +189,7 @@ namespace SistemaTurnos.Service
             return horariosDisponiblesPorDia;
         }
       
-        private bool HayTurno(TimeSpan i, TimeSpan tiempoTurno, List<Turno> turnosDia)
+        public bool HayTurno(TimeSpan i, TimeSpan tiempoTurno, List<Turno> turnosDia)
         {
             return turnosDia.Any(turno =>
             {
@@ -199,7 +199,7 @@ namespace SistemaTurnos.Service
             });
             
         }
-        private TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos, 
+        public TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos, 
             DateTime dia, TurnoHorarioDisponibleResponseDTO horarioDisponible)
         {
             TimeSpan startShift = disp.StartTime;
