@@ -24,6 +24,7 @@ namespace SistemaTurnos.Service.Interface
 
         Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idMedico);
 
+        public bool suma(int a, int b);
     }
 }
 

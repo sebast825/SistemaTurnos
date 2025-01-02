@@ -101,6 +101,10 @@ namespace SistemaTurnos.Service
 
             return rsta;
         }
+        public bool suma(int a, int b)
+        {
+            return a == b;
+        }
 
         public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
         {
