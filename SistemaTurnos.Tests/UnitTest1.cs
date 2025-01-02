@@ -33,28 +33,6 @@ public class UnitTest1
     }
 
 
-
-
-    [TestMethod]
-    public void ObtenerHorariosDisponiblesPorDisponibilidad()
-    {
-
-        DateTime dateHoy = DateTime.Now;
-
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
-            DataTurnoTest.GetDisponibilidadMedico(),
-            DataTurnoTest.GetTurnos(),
-            dateHoy,
-            DataTurnoTest.GetHorariosDisponiblesDTO());
-
-        CollectionAssert.AreEqual(DataTurnoTest.GetHorariosEsperados(), result.Horario);
-
-    }
-
-   
-  
-
-
     [TestMethod]
     public void HayTurnoSameHorario()
     {

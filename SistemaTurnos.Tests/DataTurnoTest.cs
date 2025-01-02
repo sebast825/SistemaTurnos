@@ -21,14 +21,24 @@ namespace SistemaTurnos.Tests
             {
                 MedicoId = 5,
                 PacienteId = 3,
-                Fecha = DateTime.Now.AddDays(1)
+                Fecha = DateTime.Today.AddHours(15),
             },
             new Turno
             {
                 MedicoId = 5,
                 PacienteId = 3,
-                Fecha = DateTime.Now.AddDays(1)
+                Fecha = DateTime.Today.AddHours(16),
             }
+        };
+        public static List<Turno> GetTurnos2() => new()
+        {
+            new Turno
+            {
+                MedicoId = 5,
+                PacienteId = 3,
+                Fecha = DateTime.Today.AddHours(13),
+            },
+          
         };
 
         public static List<TimeSpan> GetHorariosEsperados() => new()
@@ -38,7 +48,7 @@ namespace SistemaTurnos.Tests
             new TimeSpan(13, 40, 0)
         };
 
-        public static TurnoHorarioDisponibleResponseDTO GetHorariosDisponiblesDTO() => new()
+        public static TurnoHorarioDisponibleResponseDTO GetHorarioDisponiblesResponse() => new()
         {
             MedicoId = 5,
             Fecha = DateTime.Now
