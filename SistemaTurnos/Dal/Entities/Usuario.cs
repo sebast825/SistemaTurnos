@@ -7,6 +7,7 @@ namespace SistemaTurnos.Dal.Entities
         public Usuario(Role role = Role.Paciente) {
             Role = role;
             EstadoUsuario = EstadoUsuario.Activo;
+            TokenRecovery = null;
         }    
         public string UserName { get;set; }
         public string Password { get;set; }
@@ -16,5 +17,7 @@ namespace SistemaTurnos.Dal.Entities
         public string Email { get; set; }
         public Role Role { get; set; }
         public EstadoUsuario EstadoUsuario { get; set; }
+
+        public string? TokenRecovery{ get; set; }
     }
 }

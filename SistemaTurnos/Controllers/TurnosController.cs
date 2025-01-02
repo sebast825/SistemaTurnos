@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Common;
+using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class TurnosController : Controller
     {
         private readonly ITurnoService _turnoService;
@@ -21,10 +22,10 @@ namespace SistemaTurnos.Controllers
 
         }
        
-        [HttpGet]
+        [HttpGet("api/turnos")]
         public async Task<List<TurnoResponseDTO>> GetAll()
         {
-            _jwtService.isNotPaciente();
+            //_jwtService.isNotPaciente();
             var rsta = await _turnoService.GetAll();
             return rsta;
         }
@@ -45,7 +46,7 @@ namespace SistemaTurnos.Controllers
         }
         
 
-        [HttpGet("FilterByDoctor")]
+        [HttpGet("api/turnos/FilterByDoctor")]
         public async Task<List<TurnoResponseDTO>> FilterByDoctor(int id)
         {
             _jwtService.isNotPaciente();
@@ -53,22 +54,14 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDoctor(id);
             return rsta;
         }
-        [HttpGet("FilterByPaciente")]
+        [HttpGet("api/pacientes/{id}/turnos")]
         public async Task<ActionResult<List<TurnoResponseDTO>>> FilterByPaciente(int id)
         {
-             _jwtService.PacienteMatchIdOrOthers(id);
-            
-                var rsta = await _turnoService.FilterByPaciente(id);
-                if (rsta != null)
-                {
-                    return Ok(rsta); 
-                }
-                else
-                {
-                    return NotFound(); 
-                }
-          
+            _jwtService.PacienteMatchIdOrOthers(id);    
+            var rsta = await _turnoService.FilterByPaciente(id);
+            return rsta;
 
+        
         }
         [HttpGet("FilterByDateTime")]
         public async Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime dt, int? idDoctor)
@@ -77,11 +70,57 @@ namespace SistemaTurnos.Controllers
             var rsta = await _turnoService.FilterByDateTime(dt,idDoctor);
             return rsta;
         }
-        [HttpPost]
-        public async Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto)
+  
+        [HttpGet("/medico/{idDoctor}/turnosHoy/{dt}")]
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idDoctor)
+        {
+
+            var data = DateTime.Now;
+            // _jwtService.isNotPaciente();
+            var rsta = await _turnoService.DoctorTurnosByDate(dt,idDoctor);
+            return rsta;
+        }
+        [HttpPost("api/turnos/")]
+        public async Task<ActionResult<TurnoResponseDTO>> Create(TurnoCreateRequestDTO dto)
         {
             _jwtService.PacienteMatchIdOrAdministrativo(dto.PacienteId);
             var rsta = await _turnoService.Create(dto);
+            return rsta;
+        }
+
+        [HttpGet("ObtenerHorariosDisponibles")]
+        public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
+        {
+            var rsta = await _turnoService.ObtenerHorariosDisponibles(idMedico);
+            return rsta;
+        }
+        [HttpGet("api/medicos/{medicoId}/turnosdisponible")]
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
+        {
+            var rsta = await _turnoService.TurnosDisponiblesByMedico(medicoId);
+            return rsta;
+        }
+        [HttpGet("api/especialidad/{especialidad}/turnosdisponible")]
+
+        public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad)
+        {
+            var rsta = await _turnoService.TurnosDisponiblesByEspecialidad(especialidad);
+            return rsta;    
+        }
+        [HttpPatch("api/pacientes/turnos/{idTurno}/cancelar")]
+
+        public async Task<ActionResult<TurnoResponseDTO>> CancelarTurno(int idTurno)
+        {
+            var rsta = await _turnoService.CancelarTurno(idTurno);
+            return rsta;
+        }
+        [HttpPatch("api/pacientes/turnos/{idTurno}/{estadoTurno}")]
+
+        public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
+        {
+
+            _jwtService.isNotPaciente();
+            var rsta = await _turnoService.ActualizarEstadoTurno(idTurno, estadoTurno);
             return rsta;
         }
 

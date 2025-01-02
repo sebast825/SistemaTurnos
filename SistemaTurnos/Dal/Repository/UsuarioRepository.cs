@@ -11,10 +11,35 @@ namespace SistemaTurnos.Dal.Repository
         {
 
         }
-      
+
+        public async Task<Usuario> GetByEmail(string email)
+        {
+            var usuario = await _context.Usuarios
+                               .Include(x => x.Persona)
+                               .Where(x => x.Email == email)
+                               .FirstOrDefaultAsync();
+            return usuario;
+        }
+
+        public async Task<Usuario> GetByPersonaId(int id)
+        {
+            var usuario = await _context.Usuarios
+                          .Include(x => x.Persona)
+                          .Where(x => x.PersonaId == id)
+                          .FirstOrDefaultAsync();
+            return usuario;
+        }
+
+        public async Task<Usuario> GetByToken(string token)
+        {
+            var usuario = await _context.Usuarios                    
+                       .Where(x => x.TokenRecovery == token)
+                       .FirstOrDefaultAsync();
+            return usuario;
+        }
+
         public async Task<Usuario> GetByUser(string name)
         {
-            Console.WriteLine("get by user");
             
             var usuario = await _context.Usuarios
                 .Include(x => x.Persona)
@@ -22,5 +47,7 @@ namespace SistemaTurnos.Dal.Repository
                 .FirstOrDefaultAsync();
             return usuario;
         }
+
+        
     }
 }

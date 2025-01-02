@@ -6,7 +6,7 @@ using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
-using static SistemaTurnos.Service.TurnoService;
+using System.Security.Cryptography.Xml;
 
 namespace SistemaTurnos.Service
 {
@@ -21,42 +21,46 @@ namespace SistemaTurnos.Service
         }
         public async Task<DisponibilidadMedicoResponseDTO> Create(DisponibilidadMedicoCreateRequestDTO dto)
         {
-          
 
+            dto.StartTime = FormatHora(dto.StartTime);
+            dto.EndTime = FormatHora(dto.EndTime);
 
-            var medico= await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
-            var disponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(dto.MedicoId);
-            var disponibilidadMedicoByDay =  disponibilidadMedico.Where(x => x.DiaSemanaId == dto.DiaSemanaId);
+            var entity = _mapper.Map<DisponibilidadMedico>(dto);
 
-            var dia = await _unitOfWork.DiaSemanaRepository.GetId(dto.DiaSemanaId);
-
-            if (disponibilidadMedicoByDay.Count() >= 2)
+            if (entity.StartTime >= entity.EndTime)
             {
-                throw new Exception($"Ya tiene dos horarios para el dia de la semana {dia.Nombre}, debes editar el horario existente");
+                throw new Exception("La hora de inicio debe ser menor a la de finalizacion");
             }
 
-            var idMedicoActivos =  _unitOfWork.DisponibilidadMedicoRepository.GetIdMedicosActivos();
+            var medico = await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
 
-            if (medico == null || medico.EstadoPersona == EstadoPersona.Activo)
+            if (medico == null) {
+                throw new Exception("Medico invalido");
+            }
+            
+            await _unitOfWork.DisponibilidadMedicoRepository.Add(entity);
+            await _unitOfWork.Save();
+
+            var rsta = await _unitOfWork.DisponibilidadMedicoRepository.GetById(entity.Id);
+
+            return _mapper.Map<DisponibilidadMedicoResponseDTO>(rsta);
+
+
+        }
+
+        public async Task Delete(int id)
+        {
+            var disponibildiadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetById(id);
+            try
             {
-                /*    var newEntity = new DisponibilidadMedico
-                    {
-                        MedicoId = dto.MedicoId,                               
-                        DiaSemanaId = dto.DiaSemanaId,
-                        StartTime = TimeSpan.Parse(dto.StartTime),
-                        EndTime = TimeSpan.Parse(dto.EndTime)
-
-                    };*/
-                var entity = _mapper.Map<DisponibilidadMedico>(dto);
-                entity.DiaSemana = dia;
-                await _unitOfWork.DisponibilidadMedicoRepository.Add(entity);
+                _unitOfWork.DisponibilidadMedicoRepository.Delete(disponibildiadMedico);
                 await _unitOfWork.Save();
-                return _mapper.Map<DisponibilidadMedicoResponseDTO>(entity);
-
+                
             }
-            throw new Exception("ya existe");
-
-
+            catch (Exception ex) {
+                throw new Exception("No se puedo eliminar el horario del medico");
+            }
+            
         }
 
         public async Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
@@ -89,6 +93,44 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-      
+        public async Task<DisponibilidadMedicoResponseDTO> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
+        {
+
+            dto.StartTime = FormatHora(dto.StartTime);
+            dto.EndTime = FormatHora(dto.EndTime);
+
+            var convert = _mapper.Map<DisponibilidadMedico>(dto);
+
+            if(convert.StartTime >= convert.EndTime)
+            {
+                throw new Exception("La hora de inicio debe ser menor a la de finalizacion");
+            }
+
+            var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetById(dto.id);
+
+            disponibildiadMedicos.StartTime = convert.StartTime;
+            disponibildiadMedicos.EndTime = convert.EndTime;
+
+            //await _unitOfWork.DisponibilidadMedicoRepository.Edit(disponibildiadMedicos);
+            await _unitOfWork.Save();
+
+          //  var disponibildiadMedicos2 = await _unitOfWork.DisponibilidadMedicoRepository.GetId(dto.id);
+
+            var rsta = _mapper.Map<DisponibilidadMedicoResponseDTO>(disponibildiadMedicos);
+
+            return rsta;
+
+            throw new NotImplementedException();
+        }
+
+        private string FormatHora(string fecha)
+        {
+            if(fecha.Length <= 2 && !fecha.Contains(":"))
+            {
+              
+                return fecha + ":00";
+            }
+            return fecha;
+        } 
     }
 }

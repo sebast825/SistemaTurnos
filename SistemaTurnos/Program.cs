@@ -7,6 +7,7 @@ using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Filter;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 using System.Reflection;
@@ -16,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -72,6 +73,7 @@ builder.Services.AddScoped<IDiaSemanaRepository, DiaSemanaRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 builder.Services.AddScoped<IAdministrativoRepository,AdministrativoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IEspecialidadRepository, EspecialidadRepository>();
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
@@ -81,7 +83,9 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequ
         x.GetRequiredService<IDiaSemanaRepository>(),
         x.GetRequiredService<ITurnoRepository>(),
         x.GetRequiredService<IAdministrativoRepository>(),
-        x.GetRequiredService<IUsuarioRepository>()
+        x.GetRequiredService<IUsuarioRepository>(),
+                x.GetRequiredService<IEspecialidadRepository>()
+
 
         ));
 
@@ -94,8 +98,18 @@ builder.Services.AddScoped<ITurnoService, TurnoService>();
 builder.Services.AddScoped<IAdministrativoService, AdministrativoService>();
 builder.Services.AddScoped<ILogService, LogService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddHttpContextAccessor();
+//para cada controlador agrega el manejo de exepciones
+
+builder.Services.AddControllers(options =>
+{
+    //le indica que debe usar este filtro para cada accion del controlador
+
+    options.Filters.Add<ExceptionHandlerFilter>();
+});
 
 //-----------------------------JWT---------------------------------------------
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -122,7 +136,12 @@ builder.Services.AddAuthorization(options =>
     // Agrega más políticas según sea necesario
 });
 
+
+
 var app = builder.Build();
+
+//maneja los erroes del [authorize] de c#
+//app.UseMiddleware<CustomAuthorizationMiddleware>();
 
 // Use CORS
 app.UseCors("AllowAll");

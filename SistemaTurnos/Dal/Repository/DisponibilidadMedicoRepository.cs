@@ -3,6 +3,7 @@ using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
+using SistemaTurnos.Dto.DisponibilidadMedico;
 using System.Linq;
 
 namespace SistemaTurnos.Dal.Repository
@@ -17,6 +18,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var disponibilidadMedico = await _context.DisponibilidadMedicos
                                         .Include(s => s.Medico)
+                     .Include(s => s.Medico.Especialidad)
 
                                        .Include(x => x.DiaSemana)
                                        .Where(s => s.Medico.EspecialidadId == idEspecialidad && s.Medico.EstadoPersona == EstadoPersona.Activo)
@@ -30,6 +32,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var disponibilidadMedico = await _context.DisponibilidadMedicos
                                 .Include(s => s.Medico)
+                     .Include(s => s.Medico.Especialidad)
 
                                .Include(x => x.DiaSemana)
                                .Where(s => s.MedicoId == idMedico && s.Medico.EstadoPersona == EstadoPersona.Activo)
@@ -44,7 +47,7 @@ namespace SistemaTurnos.Dal.Repository
           
             var disponibilidadMedicos = await _context.DisponibilidadMedicos
                      .Include(s => s.Medico)
-
+                     .Include(s => s.Medico.Especialidad)
                     .Include(x => x.DiaSemana)
                     .Where(s => s.Medico.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
@@ -57,6 +60,7 @@ namespace SistemaTurnos.Dal.Repository
         {
             var disponibilidadMedico = await _context.DisponibilidadMedicos
                                         .Include(s => s.Medico)
+                                                             .Include(s => s.Medico.Especialidad)
 
                                        .Include(x => x.DiaSemana)
                                        .Where(s => s.MedicoId == idMedico &&
@@ -69,6 +73,20 @@ namespace SistemaTurnos.Dal.Repository
                                        .ToListAsync();
 
             return disponibilidadMedico;
+        }
+
+        public async Task<DisponibilidadMedico> GetById(int id)
+        {
+
+            var disponibilidadMedicos = await _context.DisponibilidadMedicos
+                     .Include(s => s.Medico)
+                     .Include(s => s.Medico.Especialidad)
+                    .Include(x => x.DiaSemana)
+                    .Where(x => x.Id == id)
+                    .FirstOrDefaultAsync();
+
+
+            return disponibilidadMedicos;
         }
     }
 }

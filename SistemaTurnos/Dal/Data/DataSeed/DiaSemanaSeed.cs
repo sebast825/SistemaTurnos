@@ -24,7 +24,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
             new DiaSemana
             {
                 Id = 3,
-                Nombre = "Miercoles"
+                Nombre = "Miércoles"
 
             }, new DiaSemana
             {
@@ -41,7 +41,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
             new DiaSemana
             {
                 Id = 6,
-                Nombre = "Sabado"
+                Nombre = "Sábado"
 
             }, new DiaSemana
             {

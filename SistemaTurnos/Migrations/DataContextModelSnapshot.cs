@@ -52,7 +52,7 @@ namespace SistemaTurnos.Migrations
                         new
                         {
                             Id = 3,
-                            Nombre = "Miercoles"
+                            Nombre = "Miércoles"
                         },
                         new
                         {
@@ -67,7 +67,7 @@ namespace SistemaTurnos.Migrations
                         new
                         {
                             Id = 6,
-                            Nombre = "Sabado"
+                            Nombre = "Sábado"
                         },
                         new
                         {
@@ -244,7 +244,7 @@ namespace SistemaTurnos.Migrations
                             Id = 1,
                             Apellido = "Pérez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 701, DateTimeKind.Local).AddTicks(9946),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 638, DateTimeKind.Local).AddTicks(9888),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "12345678",
@@ -256,7 +256,7 @@ namespace SistemaTurnos.Migrations
                             Id = 2,
                             Apellido = "Gómez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 701, DateTimeKind.Local).AddTicks(9962),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 638, DateTimeKind.Local).AddTicks(9907),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "87654321",
@@ -336,8 +336,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 1,
                             Estado = "Programada",
-                            Fecha = new DateTime(2024, 7, 17, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3878),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3875),
+                            Fecha = new DateTime(2024, 12, 30, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5550),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5547),
                             MedicoId = 5,
                             PacienteId = 3
                         },
@@ -345,8 +345,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 2,
                             Estado = "Cancelada",
-                            Fecha = new DateTime(2024, 7, 18, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3885),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3884),
+                            Fecha = new DateTime(2024, 12, 31, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5558),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5557),
                             MedicoId = 6,
                             PacienteId = 4
                         },
@@ -354,8 +354,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 3,
                             Estado = "Completada",
-                            Fecha = new DateTime(2024, 7, 19, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3887),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3886),
+                            Fecha = new DateTime(2025, 1, 1, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5561),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5560),
                             MedicoId = 7,
                             PacienteId = 3
                         },
@@ -363,8 +363,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 4,
                             Estado = "LLamando",
-                            Fecha = new DateTime(2024, 7, 20, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3889),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3888),
+                            Fecha = new DateTime(2025, 1, 2, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5564),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5562),
                             MedicoId = 5,
                             PacienteId = 4
                         },
@@ -372,8 +372,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 5,
                             Estado = "EnProgreso",
-                            Fecha = new DateTime(2024, 7, 21, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3891),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3890),
+                            Fecha = new DateTime(2025, 1, 3, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5567),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5566),
                             MedicoId = 6,
                             PacienteId = 3
                         },
@@ -381,8 +381,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 6,
                             Estado = "Finalizada",
-                            Fecha = new DateTime(2024, 7, 22, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3894),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3893),
+                            Fecha = new DateTime(2025, 1, 4, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5569),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5568),
                             MedicoId = 7,
                             PacienteId = 4
                         },
@@ -390,8 +390,8 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 7,
                             Estado = "NoAsistida",
-                            Fecha = new DateTime(2024, 7, 23, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3896),
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(3895),
+                            Fecha = new DateTime(2025, 1, 5, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5571),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(5570),
                             MedicoId = 5,
                             PacienteId = 3
                         });
@@ -422,6 +422,9 @@ namespace SistemaTurnos.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("TokenRecovery")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -437,7 +440,7 @@ namespace SistemaTurnos.Migrations
                         {
                             Id = 1,
                             Email = "persona@example.com",
-                            EstadoUsuario = 2,
+                            EstadoUsuario = 0,
                             Password = "a",
                             PersonaId = 1,
                             Role = 0,
@@ -497,7 +500,7 @@ namespace SistemaTurnos.Migrations
                             Id = 8,
                             Apellido = "Martínez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2864),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(4340),
                             FechaNacimiento = new DateTime(1990, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Laura",
                             NumeroDocumento = "DNI65432100",
@@ -509,7 +512,7 @@ namespace SistemaTurnos.Migrations
                             Id = 9,
                             Apellido = "Sánchez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2867),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(4347),
                             FechaNacimiento = new DateTime(1982, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Pedro",
                             NumeroDocumento = "DNI12345001",
@@ -539,7 +542,7 @@ namespace SistemaTurnos.Migrations
                             Id = 5,
                             Apellido = "Pérez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2231),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3404),
                             FechaNacimiento = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "DNI12345678",
@@ -553,7 +556,7 @@ namespace SistemaTurnos.Migrations
                             Id = 6,
                             Apellido = "González",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2234),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3408),
                             FechaNacimiento = new DateTime(1975, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "DNI87654321",
@@ -567,7 +570,7 @@ namespace SistemaTurnos.Migrations
                             Id = 7,
                             Apellido = "López",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(2237),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(3413),
                             FechaNacimiento = new DateTime(1985, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Carlos",
                             NumeroDocumento = "DNI23456789",
@@ -598,7 +601,7 @@ namespace SistemaTurnos.Migrations
                             Id = 3,
                             Apellido = "Pérez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(1838),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(2890),
                             FechaNacimiento = new DateTime(1985, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "Juan",
                             NumeroDocumento = "45345678",
@@ -612,7 +615,7 @@ namespace SistemaTurnos.Migrations
                             Id = 4,
                             Apellido = "Gómez",
                             EstadoPersona = 0,
-                            FechaCreacion = new DateTime(2024, 7, 16, 16, 37, 35, 702, DateTimeKind.Local).AddTicks(1845),
+                            FechaCreacion = new DateTime(2024, 12, 29, 1, 4, 36, 639, DateTimeKind.Local).AddTicks(2903),
                             FechaNacimiento = new DateTime(1990, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nombre = "María",
                             NumeroDocumento = "12345678",

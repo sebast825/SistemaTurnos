@@ -41,13 +41,29 @@ namespace SistemaTurnos.Controllers
             var rsta = await _disponibilidadMedicoService.FilterByEspecialidad(idEspecialidad);
             return rsta;
         }
-     
-        [HttpPost("Create")]
+        
+        [HttpPost()]
         public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
         {
-            _jwtService.isAdmin();
+           // _jwtService.isAdmin();
             var rsta = await _disponibilidadMedicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
+        [HttpPut]
+        public async Task<ActionResult<bool>> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
+        {
+           // _jwtService.isAdmin();
+            var rsta = await _disponibilidadMedicoService.Update(dto);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            // _jwtService.isAdmin();
+             await _disponibilidadMedicoService.Delete(id);
+            return Ok(new { message = "Horario del médico eliminado correctamente." });
+        }
+
+
     }
 }

@@ -2,6 +2,7 @@
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Administrativo;
 using SistemaTurnos.Dto.DisponibilidadMedico;
+using SistemaTurnos.Dto.Especialidad;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
@@ -34,7 +35,13 @@ namespace SistemaTurnos
                 .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " " + src.Medico.Apellido))
                 .ForMember(dest => dest.DiaSemana, opt => opt.MapFrom(src => src.DiaSemana.Nombre))
                    .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString(@"hh\:mm")))
-                 .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")));
+                 .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")))
+                    .ForMember(dest => dest.Especialidad, opt => opt.MapFrom(src => src.Medico.Especialidad.Nombre));
+
+            CreateMap<DisponibilidadMedico, DisponibilidadMedicoUpdateeRequestDTO>()
+             .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime.ToString(@"hh\:mm")))
+           .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime.ToString(@"hh\:mm")))
+           .ReverseMap();
 
 
             CreateMap<DisponibilidadMedicoCreateRequestDTO, DisponibilidadMedico>()
@@ -44,13 +51,15 @@ namespace SistemaTurnos
             CreateMap<Turno, TurnoResponseDTO>()
                 .ForMember(dest => dest.Medico, opt => opt.MapFrom(src => src.Medico.Nombre + " " + src.Medico.Apellido))
                 .ForMember(dest => dest.Paciente, opt => opt.MapFrom(src => src.Paciente.Nombre + " " + src.Paciente.Apellido))
-                .ForMember(dest => dest.PacienteDni, opt => opt.MapFrom(src => src.Paciente.NumeroDocumento));
+                .ForMember(dest => dest.PacienteDni, opt => opt.MapFrom(src => src.Paciente.NumeroDocumento))
+                 .ForMember(dest => dest.Especialidad, opt => opt.MapFrom(src => src.Medico.Especialidad.Nombre));
+
             CreateMap<TurnoCreateRequestDTO, Turno>();
 
 
             CreateMap<AdministrativoRequestCreateDTO, Administrativo>();
             CreateMap<Administrativo, AdministrativoResponseDTO>();
-
+            CreateMap<Especialidad,EspecialidadResponseDTO>();
 
         }
 
@@ -65,4 +74,11 @@ namespace SistemaTurnos
   "endTime": "13:40"
 }
 
+
+{
+  "id": 1001,
+  "diaSemanaId": 4,
+  "startTime": "14:20",
+  "endTime": "16"
+}
  */

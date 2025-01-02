@@ -43,5 +43,28 @@ namespace SistemaTurnos.Controllers
             var rsta = await _medicoService.FilterByEspecialidad(id);
             return rsta;
         }
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<MedicoResponseDTO>> GetById(int id)
+        {
+            var rsta = await _medicoService.GetById(id);
+            return Ok(rsta);
+        }
+        [HttpPut("{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<MedicoResponseDTO>> Update(int id, MedicoUpdateRequestDTO dto)
+        {
+            var rsta = await _medicoService.Update(id,dto);
+            return Ok(rsta);
+        }
+
+        [HttpGet("/api/medicos/especialidad/getAll")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<MedicoResponseDTO>>> EspecialidadGetAll()
+        {
+            var rsta = await _medicoService.EspecialidadGetAll();
+            return Ok(rsta);
+        }
+
     }
 }

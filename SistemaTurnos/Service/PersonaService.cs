@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration.Conventions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace SistemaTurnos.Service
 {
@@ -52,15 +55,34 @@ namespace SistemaTurnos.Service
             throw new Exception("no se encontro el usuario");
         }
        */
-        public Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
+        public async Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.Nombre))
-                throw new ArgumentException("El nombre del disco es obligatorio.", nameof(dto.Nombre));
 
-            if (string.IsNullOrWhiteSpace(dto.Apellido))
-                throw new ArgumentException("El apellido es obligatorio.", nameof(dto.Apellido));
 
-            throw new NotImplementedException();
+             var persona = await _unitOfWork.PersonaRepository.GetId(id);
+            if (persona != null)
+            {
+             
+
+
+                persona.Nombre = dto.Nombre;
+                persona.Apellido = dto.Apellido;
+                persona.FechaNacimiento = dto.FechaNacimiento;
+                persona.NumeroDocumento = dto.NumeroDocumento;
+                persona.Telefono = dto.Telefono;
+                persona.SexoId = dto.SexoId;
+
+                //una vez actualizados los datos se validan
+                persona.ValidarAtributos();
+
+                await _unitOfWork.Save();
+                var personaUpdated = await _unitOfWork.PersonaRepository.GetId(id);
+
+                return _mapper.Map<PersonaResponseDTO>(personaUpdated);
+            }
+        
+
+            throw new Exception("an error ocurred");
         }
 
         public async Task<string> GetTipoPersona(int id)
@@ -73,6 +95,24 @@ namespace SistemaTurnos.Service
             //        return "Medico";
             //}
             return "Asd";
+        }
+        public async Task<PersonaResponseDTO> GetById(int id)
+        {
+
+            var persona = await _unitOfWork.PersonaRepository.GetId(id);
+            var rsta = _mapper.Map<PersonaResponseDTO>(persona);
+
+            return rsta;
+
+
+        }
+  
+        public async Task<List<PersonaResponseDTO>> GetAllPersonaIncludeInactive()
+        {
+            var personas = await _unitOfWork.PersonaRepository.GetAllIncludeInactive();
+            var rsta = _mapper.Map<List<PersonaResponseDTO>>(personas);
+
+            return rsta;
         }
     }
 }

@@ -16,18 +16,28 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<List<Medico>> FilterByEspecialidad(int id)
         {
-            var asd = await GetAll();
-            var filtrados = asd.Where(j => j.EspecialidadId == id);
+           
+            var medicos = await _context.Personas
+                                .OfType<Medico>()
+                                  .Include(v => v.Sexo)
+                                  .Include(x => x.Especialidad)
+
+                                .Where(m => id == m.EspecialidadId && m.EstadoPersona == EstadoPersona.Activo)
+                                .ToListAsync();
+            return medicos;
+        }
+        public async Task<List<Medico>> FilterByEspecialidad(string especialidad)
+        {
 
             var medicos = await _context.Personas
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)
-                                .Where(m => id == m.EspecialidadId && m.EstadoPersona == EstadoPersona.Activo)
-                                .Include(x => x.Especialidad)
+                                  .Include(x => x.Especialidad)
+
+                                .Where(m => especialidad == m.Especialidad.Nombre && m.EstadoPersona == EstadoPersona.Activo)
                                 .ToListAsync();
             return medicos;
         }
-
         public async Task<List<Medico>> GetAll()
         {
             //se filtra aca medico si no no puedo encontrarEspecialdiad
@@ -44,6 +54,17 @@ namespace SistemaTurnos.Dal.Repository
             //var medicos = personas.OfType<Medico>().ToList();
 
             return medicos;
+        }
+        public async Task<Medico> GetById(int id)
+        {
+            var medico = await _context.Personas
+                    .OfType<Medico>()
+                    .Include(v => v.Sexo)
+                    .Include(x => x.Especialidad)
+                    .Where(s => s.Id == id)
+                    .FirstOrDefaultAsync();
+
+            return medico;
         }
     }
 }

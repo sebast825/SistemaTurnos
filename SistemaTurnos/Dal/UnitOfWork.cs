@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
@@ -18,13 +19,16 @@ namespace SistemaTurnos.Dal
         public ITurnoRepository TurnoRepository { get; }
         public IAdministrativoRepository AdministrativoRepository { get; }
         public IUsuarioRepository UsuarioRepository { get; }
+        public IEspecialidadRepository EspecialidadRepository{ get; }
+
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
             IMedicoRepository medicoRepository,
                       IDisponibilidadMedicoRepository disponibilidadMedicoRepository,
                       IDiaSemanaRepository diaSemanaRepository,
                       ITurnoRepository turnoRepository,
                       IAdministrativoRepository administrativoRepository,
-                      IUsuarioRepository usuarioRepository
+                      IUsuarioRepository usuarioRepository,
+                      IEspecialidadRepository especialidadRepository
 
             )
         {
@@ -37,6 +41,7 @@ namespace SistemaTurnos.Dal
             TurnoRepository = turnoRepository;
             AdministrativoRepository = administrativoRepository;
             UsuarioRepository = usuarioRepository;
+            EspecialidadRepository = especialidadRepository;
         }
 
         public async Task<int> Save()
@@ -48,5 +53,11 @@ namespace SistemaTurnos.Dal
         {
             _context?.Dispose();
         }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
+
     }
 }

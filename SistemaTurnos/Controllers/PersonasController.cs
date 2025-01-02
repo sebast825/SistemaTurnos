@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Persona;
+using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PersonasController : ControllerBase
     {
         private readonly IPersonaService _personaService;
@@ -18,32 +20,35 @@ namespace SistemaTurnos.Controllers
             _jwtService = jwtService;
         }
 
-        //[HttpPatch("ActualizarEstado")]
+        [HttpGet]
 
-        //public async Task<PersonaResponseDTO> ActualizarEstado(int id, int estado)
-        //{
-        //    var rsta = await _personaService.ActualizarEstado(id, estado);
+        public async Task<ActionResult<List<PersonaResponseDTO>>> GetAllIncludeInactive()
+        {
+            var rsta = await _personaService.GetAllPersonaIncludeInactive();
 
-        //    return rsta;
-        //}
+            return rsta;
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<bool>> GetById(int id)
+        {
 
-        //[HttpPatch("ActualizarEstadoEliminar")]
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
 
-        //public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
-        //{
-        //    var rsta = await _personaService.ActualizarEstadoEliminar(id);
-        //    return rsta;
-        //}
+            var rsta = await _personaService.GetById(id);
+            return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
-        [HttpPatch("ActualizarPersona")]
+        }
+        [HttpPut("/api/personas/{id}")]
 
         public async Task<ActionResult<PersonaResponseDTO>> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
-            _jwtService.PacienteMatchIdOrAdministrativo(id);
+            
+            //_jwtService.PacienteMatchIdOrAdministrativo(id);
             var rsta = await _personaService.ActualizarPersona(id, dto);
 
             return rsta;
         }
 
+    
     }
 }
