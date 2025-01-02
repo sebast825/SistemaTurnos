@@ -12,9 +12,11 @@ namespace SistemaTurnos.Tests;
 [TestClass]
 public class UnitTest1
 {
-    private  TurnoService _turnoService;
+    private TurnoService _turnoService;
     private Mock<IUnitOfWork> _unitOfWorkMock;
     private Mock<IMapper> _mapperMock;
+    TimeSpan duracionTurno = new TimeSpan(0, 20, 0);
+
     [TestInitialize]
     public void Setup()
     {
@@ -26,89 +28,101 @@ public class UnitTest1
     [TestMethod]
     public void TestMethod1()
     {
-       bool result = _turnoService.suma(1,1);
+        bool result = _turnoService.suma(1, 1);
         Assert.IsTrue(result);
     }
 
 
-    DisponibilidadMedico unaDisponibilidad = new DisponibilidadMedico
-    {
-        MedicoId = 5,
-        DiaSemanaId = 3,
-        StartTime = new TimeSpan(13, 0, 0),
-        EndTime = new TimeSpan(14, 0, 0)
-    };
-    Turno unTurno = new Turno()
-    {
-         MedicoId = 5,
-        PacienteId = 3,
-        Fecha = new DateTime().AddDays(1)
-    };
-    Turno dosTurno = new Turno()
-    {
-        MedicoId = 5,
-        PacienteId = 3,
-        Fecha = new DateTime().AddDays(1)
-    };
-    List<Turno> turnoList = new List<Turno>();
 
-    TurnoHorarioDisponibleResponseDTO horariosDisponibles = new TurnoHorarioDisponibleResponseDTO
-    {
-        MedicoId = 5,
-        Fecha = new DateTime()
-    };
-    List<TimeSpan>Horario = new List<TimeSpan>
-    {
-        new TimeSpan(13, 0, 0),  // 13:00
-        new TimeSpan(13, 20, 0), // 13:20
-        new TimeSpan(13, 40, 0)  // 13:40
-    };
 
     [TestMethod]
     public void ObtenerHorariosDisponiblesPorDisponibilidad()
     {
-        turnoList.Add(unTurno);
-        turnoList.Add(dosTurno);
+
         DateTime dateHoy = DateTime.Now;
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(unaDisponibilidad, turnoList, dateHoy, horariosDisponibles);
-        CollectionAssert.AreEqual(Horario, result.Horario);
+
+        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+            DataTurnoTest.GetDisponibilidadMedico(),
+            DataTurnoTest.GetTurnos(),
+            dateHoy,
+            DataTurnoTest.GetHorariosDisponiblesDTO());
+
+        CollectionAssert.AreEqual(DataTurnoTest.GetHorariosEsperados(), result.Horario);
 
     }
 
-    Turno tresTurno = new Turno()
-    {
-        MedicoId = 5,
-        PacienteId = 3,
-        Fecha = DateTime.Today.AddHours(13).AddMinutes(30)
-    };
-    List<Turno> turnoList2 = new List<Turno>();
-
-    TimeSpan duracionTurno = new TimeSpan(0, 20, 0);
-    TimeSpan checkiarDisponibilidad = new TimeSpan(13, 20, 0);
+   
+  
 
 
     [TestMethod]
     public void HayTurnoSameHorario()
     {
-        turnoList2.Add(tresTurno);
+        Turno tresTurno = new Turno()
+        {
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today.AddHours(13).AddMinutes(20)
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(tresTurno);
+        TimeSpan checkiarDisponibilidad = new TimeSpan(13, 20, 0);
 
-        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList2);
+        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList);
+
         Assert.IsTrue(rsta);
     }
-    Turno cuatroTurno = new Turno()
-    {
-        MedicoId = 5,
-        PacienteId = 3,
-        Fecha = DateTime.Today.AddHours(13).AddMinutes(50)
-    };
-
-    List<Turno> turnoList3 = new List<Turno>();
     [TestMethod]
-    public void NoHayTurnoSameHorario()
+    public void HayTurnoLimiteMayor()
     {
-        turnoList3.Add(cuatroTurno);
+        Turno tresTurno = new Turno()
+        {
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today.AddHours(13).AddMinutes(39)
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(tresTurno);
+        TimeSpan checkiarDisponibilidad = new TimeSpan(13, 20, 0);
 
-        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList3);
+        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList);
+
+        Assert.IsTrue(rsta);
+    }
+    [TestMethod]
+    public void NoHayTurnoLimiteMayor()
+    {
+        Turno tresTurno = new Turno()
+        {
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today.AddHours(13).AddMinutes(40)
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(tresTurno);
+        TimeSpan checkiarDisponibilidad = new TimeSpan(13, 20, 0);
+
+        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList);
+
         Assert.IsFalse(rsta);
     }
+    [TestMethod]
+    public void NoHayTurnoLimiteMenor()
+    {
+        Turno tresTurno = new Turno()
+        {
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today.AddHours(13)
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(tresTurno);
+        TimeSpan checkiarDisponibilidad = new TimeSpan(13, 20, 0);
+
+        bool rsta = _turnoService.HayTurno(checkiarDisponibilidad, duracionTurno, turnoList);
+
+        Assert.IsFalse(rsta);
+    }
+
+  
 }
