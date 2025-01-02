@@ -34,9 +34,12 @@ namespace SistemaTurnos.Service
              
                 return null;
             }
-            else if (!VerifyPassword(pass, usuario.Password))
+            //else if (!VerifyPassword(pass, usuario.Password))
+            //arreglar tira error 500 en el FE cuando no machea
+            else if ((pass != usuario.Password))
+
             {
-                
+
                 return null;
             }
             return usuario;

@@ -221,7 +221,7 @@ namespace SistemaTurnos.Service
             }
             return horarioDisponible;
             }
-        private TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
+        public TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
             List<Turno> turnos,DateTime dia, int medicoId)
         {
             int diaSemanaId = (int)dia.DayOfWeek;
