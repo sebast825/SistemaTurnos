@@ -6,6 +6,7 @@ using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Turno;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
+using System.Xml;
 
 namespace SistemaTurnos.Tests;
 
@@ -25,14 +26,7 @@ public class UnitTest1
 
         _turnoService = new TurnoService(_unitOfWorkMock.Object, _mapperMock.Object);
     }
-    [TestMethod]
-    public void TestMethod1()
-    {
-        bool result = _turnoService.suma(1, 1);
-        Assert.IsTrue(result);
-    }
-
-
+  
     [TestMethod]
     public void HayTurnoSameHorario()
     {
@@ -102,5 +96,59 @@ public class UnitTest1
         Assert.IsFalse(rsta);
     }
 
-  
+    [TestMethod]
+    public void ObtenerTurnosAgrupadosPorDia_EnviaUnTurno()
+    {
+        Turno unTurno = new Turno()
+        {
+            Id = 1,
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(unTurno);
+        
+        Dictionary<DateTime, List<Turno>> rsta = _turnoService.SortTurnosByDay(turnoList);
+
+        var turnoDeHoy = rsta[DateTime.Today.Date];
+
+        Assert.IsTrue(rsta.ContainsKey(DateTime.Today.Date));
+        Assert.IsTrue(turnoDeHoy.Any(t => t.Id == 1));
+    }
+    [TestMethod]
+    public void ObtenerTurnosAgrupadosPorDia_EnviaDosTurnoS()
+    {
+        Turno unTurno = new Turno()
+        {
+            Id = 1,
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today
+        };
+        Turno dosTurno = new Turno()
+        {
+            Id = 2,
+            MedicoId = 5,
+            PacienteId = 3,
+            Fecha = DateTime.Today.AddDays(1)
+        };
+        List<Turno> turnoList = new List<Turno>();
+        turnoList.Add(unTurno);
+        turnoList.Add(dosTurno);
+
+        Dictionary<DateTime, List<Turno>> rsta = _turnoService.SortTurnosByDay(turnoList);
+
+        var turnoDeHoy = rsta[DateTime.Today.Date];
+        var turnoDeMañana= rsta[DateTime.Today.Date.AddDays(1)];
+
+        Assert.IsTrue(rsta.ContainsKey(DateTime.Today.Date));
+        Assert.IsTrue(turnoDeHoy.Any(t => t.Id == 1));
+        Assert.IsFalse(turnoDeHoy.Any(t => t.Id == 2));
+        Assert.IsFalse(turnoDeMañana.Any(t => t.Id == 1));
+        Assert.IsTrue(turnoDeMañana.Any(t => t.Id == 2));
+        Assert.AreEqual(2,rsta.Count);
+
+    }
+
 }

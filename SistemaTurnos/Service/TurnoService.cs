@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace SistemaTurnos.Service
 {
@@ -243,7 +244,7 @@ namespace SistemaTurnos.Service
             }
 
 
-        private List<TurnoHorarioDisponibleResponseDTO> GenerarHorariosDisponiblesPorMes(int medicoId, List<Turno> turnos,
+        public List<TurnoHorarioDisponibleResponseDTO> GenerarHorariosDisponiblesPorMes(int medicoId, List<Turno> turnos,
             List<DisponibilidadMedico> horariosDisponibilidadMedico)
         {
             var fechaInicio = DateTime.Today;
@@ -268,14 +269,45 @@ namespace SistemaTurnos.Service
             }
             return horariosDisponiblesPorDia;
         }
+
+        public Dictionary<DateTime, List<Turno>> SortTurnosByDay(List<Turno> turnos)
+        {
+            Dictionary<DateTime, List<Turno>> turnosByDay = turnos.GroupBy(t => t.Fecha.Date).ToDictionary(g => g.Key, g => g.ToList());
+            return turnosByDay;
+        }
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {
+            var proceso = Process.GetCurrentProcess();
+
+            // Obtener la memoria y el CPU antes de la ejecución
+            long memoriaAntes = proceso.WorkingSet64;
+            double cpuAntes = proceso.TotalProcessorTime.TotalMilliseconds;
+
+            var stopwatch = Stopwatch.StartNew();
+
+            // Obtener los datos necesarios
             var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
             var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId, EstadoTurno.Programada);
 
-            return GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
+            // Lógica para generar los horarios disponibles
+            List<TurnoHorarioDisponibleResponseDTO> horariosDisponibles = GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
 
+            // Obtener la memoria y el CPU después de la ejecución
+            proceso.Refresh(); // Refresca la información del proceso
+            long memoriaDespues = proceso.WorkingSet64;
+            double cpuDespues = proceso.TotalProcessorTime.TotalMilliseconds;
+
+            // Detener el cronómetro
+            stopwatch.Stop();
+
+            // Mostrar el tiempo de ejecución y recursos utilizados en la consola
+            Console.WriteLine($"Tiempo de ejecución: {stopwatch.ElapsedMilliseconds} ms");
+            Console.WriteLine($"Memoria utilizada: {(memoriaDespues - memoriaAntes) / 1024} KB");
+            Console.WriteLine($"CPU utilizado: {cpuDespues - cpuAntes} ms");
+
+            return horariosDisponibles;
         }
+
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad)
         {   
 
