@@ -46,7 +46,7 @@ namespace SistemaTurnos.Helpers
         {
             var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
             horarioDisponible.MedicoId = medicoId;
-            horarioDisponible.Fecha = 
+          
 
             foreach (var disp in horariosDisponibilidadMedico)
             {
@@ -77,11 +77,19 @@ namespace SistemaTurnos.Helpers
             // Procesar cada día del mes
             for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
             {
-                var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == dia.Day).ToList();
+                DayOfWeek diaSemana = dia.DayOfWeek; // Obtiene el día de la semana (Sunday)
+                // Convertir DayOfWeek a enum
+                DayOfWeekEnum diaEnum = (DayOfWeekEnum)Enum.Parse(typeof(DayOfWeekEnum), diaSemana.ToString());
+                int idDiaSemana = (int)diaEnum; // Obtener el ID 
+
+                var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == idDiaSemana).ToList();
+
                 if (!disponibilidadDelDia.Any()) continue;
-                var horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, medicoId);
+              
+                TurnoHorarioDisponibleResponseDTO horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, medicoId);
                 if (horariosDia != null)
                 {
+                    horariosDia.Fecha = dia;
                     horariosDisponiblesPorDia.Add(horariosDia);
                 }
             }
