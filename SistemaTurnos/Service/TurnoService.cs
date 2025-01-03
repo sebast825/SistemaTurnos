@@ -189,7 +189,7 @@ namespace SistemaTurnos.Service
 
             return horariosDisponiblesPorDia;
         }
-      
+
         public bool HayTurno(TimeSpan i, TimeSpan tiempoTurno, List<Turno> turnosDia)
         {
             return turnosDia.Any(turno =>
@@ -198,7 +198,7 @@ namespace SistemaTurnos.Service
                 var diferenciaDeTiempoTurnoProximo = (i - turno.Fecha.TimeOfDay).Duration();
                 return diferenciaDeTiempoTurnoPrevio < tiempoTurno || diferenciaDeTiempoTurnoProximo < tiempoTurno;
             });
-            
+
         }
         //valida con rango de 20 mins
         public bool TuroDisponible(TimeSpan i, HashSet<TimeSpan> horariosOcupados)
@@ -211,7 +211,7 @@ namespace SistemaTurnos.Service
         }
 
         public TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos,
-            DateTime dia, TurnoHorarioDisponibleResponseDTO horarioDisponible)
+            TurnoHorarioDisponibleResponseDTO horarioDisponible)
         {
             TimeSpan startShift = disp.StartTime;
             TimeSpan endShift = disp.EndTime;
@@ -229,7 +229,7 @@ namespace SistemaTurnos.Service
 
             // Llenar la lista de horarios disponibles
             //valida justo el horario en que cae cada 20 min, si por algun motivo se hardcodio un turno va a haber una sobreposicion
-  
+
             for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
             {
 
@@ -244,25 +244,23 @@ namespace SistemaTurnos.Service
             return horarioDisponible;
         }
 
-            public TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
-            List<Turno> turnos,DateTime dia, int medicoId)
+        public TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
+        List<Turno> turnos, int medicoId)
         {
             var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
             horarioDisponible.MedicoId = medicoId;
-            horarioDisponible.Fecha = dia;
 
-            var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
 
             foreach (var disp in horariosDisponibilidadMedico)
             {
-                ObtenerHorariosDisponiblesPorDisponibilidad(disp, turnosDia, dia,horarioDisponible);
+                ObtenerHorariosDisponiblesPorDisponibilidad(disp, turnos, horarioDisponible);
             }
             // Ordenar para garantizar consistencia en los tests
             horarioDisponible.Horario = horarioDisponible.Horario
                 .OrderBy(h => h)
                 .ToList();
             return horarioDisponible;
-            }
+        }
 
 
         public List<TurnoHorarioDisponibleResponseDTO> GenerarHorariosDisponiblesPorMes(int medicoId, List<Turno> turnos,
@@ -284,7 +282,7 @@ namespace SistemaTurnos.Service
             {
                 var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == dia.Day).ToList();
                 if (!disponibilidadDelDia.Any()) continue;
-                var horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, dia, medicoId);
+                var horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, medicoId);
                 if (horariosDia != null)
                 {
                     horariosDisponiblesPorDia.Add(horariosDia);
@@ -332,13 +330,13 @@ namespace SistemaTurnos.Service
         }
 
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad)
-        {   
+        {
 
             var medicosEspecialidad = await _unitOfWork.MedicoRepository.FilterByEspecialidad(especialidad);
             if (!medicosEspecialidad.Any()) throw new Exception(ErrorMessages.EspecialdiadNotFound);
 
             var turnosDisponibles = new List<TurnoHorarioDisponibleResponseDTO>();
-            foreach(Medico medico in medicosEspecialidad)
+            foreach (Medico medico in medicosEspecialidad)
             {
                 var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medico.Id);
                 var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medico.Id, EstadoTurno.Programada);
@@ -366,7 +364,7 @@ namespace SistemaTurnos.Service
         public async Task<TurnoResponseDTO> ActualizarEstadoTurno(int idTurno, EstadoTurno estadoTurno)
         {
             var turno = await _unitOfWork.TurnoRepository.GetById(idTurno);
-            if(turno != null)
+            if (turno != null)
             {
                 turno.Estado = estadoTurno;
                 await _unitOfWork.Save();
@@ -375,9 +373,9 @@ namespace SistemaTurnos.Service
             return rsta;
         }
 
-        public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt,int idMedico)
+        public async Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idMedico)
         {
-            var turnos = await _unitOfWork.TurnoRepository.DoctorTurnosByDate(dt,idMedico);
+            var turnos = await _unitOfWork.TurnoRepository.DoctorTurnosByDate(dt, idMedico);
             var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
             return rsta;
         }

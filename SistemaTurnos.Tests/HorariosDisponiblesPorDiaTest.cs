@@ -62,11 +62,10 @@ public class HorariosDisponiblesPorDiaTest
        List<Turno> turnosList = new List<Turno>();
 
 
-        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, fecha, 5);
+        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
         CollectionAssert.AreEqual(rsta.Horario, horariosEsperados);
         Assert.IsNotNull(rsta, "El resultado no debería ser null");
         Assert.AreEqual(medicoId, rsta.MedicoId, "El ID del médico no coincide");
-        Assert.AreEqual(fecha.Date, rsta.Fecha.Date, "La fecha no coincide");
 
     }
     [TestMethod]
@@ -114,11 +113,11 @@ public class HorariosDisponiblesPorDiaTest
         List<Turno> turnosList = new List<Turno>();
 
 
-        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, fecha, 5);
+        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
         CollectionAssert.AreEqual(rsta.Horario, horariosEsperados);
         Assert.IsNotNull(rsta, "El resultado no debería ser null");
         Assert.AreEqual(medicoId, rsta.MedicoId, "El ID del médico no coincide");
-        Assert.AreEqual(fecha.Date, rsta.Fecha.Date, "La fecha no coincide");
+
 
     }
 

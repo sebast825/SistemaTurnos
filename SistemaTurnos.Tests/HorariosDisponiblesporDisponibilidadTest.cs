@@ -39,12 +39,11 @@ public class HorariosDisponiblesporDisponibilidadTest
     public void ObtenerHorariosDisponibles_TurnosHorarioNoCoincidenConDisponibilidad_RetornaHorariosDisponibles()
     {
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             DataTurnoTest.GetTurnos(),
-            dateHoy,
+
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(DataTurnoTest.GetHorariosEsperados(), result.Horario);
@@ -68,12 +67,11 @@ public class HorariosDisponiblesporDisponibilidadTest
             },
         };
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
-            dateHoy,
+            
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
@@ -98,12 +96,11 @@ public class HorariosDisponiblesporDisponibilidadTest
             },
         };
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
-            dateHoy,
+     
             DataTurnoTest.GetHorarioDisponiblesResponse());
       
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
@@ -129,12 +126,10 @@ public class HorariosDisponiblesporDisponibilidadTest
             },
         };
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
-            dateHoy,
             DataTurnoTest.GetHorarioDisponiblesResponse());
    
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
@@ -167,12 +162,11 @@ public class HorariosDisponiblesporDisponibilidadTest
             },
         };
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
-            dateHoy,
+
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
@@ -193,12 +187,11 @@ public class HorariosDisponiblesporDisponibilidadTest
         List<Turno> GetTurnos = new List<Turno>();
 
 
-        DateTime dateHoy = DateTime.Now;
 
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
-            dateHoy,
+
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
@@ -226,12 +219,10 @@ public class HorariosDisponiblesporDisponibilidadTest
         List<Turno> GetTurnos = new List<Turno>();
 
 
-        DateTime dateHoy = DateTime.Now;
-
         TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
             disponibilidadMedico,
             GetTurnos,
-            dateHoy,
+
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
