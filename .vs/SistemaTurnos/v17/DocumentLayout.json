@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "D:\\Documentos\\SistemaTurnos\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\logservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\logservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\common\\errormessages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\common\\errormessages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\administrativoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\administrativoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,28 +55,8 @@
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\medicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\disponibilidadmedicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\controllers\\administrativoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\controllers\\administrativoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\logservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\logservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\dal\\entities\\especialidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\dal\\entities\\especialidad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\service\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|solutionrelative:sistematurnos\\service\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1A384AEB-4BEC-4A83-B671-CC6EEECF388A}|SistemaTurnos\\SistemaTurnos.csproj|d:\\documentos\\sistematurnos\\sistematurnos\\helpers\\generadorhorariosdisponibles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -90,50 +102,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\UsuarioController.cs",
-              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "SistemaTurnos\\Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T19:26:50.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PersonasController.cs",
-              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PersonasController.cs",
-              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\PersonasController.cs",
-              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PersonasController.cs",
-              "RelativeToolTip": "SistemaTurnos\\Controllers\\PersonasController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowCQAAAAJAAAA",
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\UsuarioService.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\UsuarioService.cs",
+              "RelativeToolTip": "SistemaTurnos\\Service\\UsuarioService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T19:25:02.557Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PacientesController.cs",
-              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PacientesController.cs",
-              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\PacientesController.cs",
-              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PacientesController.cs",
-              "RelativeToolTip": "SistemaTurnos\\Controllers\\PacientesController.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T19:24:53.399Z",
+              "WhenOpened": "2025-01-03T22:33:47.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ErrorMessages.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Common\\ErrorMessages.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Common\\ErrorMessages.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Common\\ErrorMessages.cs",
+              "RelativeToolTip": "SistemaTurnos\\Common\\ErrorMessages.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T22:32:03.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\JwtService.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\JwtService.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\JwtService.cs",
+              "RelativeToolTip": "SistemaTurnos\\Service\\JwtService.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAArwCoAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T21:24:30.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "MedicosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\MedicosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\MedicosController.cs",
@@ -141,12 +153,11 @@
               "RelativeToolTip": "SistemaTurnos\\Controllers\\MedicosController.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAIwDYAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T19:24:08.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T19:24:08.773Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "LoginController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\LoginController.cs",
@@ -159,33 +170,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "DisponibilidadMedicosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
               "RelativeToolTip": "SistemaTurnos\\Controllers\\DisponibilidadMedicosController.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAA9wDgAAAAMAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAwwCkAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T19:23:39.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "AdministrativosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\AdministrativosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\AdministrativosController.cs",
               "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\AdministrativosController.cs",
               "RelativeToolTip": "SistemaTurnos\\Controllers\\AdministrativosController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAqwBoAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T19:23:33.973Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Especialidad.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\Especialidad.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\Especialidad.cs",
@@ -193,12 +204,11 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\Especialidad.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:50:15.987Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T18:50:15.987Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "TurnosController.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\TurnosController.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\TurnosController.cs",
@@ -206,12 +216,74 @@
               "RelativeToolTip": "SistemaTurnos\\Controllers\\TurnosController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:03:51.366Z",
+              "WhenOpened": "2025-01-03T18:03:51.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LogService.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\LogService.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\LogService.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\LogService.cs",
+              "RelativeToolTip": "SistemaTurnos\\Service\\LogService.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAIAwwEMAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T17:58:53.846Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 11,
+              "Title": "PacientesController.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PacientesController.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\PacientesController.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PacientesController.cs",
+              "RelativeToolTip": "SistemaTurnos\\Controllers\\PacientesController.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T19:24:53.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TurnoService.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\TurnoService.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
+              "RelativeToolTip": "SistemaTurnos\\Service\\TurnoService.cs",
+              "ViewState": "AQIAAJIAAAAAAAAAAAAAwKkAAABeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T17:15:42.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\UsuarioController.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "SistemaTurnos\\Controllers\\UsuarioController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T19:26:50.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PersonasController.cs",
+              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PersonasController.cs",
+              "RelativeDocumentMoniker": "SistemaTurnos\\Controllers\\PersonasController.cs",
+              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Controllers\\PersonasController.cs",
+              "RelativeToolTip": "SistemaTurnos\\Controllers\\PersonasController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowCQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T19:25:02.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "IUsuarioService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\Interface\\IUsuarioService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\Interface\\IUsuarioService.cs",
@@ -219,12 +291,11 @@
               "RelativeToolTip": "SistemaTurnos\\Service\\Interface\\IUsuarioService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:32:07.136Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T18:32:07.136Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "ITurnoService.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\Interface\\ITurnoService.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Service\\Interface\\ITurnoService.cs",
@@ -232,12 +303,11 @@
               "RelativeToolTip": "SistemaTurnos\\Service\\Interface\\ITurnoService.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:32:07.82Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T18:32:07.82Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "GenerarHorariosDisponiblesPorMesTest.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\GenerarHorariosDisponiblesPorMesTest.cs",
               "RelativeDocumentMoniker": "SistemaTurnos.Tests\\GenerarHorariosDisponiblesPorMesTest.cs",
@@ -249,7 +319,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "HorariosDisponiblesPorDiaTest.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\HorariosDisponiblesPorDiaTest.cs",
               "RelativeDocumentMoniker": "SistemaTurnos.Tests\\HorariosDisponiblesPorDiaTest.cs",
@@ -261,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "HorariosDisponiblesporDisponibilidadTest.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\HorariosDisponiblesporDisponibilidadTest.cs",
               "RelativeDocumentMoniker": "SistemaTurnos.Tests\\HorariosDisponiblesporDisponibilidadTest.cs",
@@ -273,7 +343,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "UnitTest1.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\UnitTest1.cs",
               "RelativeDocumentMoniker": "SistemaTurnos.Tests\\UnitTest1.cs",
@@ -285,33 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TurnoService.cs",
-              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
-              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\TurnoService.cs",
-              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\TurnoService.cs",
-              "RelativeToolTip": "SistemaTurnos\\Service\\TurnoService.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAAwKAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T17:15:42.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LogService.cs",
-              "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\LogService.cs",
-              "RelativeDocumentMoniker": "SistemaTurnos\\Service\\LogService.cs",
-              "ToolTip": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Service\\LogService.cs",
-              "RelativeToolTip": "SistemaTurnos\\Service\\LogService.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAASwB0AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T17:58:53.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "GeneradorHorariosDisponibles.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Helpers\\GeneradorHorariosDisponibles.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Helpers\\GeneradorHorariosDisponibles.cs",
@@ -319,12 +363,11 @@
               "RelativeToolTip": "SistemaTurnos\\Helpers\\GeneradorHorariosDisponibles.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAwBEAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T17:15:39.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T17:15:39.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "DataTurnoTest.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\DataTurnoTest.cs",
               "RelativeDocumentMoniker": "SistemaTurnos.Tests\\DataTurnoTest.cs",
@@ -336,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "DiaSemana.cs",
               "DocumentMoniker": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
               "RelativeDocumentMoniker": "SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
@@ -344,8 +387,7 @@
               "RelativeToolTip": "SistemaTurnos\\Dal\\Entities\\DiaSemana.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T18:24:22.341Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T18:24:22.341Z"
             }
           ]
         }

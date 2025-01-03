@@ -1,5 +1,6 @@
 ﻿using SistemaTurnos.Common;
 using SistemaTurnos.Service.Interface;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -17,7 +18,6 @@ namespace SistemaTurnos.Service
         private string GetClaimValueFromJwt(string claimName)
         {
             var token = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
             // Verificar si el token es válido
             if (string.IsNullOrEmpty(token))
             {
@@ -28,6 +28,23 @@ namespace SistemaTurnos.Service
             // Ejemplo usando System.IdentityModel.Tokens.Jwt
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
+
+            var tiempoExpiracion = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == "exp").Value;
+            if(tiempoExpiracion == null)
+            {
+                throw new UnauthorizedAccessException("Empty token");
+
+            }
+            long expirationTimeInSeconds = long.Parse(tiempoExpiracion);
+
+
+            long currentTimeInSeconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+
+            if (expirationTimeInSeconds < currentTimeInSeconds)
+            {
+                throw new UnauthorizedAccessException("El token exprió."); // null devolver un error
+            }
+
 
             // Obtener el claim por nombre
             var claim = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == claimName);
@@ -46,11 +63,13 @@ namespace SistemaTurnos.Service
 
         private bool UserMatchType(Role role)
         {
-            //var roleToString = role.ToString();
             var tokenRole = GetClaimValueFromJwt(ClaimTypes.Role);
-            return tokenRole == role.ToString() ? true : false;
-            if (tokenRole != role.ToString()) throw new UnauthorizedAccessException(ErrorMessages.NoAccess);
-            return true;
+            if (tokenRole == null)
+            {
+                throw new UnauthorizedAccessException("El token ha expirado o no contiene un rol válido.");
+            }
+            return tokenRole.Trim() == role.ToString().Trim();
+        
         }
 
 

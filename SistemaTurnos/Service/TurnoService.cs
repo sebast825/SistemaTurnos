@@ -167,11 +167,13 @@ namespace SistemaTurnos.Service
             if (!medicosEspecialidad.Any()) throw new Exception(ErrorMessages.EspecialdiadNotFound);
 
             var turnosDisponibles = new List<TurnoHorarioDisponibleResponseDTO>();
+            GeneradorHorariosDisponibles GenerarHorarios = new GeneradorHorariosDisponibles();
+
             foreach (Medico medico in medicosEspecialidad)
             {
                 var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medico.Id);
                 var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medico.Id, EstadoTurno.Programada);
-                turnosDisponibles.AddRange(new GeneradorHorariosDisponibles().GenerarHorariosDisponiblesPorMes(medico.Id, turnos, horariosDisponibilidadMedico));
+                turnosDisponibles.AddRange(GenerarHorarios.GenerarHorariosDisponiblesPorMes(medico.Id, turnos, horariosDisponibilidadMedico));
 
             }
             return turnosDisponibles;
