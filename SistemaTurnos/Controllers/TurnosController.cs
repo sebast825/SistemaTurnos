@@ -88,12 +88,6 @@ namespace SistemaTurnos.Controllers
             return rsta;
         }
 
-        [HttpGet("ObtenerHorariosDisponibles")]
-        public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int idMedico)
-        {
-            var rsta = await _turnoService.ObtenerHorariosDisponibles(idMedico);
-            return rsta;
-        }
         [HttpGet("api/medicos/{medicoId}/turnosdisponible")]
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {

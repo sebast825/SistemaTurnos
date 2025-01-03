@@ -103,10 +103,6 @@ namespace SistemaTurnos.Service
 
             return rsta;
         }
-        public bool suma(int a, int b)
-        {
-            return a == b;
-        }
 
         public async Task<List<TurnoResponseDTO>> FilterByPaciente(int id)
         {
@@ -126,69 +122,6 @@ namespace SistemaTurnos.Service
             var turnos = await _unitOfWork.TurnoRepository.GetAll();
             var rsta = _mapper.Map<List<TurnoResponseDTO>>(turnos);
             return rsta;
-        }
-
-        public async Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId)
-        {
-            var disponibilidades = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
-            var turnos = await _unitOfWork.TurnoRepository.FilterByDoctor(medicoId);
-
-            var fechaInicio = DateTime.Today;
-            var fechaFin = DateTime.Today.AddDays(10);
-
-            var horariosDisponiblesPorDia = new List<HorarioMedicoLibreResponseDTO>();
-
-
-            // Procesar cada día del mes
-            for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
-            {
-                int diaSemanaId = (int)dia.DayOfWeek;
-
-                // Filtrar disponibilidades y turnos para el día específico
-                var disponibilidadDelDia = disponibilidades.Where(d => d.DiaSemanaId == diaSemanaId).ToList();
-                var turnosDelDia = turnos.Where(t => t.Fecha.Date == dia.Date).ToList();
-
-
-                foreach (var disp in disponibilidadDelDia)
-                {
-                    TimeSpan start = disp.StartTime;
-                    foreach (var turno in turnosDelDia)
-                    {
-                        TimeSpan turnoInicio = turno.Fecha.TimeOfDay;
-                        TimeSpan turnoFin = turnoInicio.Add(TimeSpan.FromMinutes(20)); // Duración estimada de un turno
-                        var horarioDisponible = new HorarioMedicoLibreResponseDTO();
-
-                        //si el tiempo es menor al inicio del turno crea una nueva franja horaria
-                        if (start < turnoInicio)
-                        {
-                            horarioDisponible.IdMedico = medicoId;
-                            horarioDisponible.Fecha = dia;
-                            horarioDisponible.HoraInicio = start;
-                            horarioDisponible.HoraFin = turnoInicio;
-
-                            //horariosDisponibles.Add((start, turnoInicio));
-                            horariosDisponiblesPorDia.Add(horarioDisponible);
-
-                        }
-
-                        start = turnoFin;
-                    }
-                    //es para la utlima franja horaria entre el ultimo turno y la finalizacion del la jornada laboral
-                    if (start < disp.EndTime)
-                    {
-                        var horarioDisponible = new HorarioMedicoLibreResponseDTO();
-
-                        horarioDisponible.IdMedico = medicoId;
-                        horarioDisponible.Fecha = dia;
-                        horarioDisponible.HoraInicio = start;
-                        horarioDisponible.HoraFin = disp.EndTime;
-                        //horariosDisponibles.Add((start, disp.EndTime));
-                        horariosDisponiblesPorDia.Add(horarioDisponible);
-                    }
-                }
-            }
-
-            return horariosDisponiblesPorDia;
         }
 
         public bool HayTurno(TimeSpan i, TimeSpan tiempoTurno, List<Turno> turnosDia)
@@ -217,15 +150,10 @@ namespace SistemaTurnos.Service
             Dictionary<DateTime, List<Turno>> turnosByDay = turnos.GroupBy(t => t.Fecha.Date).ToDictionary(g => g.Key, g => g.ToList());
             return turnosByDay;
         }
+
         public async Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId)
         {
             var proceso = Process.GetCurrentProcess();
-
-            // Obtener la memoria y el CPU antes de la ejecución
-            long memoriaAntes = proceso.WorkingSet64;
-            double cpuAntes = proceso.TotalProcessorTime.TotalMilliseconds;
-
-            var stopwatch = Stopwatch.StartNew();
 
             // Obtener los datos necesarios
             var horariosDisponibilidadMedico = await _unitOfWork.DisponibilidadMedicoRepository.GetByMedico(medicoId);
@@ -233,19 +161,9 @@ namespace SistemaTurnos.Service
 
             // Lógica para generar los horarios disponibles
             List<TurnoHorarioDisponibleResponseDTO> horariosDisponibles = new GeneradorHorariosDisponibles().GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
-
-            // Obtener la memoria y el CPU después de la ejecución
-            proceso.Refresh(); // Refresca la información del proceso
+ 
             long memoriaDespues = proceso.WorkingSet64;
             double cpuDespues = proceso.TotalProcessorTime.TotalMilliseconds;
-
-            // Detener el cronómetro
-            stopwatch.Stop();
-
-            // Mostrar el tiempo de ejecución y recursos utilizados en la consola
-            Console.WriteLine($"Tiempo de ejecución: {stopwatch.ElapsedMilliseconds} ms");
-            Console.WriteLine($"Memoria utilizada: {(memoriaDespues - memoriaAntes) / 1024} KB");
-            Console.WriteLine($"CPU utilizado: {cpuDespues - cpuAntes} ms");
 
             return horariosDisponibles;
         }

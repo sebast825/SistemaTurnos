@@ -14,8 +14,7 @@ namespace SistemaTurnos.Service.Interface
         Task<TurnoResponseDTO> Create(TurnoCreateRequestDTO dto);
         Task<List<TurnoResponseDTO>> FilterByDateTime(DateTime fecha, int? medicoId);
         Task<bool> MedicoIsAviable(TurnoCreateRequestDTO dto);
-        Task<List<HorarioMedicoLibreResponseDTO>> ObtenerHorariosDisponibles(int medicoId);
-
+     
         Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByMedico(int medicoId);
         Task<List<TurnoHorarioDisponibleResponseDTO>> TurnosDisponiblesByEspecialidad(string especialidad);
 
@@ -24,7 +23,7 @@ namespace SistemaTurnos.Service.Interface
 
         Task<List<TurnoResponseDTO>> DoctorTurnosByDate(DateTime dt, int idMedico);
 
-        public bool suma(int a, int b);
+   
     }
 }
 
