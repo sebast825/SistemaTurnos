@@ -200,6 +200,16 @@ namespace SistemaTurnos.Service
             });
             
         }
+        //valida con rango de 20 mins
+        public bool TuroDisponible(TimeSpan i, HashSet<TimeSpan> horariosOcupados)
+        {
+            bool dentroDelRango = horariosOcupados.Any(horario =>
+                    Math.Abs((horario - i).TotalMinutes) < 20
+                );
+            return dentroDelRango;
+
+        }
+
         public TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos,
             DateTime dia, TurnoHorarioDisponibleResponseDTO horarioDisponible)
         {
@@ -210,18 +220,21 @@ namespace SistemaTurnos.Service
             DateTime fechaReferencia = DateTime.Today.Add(startShift);
             DateTime finTurno = fechaReferencia.Add(tiempoTurno);
 
-            var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
 
             // Crear un HashSet con los horarios ocupados para acceso rápido
             var horariosOcupados = new HashSet<TimeSpan>(
-                turnosDia.Select(t => t.Fecha.TimeOfDay)
+                turnos.Select(t => t.Fecha.TimeOfDay)
             );
             //recorre cada franja de tiempo disponible (en relacion con el tiempo del turno) para ver sie sta disponible
 
             // Llenar la lista de horarios disponibles
             //valida justo el horario en que cae cada 20 min, si por algun motivo se hardcodio un turno va a haber una sobreposicion
+  
             for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
             {
+
+                // Validar si hay un horario en el rango de ±20 minutos
+
 
                 if (!horariosOcupados.Contains(i))
                 {
@@ -238,9 +251,11 @@ namespace SistemaTurnos.Service
             horarioDisponible.MedicoId = medicoId;
             horarioDisponible.Fecha = dia;
 
+            var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
+
             foreach (var disp in horariosDisponibilidadMedico)
             {
-                ObtenerHorariosDisponiblesPorDisponibilidad(disp,turnos,dia,horarioDisponible);
+                ObtenerHorariosDisponiblesPorDisponibilidad(disp, turnosDia, dia,horarioDisponible);
             }
             // Ordenar para garantizar consistencia en los tests
             horarioDisponible.Horario = horarioDisponible.Horario

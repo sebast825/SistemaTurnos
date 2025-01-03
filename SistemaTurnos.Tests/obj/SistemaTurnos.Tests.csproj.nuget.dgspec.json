@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\SistemaTurnos.Tests.csproj": {}
+    "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.tests\\SistemaTurnos.Tests.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\SistemaTurnos.Tests.csproj": {
+    "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.tests\\SistemaTurnos.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\SistemaTurnos.Tests.csproj",
+        "projectUniqueName": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.tests\\SistemaTurnos.Tests.csproj",
         "projectName": "SistemaTurnos.Tests",
-        "projectPath": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\SistemaTurnos.Tests.csproj",
+        "projectPath": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.tests\\SistemaTurnos.Tests.csproj",
         "packagesPath": "C:\\Users\\Sebastian\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.Tests\\obj\\",
+        "outputPath": "D:\\Documentos\\SistemaTurnos\\SistemaTurnos.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sebastian\\AppData\\Roaming\\NuGet\\NuGet.Config",
