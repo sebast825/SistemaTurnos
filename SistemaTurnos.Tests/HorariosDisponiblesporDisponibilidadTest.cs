@@ -4,6 +4,7 @@ using Moq;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Turno;
+using SistemaTurnos.Helpers;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
@@ -12,7 +13,7 @@ namespace SistemaTurnos.Tests;
 [TestClass]
 public class HorariosDisponiblesporDisponibilidadTest
 {
-    private TurnoService _turnoService;
+    private GeneradorHorariosDisponibles _generadorHorariosDisponibles;
     private Mock<IUnitOfWork> _unitOfWorkMock;
     private Mock<IMapper> _mapperMock;
     TimeSpan duracionTurno = new TimeSpan(0, 20, 0);
@@ -23,24 +24,15 @@ public class HorariosDisponiblesporDisponibilidadTest
         _unitOfWorkMock = new Mock<IUnitOfWork>();
         _mapperMock = new Mock<IMapper>();
 
-        _turnoService = new TurnoService(_unitOfWorkMock.Object, _mapperMock.Object);
+        _generadorHorariosDisponibles = new GeneradorHorariosDisponibles();
     }
-    [TestMethod]
-    public void TestMethod1()
-    {
-        bool result = _turnoService.suma(1, 1);
-        Assert.IsTrue(result);
-    }
-
-
-
 
     [TestMethod]
     public void ObtenerHorariosDisponibles_TurnosHorarioNoCoincidenConDisponibilidad_RetornaHorariosDisponibles()
     {
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             DataTurnoTest.GetTurnos(),
 
@@ -68,7 +60,7 @@ public class HorariosDisponiblesporDisponibilidadTest
         };
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
             
@@ -97,7 +89,7 @@ public class HorariosDisponiblesporDisponibilidadTest
         };
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
      
@@ -127,7 +119,7 @@ public class HorariosDisponiblesporDisponibilidadTest
         };
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
             DataTurnoTest.GetHorarioDisponiblesResponse());
@@ -163,7 +155,7 @@ public class HorariosDisponiblesporDisponibilidadTest
         };
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
 
@@ -188,7 +180,7 @@ public class HorariosDisponiblesporDisponibilidadTest
 
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             DataTurnoTest.GetDisponibilidadMedico(),
             GetTurnos,
 
@@ -219,7 +211,7 @@ public class HorariosDisponiblesporDisponibilidadTest
         List<Turno> GetTurnos = new List<Turno>();
 
 
-        TurnoHorarioDisponibleResponseDTO result = _turnoService.ObtenerHorariosDisponiblesPorDisponibilidad(
+        TurnoHorarioDisponibleResponseDTO result = _generadorHorariosDisponibles.ObtenerHorariosDisponiblesPorDisponibilidad(
             disponibilidadMedico,
             GetTurnos,
 

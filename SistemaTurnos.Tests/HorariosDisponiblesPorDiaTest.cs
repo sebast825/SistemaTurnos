@@ -4,6 +4,7 @@ using Moq;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Turno;
+using SistemaTurnos.Helpers;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 using System.Diagnostics;
@@ -14,7 +15,8 @@ namespace SistemaTurnos.Tests;
 [TestClass]
 public class HorariosDisponiblesPorDiaTest
 {
-    private TurnoService _turnoService;
+    private GeneradorHorariosDisponibles _generadorHorariosDisponibles;
+
     private Mock<IUnitOfWork> _unitOfWorkMock;
     private Mock<IMapper> _mapperMock;
     TimeSpan duracionTurno = new TimeSpan(0, 20, 0);
@@ -25,7 +27,7 @@ public class HorariosDisponiblesPorDiaTest
         _unitOfWorkMock = new Mock<IUnitOfWork>();
         _mapperMock = new Mock<IMapper>();
 
-        _turnoService = new TurnoService(_unitOfWorkMock.Object, _mapperMock.Object);
+        _generadorHorariosDisponibles = new GeneradorHorariosDisponibles();
     }
 
 
@@ -62,7 +64,7 @@ public class HorariosDisponiblesPorDiaTest
        List<Turno> turnosList = new List<Turno>();
 
 
-        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
+        TurnoHorarioDisponibleResponseDTO rsta = _generadorHorariosDisponibles.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
         CollectionAssert.AreEqual(rsta.Horario, horariosEsperados);
         Assert.IsNotNull(rsta, "El resultado no debería ser null");
         Assert.AreEqual(medicoId, rsta.MedicoId, "El ID del médico no coincide");
@@ -113,7 +115,7 @@ public class HorariosDisponiblesPorDiaTest
         List<Turno> turnosList = new List<Turno>();
 
 
-        TurnoHorarioDisponibleResponseDTO rsta = _turnoService.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
+        TurnoHorarioDisponibleResponseDTO rsta = _generadorHorariosDisponibles.GenerarHorariosDisponiblesPorDia(disponibilidadMedicosList, turnosList, 5);
         CollectionAssert.AreEqual(rsta.Horario, horariosEsperados);
         Assert.IsNotNull(rsta, "El resultado no debería ser null");
         Assert.AreEqual(medicoId, rsta.MedicoId, "El ID del médico no coincide");
