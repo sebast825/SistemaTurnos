@@ -1,7 +1,6 @@
-﻿using SistemaTurnos.Dal.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+using SistemaTurnos.Dal.Entities;
 
 namespace SistemaTurnos.Dal.Data.DataSeed
 {
@@ -29,7 +28,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     Telefono = "444555666",
                     NumeroDocumento = "DNI12345001",
                     SexoId = 1, // Hombre
-               
+
                 }
             );
         }

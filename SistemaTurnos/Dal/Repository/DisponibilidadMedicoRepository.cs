@@ -3,8 +3,6 @@ using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
-using SistemaTurnos.Dto.DisponibilidadMedico;
-using System.Linq;
 
 namespace SistemaTurnos.Dal.Repository
 {
@@ -41,17 +39,17 @@ namespace SistemaTurnos.Dal.Repository
 
             return disponibilidadMedico;
         }
-        public  async Task<List<DisponibilidadMedico>> GetAll()
+        public async Task<List<DisponibilidadMedico>> GetAll()
         {
 
-          
+
             var disponibilidadMedicos = await _context.DisponibilidadMedicos
                      .Include(s => s.Medico)
                      .Include(s => s.Medico.Especialidad)
                     .Include(x => x.DiaSemana)
                     .Where(s => s.Medico.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
-           
+
 
             return disponibilidadMedicos;
         }
@@ -65,10 +63,10 @@ namespace SistemaTurnos.Dal.Repository
                                        .Include(x => x.DiaSemana)
                                        .Where(s => s.MedicoId == idMedico &&
                                        s.Medico.EstadoPersona == EstadoPersona.Activo &&
-                                       s.DiaSemanaId == dia 
+                                       s.DiaSemanaId == dia
                                        &&
                                        s.StartTime <= horario && s.EndTime >= horario
-                                       
+
                                        )
                                        .ToListAsync();
 

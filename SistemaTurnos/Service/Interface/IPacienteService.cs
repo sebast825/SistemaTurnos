@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Dto.Paciente;
+﻿using SistemaTurnos.Dto.Paciente;
 
 namespace SistemaTurnos.Service.Interface
 {
@@ -8,7 +7,7 @@ namespace SistemaTurnos.Service.Interface
         Task<List<PacienteResponseDTO>> GetAll();
         Task<int> Create(PacienteCreateRequestDTO paciente);
         Task<PacienteResponseDTO> GetById(int id);
-        Task<PacienteResponseDTO> Update (int id, PacienteUpdateRequestDTO paciente);
+        Task<PacienteResponseDTO> Update(int id, PacienteUpdateRequestDTO paciente);
 
     }
 }

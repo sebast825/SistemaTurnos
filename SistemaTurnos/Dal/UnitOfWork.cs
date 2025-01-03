@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using SistemaTurnos.Dal.Data;
-using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
-using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Dal
 {
@@ -19,7 +16,7 @@ namespace SistemaTurnos.Dal
         public ITurnoRepository TurnoRepository { get; }
         public IAdministrativoRepository AdministrativoRepository { get; }
         public IUsuarioRepository UsuarioRepository { get; }
-        public IEspecialidadRepository EspecialidadRepository{ get; }
+        public IEspecialidadRepository EspecialidadRepository { get; }
 
         public UnitOfWork(DataContext context, IPacienteRepository pacienteRepository, IPersonaRepository personaRepository,
             IMedicoRepository medicoRepository,

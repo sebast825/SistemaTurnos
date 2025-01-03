@@ -2,11 +2,12 @@
 {
     public class TurnoHorarioDisponibleResponseDTO
     {
-        public TurnoHorarioDisponibleResponseDTO() {
+        public TurnoHorarioDisponibleResponseDTO()
+        {
             Horario = new List<TimeSpan>();
         }
         public int MedicoId { get; set; }
-        public DateTime Fecha { get;set; }
+        public DateTime Fecha { get; set; }
         public List<TimeSpan> Horario { get; set; }
 
     }

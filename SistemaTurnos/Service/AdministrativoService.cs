@@ -2,7 +2,6 @@
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Administrativo;
-using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Service
@@ -11,7 +10,8 @@ namespace SistemaTurnos.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public AdministrativoService(IUnitOfWork unitOfWork, IMapper mapper) {
+        public AdministrativoService(IUnitOfWork unitOfWork, IMapper mapper)
+        {
 
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -20,13 +20,13 @@ namespace SistemaTurnos.Service
         {
             //var administrativo = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
 
-            
-                var entity = _mapper.Map<Administrativo>(dto);
-                await _unitOfWork.AdministrativoRepository.Add(entity);
-                await _unitOfWork.Save();
-                return _mapper.Map<AdministrativoResponseDTO>(entity);
 
-            
+            var entity = _mapper.Map<Administrativo>(dto);
+            await _unitOfWork.AdministrativoRepository.Add(entity);
+            await _unitOfWork.Save();
+            return _mapper.Map<AdministrativoResponseDTO>(entity);
+
+
         }
     }
 }

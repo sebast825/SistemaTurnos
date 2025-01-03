@@ -12,7 +12,8 @@ namespace SistemaTurnos
 {
     public class AutomapperProfile : Profile
     {
-        public AutomapperProfile() {
+        public AutomapperProfile()
+        {
 
             CreateMap<Paciente, PacienteResponseDTO>()
                 .ForMember(dest => dest.Sexo, opt => opt.MapFrom(src => src.Sexo.Nombre)) // Asigna directamente la entidad Sexo
@@ -59,7 +60,7 @@ namespace SistemaTurnos
 
             CreateMap<AdministrativoRequestCreateDTO, Administrativo>();
             CreateMap<Administrativo, AdministrativoResponseDTO>();
-            CreateMap<Especialidad,EspecialidadResponseDTO>();
+            CreateMap<Especialidad, EspecialidadResponseDTO>();
 
         }
 

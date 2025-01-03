@@ -4,6 +4,6 @@ namespace SistemaTurnos.Service.Interface
 {
     public interface IAdministrativoService
     {
-        Task<AdministrativoResponseDTO> Create (AdministrativoRequestCreateDTO dto);
+        Task<AdministrativoResponseDTO> Create(AdministrativoRequestCreateDTO dto);
     }
 }

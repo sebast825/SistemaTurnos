@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Common;
-using SistemaTurnos.Dto.Paciente;
-using SistemaTurnos.Dto.Persona;
+﻿using SistemaTurnos.Dto.Persona;
 
 namespace SistemaTurnos.Service.Interface
 {
@@ -11,7 +8,7 @@ namespace SistemaTurnos.Service.Interface
         //Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id);
         Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto);
 
-        Task<string> GetTipoPersona (int id);
+        Task<string> GetTipoPersona(int id);
         Task<PersonaResponseDTO> GetById(int id);
 
         Task<List<PersonaResponseDTO>> GetAllPersonaIncludeInactive();

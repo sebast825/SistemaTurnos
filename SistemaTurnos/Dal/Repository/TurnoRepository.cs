@@ -3,7 +3,6 @@ using SistemaTurnos.Common;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dal.Repository.Interface;
-using SistemaTurnos.Dto.Turno;
 
 namespace SistemaTurnos.Dal.Repository
 {
@@ -20,7 +19,7 @@ namespace SistemaTurnos.Dal.Repository
                     .Include(p => p.Paciente)
                     .Where(p => p.Paciente.EstadoPersona == EstadoPersona.Activo)
                     .ToListAsync();
-            
+
             return turnos;
 
         }
@@ -31,9 +30,9 @@ namespace SistemaTurnos.Dal.Repository
                                       .Include(x => x.Medico)
                                       .Include(p => p.Paciente)
                                       .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo
-                                              && p.MedicoId == id);                                   
+                                              && p.MedicoId == id);
 
-         
+
             if (estadoTurno.HasValue)
             {
                 turnosQuery = turnosQuery.Where(p => p.Estado == estadoTurno.Value);
@@ -70,7 +69,7 @@ namespace SistemaTurnos.Dal.Repository
         }
 
         public async Task<List<Turno>> FilterByDate(DateTime dt, int? medicoId = null)
-        {  
+        {
             // Calcular los límites de tiempo
             DateTime startTime = dt.AddMinutes(-20);
             DateTime endTime = dt.AddMinutes(20);
@@ -80,12 +79,12 @@ namespace SistemaTurnos.Dal.Repository
                             .Include(p => p.Paciente)
                             .Where(p => p.Paciente.EstadoPersona != EstadoPersona.Inactivo &&
                                 p.Fecha.Day == dt.Day);
-                      
+
             // Aplicar el filtro opcional por MedicoId
             if (medicoId.HasValue)
             {
                 turnosQuery = turnosQuery.Where(p => p.MedicoId == medicoId.Value);
-                
+
             }
             var turnos = await turnosQuery.ToListAsync();
             return turnos;
@@ -129,9 +128,9 @@ namespace SistemaTurnos.Dal.Repository
             return updateTurno;
         }
 
-        public async Task<List<Turno>> DoctorTurnosByDate(DateTime dt,int medicoId)
+        public async Task<List<Turno>> DoctorTurnosByDate(DateTime dt, int medicoId)
         {
-                   
+
 
             var turnosQuery = _context.Turnos
                             .Include(x => x.Medico)

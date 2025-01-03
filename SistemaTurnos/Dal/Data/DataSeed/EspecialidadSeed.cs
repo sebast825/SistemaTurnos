@@ -1,12 +1,13 @@
-﻿using SistemaTurnos.Dal.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SistemaTurnos.Dal.Entities;
 
-namespace SistemaTurnos.Dal.Data.DataSeed 
+namespace SistemaTurnos.Dal.Data.DataSeed
 {
     public class EspecialidadSeed : IEntityTypeConfiguration<Especialidad>
-    { 
-        public void Configure(EntityTypeBuilder<Especialidad> builder) { 
+    {
+        public void Configure(EntityTypeBuilder<Especialidad> builder)
+        {
             builder.HasData(
                 new Especialidad
                 {

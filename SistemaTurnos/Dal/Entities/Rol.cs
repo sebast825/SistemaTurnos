@@ -2,6 +2,6 @@
 {
     public class Rol : ClaseBase
     {
-        public string Nombre { get; set; }   
+        public string Nombre { get; set; }
     }
 }

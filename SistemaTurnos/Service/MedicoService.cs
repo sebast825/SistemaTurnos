@@ -22,7 +22,7 @@ namespace SistemaTurnos.Service
         {
 
             var medico = await _unitOfWork.PersonaRepository.GetByDni(dto.NumeroDocumento);
-          //checkiar validacion
+            //checkiar validacion
             if (medico == null || medico.EstadoPersona == EstadoPersona.Inactivo)
             {
                 var entity = _mapper.Map<Medico>(dto);
@@ -67,22 +67,22 @@ namespace SistemaTurnos.Service
 
             var medico = await _unitOfWork.MedicoRepository.GetById(id);
             var especialidad = await _unitOfWork.EspecialidadRepository.GetId(dto.EspecialidadId);
-            if(medico != null)
+            if (medico != null)
             {
                 medico.NumeroLicencia = dto.NumeroLicencia;
-                medico.EspecialidadId = dto.EspecialidadId;                
+                medico.EspecialidadId = dto.EspecialidadId;
             }
             else
             {
                 throw new Exception("No se encontró el medico");
             }
 
-             _unitOfWork.MedicoRepository.Edit(medico);
+            _unitOfWork.MedicoRepository.Edit(medico);
             await _unitOfWork.Save();
-           
-                medico.Especialidad = especialidad;
 
-            
+            medico.Especialidad = especialidad;
+
+
             var rsta = _mapper.Map<MedicoResponseDTO>(medico);
             return rsta;
         }

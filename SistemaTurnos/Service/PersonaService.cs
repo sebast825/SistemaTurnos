@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration.Conventions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
-using SistemaTurnos.Dal.Entities;
-using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
-using System.ComponentModel.DataAnnotations;
 
 namespace SistemaTurnos.Service
 {
@@ -16,53 +10,55 @@ namespace SistemaTurnos.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public PersonaService(IUnitOfWork unitOfWork, IMapper mapper) { 
+        public PersonaService(IUnitOfWork unitOfWork, IMapper mapper)
+        {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
         public async Task<PersonaResponseDTO> ActualizarEstado(int id, EstadoPersona estado)
         {
 
-            
-          
+
+
 
             var persona = await _unitOfWork.PersonaRepository.GetId(id);
-            if(persona != null) {
+            if (persona != null)
+            {
 
                 persona.EstadoPersona = estado;
                 await _unitOfWork.Save();
                 return _mapper.Map<PersonaResponseDTO>(persona);
             }
-            
-                throw new Exception("no se encontro");
 
-            
+            throw new Exception("no se encontro");
+
+
         }
-       /*
-        public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
+        /*
+         public async Task<PersonaResponseDTO> ActualizarEstadoEliminar(int id)
+         {
+
+             var persona = await _unitOfWork.PersonaRepository.GetId(id);
+             if (persona != null)
+             {
+
+                 persona.EstadoUsuarioId = 4;
+                 persona.EstadoUsuario = await _unitOfWork.EstadoUsuarioRepository.GetId(4);
+                 await _unitOfWork.Save();
+                 return _mapper.Map<PersonaResponseDTO>(persona);
+             }
+
+             throw new Exception("no se encontro el usuario");
+         }
+        */
+        public async Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
+
 
             var persona = await _unitOfWork.PersonaRepository.GetId(id);
             if (persona != null)
             {
 
-                persona.EstadoUsuarioId = 4;
-                persona.EstadoUsuario = await _unitOfWork.EstadoUsuarioRepository.GetId(4);
-                await _unitOfWork.Save();
-                return _mapper.Map<PersonaResponseDTO>(persona);
-            }
-
-            throw new Exception("no se encontro el usuario");
-        }
-       */
-        public async Task<PersonaResponseDTO> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
-        {
-
-
-             var persona = await _unitOfWork.PersonaRepository.GetId(id);
-            if (persona != null)
-            {
-             
 
 
                 persona.Nombre = dto.Nombre;
@@ -80,7 +76,7 @@ namespace SistemaTurnos.Service
 
                 return _mapper.Map<PersonaResponseDTO>(personaUpdated);
             }
-        
+
 
             throw new Exception("an error ocurred");
         }
@@ -106,7 +102,7 @@ namespace SistemaTurnos.Service
 
 
         }
-  
+
         public async Task<List<PersonaResponseDTO>> GetAllPersonaIncludeInactive()
         {
             var personas = await _unitOfWork.PersonaRepository.GetAllIncludeInactive();

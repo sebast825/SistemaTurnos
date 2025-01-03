@@ -32,7 +32,7 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<Usuario> GetByToken(string token)
         {
-            var usuario = await _context.Usuarios                    
+            var usuario = await _context.Usuarios
                        .Where(x => x.TokenRecovery == token)
                        .FirstOrDefaultAsync();
             return usuario;
@@ -40,7 +40,7 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<Usuario> GetByUser(string name)
         {
-            
+
             var usuario = await _context.Usuarios
                 .Include(x => x.Persona)
                 .Where(x => x.UserName == name)
@@ -48,6 +48,6 @@ namespace SistemaTurnos.Dal.Repository
             return usuario;
         }
 
-        
+
     }
 }

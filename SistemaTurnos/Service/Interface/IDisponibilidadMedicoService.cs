@@ -1,5 +1,4 @@
 ﻿using SistemaTurnos.Dto.DisponibilidadMedico;
-using SistemaTurnos.Dto.Medico;
 
 namespace SistemaTurnos.Service.Interface
 {

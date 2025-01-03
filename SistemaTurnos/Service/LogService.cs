@@ -1,25 +1,23 @@
 ﻿
-using SistemaTurnos.Service.Interface;
+using Microsoft.IdentityModel.Tokens;
+using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
-using Microsoft.AspNetCore.Http.HttpResults;
 using SistemaTurnos.Dto.Login;
-using Microsoft.IdentityModel.Tokens;
+using SistemaTurnos.Service.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using SistemaTurnos.Common;
 
 namespace SistemaTurnos.Service
 {
     public class LogService : ILogService
     {
         private IConfiguration _configuration;
- 
+
         private readonly IUnitOfWork _unitOfWork;
         public LogService(IUnitOfWork unitOfWork,
-            IConfiguration configuration )
+            IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;
@@ -31,7 +29,7 @@ namespace SistemaTurnos.Service
             var usuario = await _unitOfWork.UsuarioRepository.GetByUser(user);
             if (usuario == null)
             {
-             
+
                 return null;
             }
             //else if (!VerifyPassword(pass, usuario.Password))
@@ -52,7 +50,7 @@ namespace SistemaTurnos.Service
             {
                 isUserActive(userEntity.EstadoUsuario);
                 var permiso = userEntity.Role.ToString();
-                                
+
                 var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub,_configuration["Jwt:Subject"]),
@@ -81,7 +79,7 @@ namespace SistemaTurnos.Service
         }
         private void isUserActive(EstadoUsuario estado)
         {
-            if(estado != EstadoUsuario.Activo)
+            if (estado != EstadoUsuario.Activo)
             {
                 throw new Exception("El usuario esta bloqueado.");
             }
@@ -104,10 +102,10 @@ namespace SistemaTurnos.Service
             var claim = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == claimName);
 
             return claim.Value;
-          
+
         }
 
-      
+
 
         private bool VerifyPassword(string password, string hashedPassword)
         {

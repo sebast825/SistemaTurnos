@@ -1,6 +1,4 @@
-﻿using SistemaTurnos.Dto.Persona;
-
-namespace SistemaTurnos.Dto.Medico
+﻿namespace SistemaTurnos.Dto.Medico
 {
     public class MedicoUpdateRequestDTO
     {

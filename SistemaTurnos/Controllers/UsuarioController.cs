@@ -1,30 +1,30 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Dto.User;
 using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace SistemaTurnos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize]
+    // [Authorize]
     public class UsuarioController : ControllerBase
     {
 
         private readonly IUsuarioService _usuarioService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPacienteService _pacienteService;
-        public UsuarioController(IUsuarioService usuarioService, IPacienteService PacienteService, IUnitOfWork unitOfWork)
+        private readonly IJwtService _jwtService;
+
+        public UsuarioController(IUsuarioService usuarioService, IPacienteService PacienteService, IUnitOfWork unitOfWork, IJwtService jwtService)
         {
             _usuarioService = usuarioService;
             _pacienteService = PacienteService;
             _unitOfWork = unitOfWork;
+            _jwtService = jwtService;
         }
 
 
@@ -33,28 +33,29 @@ namespace SistemaTurnos.Controllers
         public async Task<ActionResult<PacienteResponseDTO>> ActualizarUsuario(int id, EstadoUsuario estado)
         {
 
-            //_jwtService.PacienteMatchIdOrAdministrativo(id);
-           var rsta =  await _usuarioService.UpdateEstado(id, estado);
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
+            var rsta = await _usuarioService.UpdateEstado(id, estado);
 
             return Ok(rsta);
 
         }
-            [HttpPost("/api/usuario/paciente")]
-            public async Task<ActionResult> CreatePaciente([FromBody] UserAndPatientCreateRequestDto data)
-            {  
-                    await using var transaction = await _unitOfWork.BeginTransactionAsync();
-                    int pacienteId = await _pacienteService.Create(data.Paciente);               
-                    await _usuarioService.CreatePaciente(data.Usuario, pacienteId);           
-                    await transaction.CommitAsync();
-                    return Ok(new { Message = "Usuario y paciente creados correctamente" });
+        [HttpPost("/api/usuario/paciente")]
+        public async Task<ActionResult> CreatePaciente([FromBody] UserAndPatientCreateRequestDto data)
+        {
+            await using var transaction = await _unitOfWork.BeginTransactionAsync();
+            int pacienteId = await _pacienteService.Create(data.Paciente);
+            await _usuarioService.CreatePaciente(data.Usuario, pacienteId);
+            await transaction.CommitAsync();
+            return Ok(new { Message = "Usuario y paciente creados correctamente" });
 
-            }
+        }
 
         [HttpPost("/api/usuario/requestUpdatePassword")]
         async public Task<ActionResult> StartRecoveryPassword([FromBody] RecoveryEmailRequestDo dto)
         {
             //valida el formato del dto
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 await _usuarioService.StartRecoveryPassword(dto);
                 return Ok();
             }
@@ -62,7 +63,7 @@ namespace SistemaTurnos.Controllers
             {
                 return BadRequest("El email no es valido");
             }
-            
+
         }
         [HttpPost("/api/usuario/updatePassword")]
 
@@ -71,7 +72,7 @@ namespace SistemaTurnos.Controllers
             //valida el formato del dto
             if (ModelState.IsValid)
             {
-                 await _usuarioService.ActualizarClave(dto);
+                await _usuarioService.ActualizarClave(dto);
                 return Ok();
             }
             else
@@ -80,7 +81,7 @@ namespace SistemaTurnos.Controllers
             }
         }
 
-      
-        
+
+
     }
 }

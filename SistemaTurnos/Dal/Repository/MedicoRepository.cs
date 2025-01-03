@@ -8,7 +8,7 @@ namespace SistemaTurnos.Dal.Repository
 {
     public class MedicoRepository : Repository<Medico>, IMedicoRepository
     {
-      
+
         public MedicoRepository(DataContext context) : base(context)
         {
 
@@ -16,7 +16,7 @@ namespace SistemaTurnos.Dal.Repository
 
         public async Task<List<Medico>> FilterByEspecialidad(int id)
         {
-           
+
             var medicos = await _context.Personas
                                 .OfType<Medico>()
                                   .Include(v => v.Sexo)

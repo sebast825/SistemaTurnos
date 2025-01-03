@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Data;
 using SistemaTurnos.Dal.Repository.Interface;
-using System.Linq.Expressions;
 
 namespace SistemaTurnos.Dal.Repository
 {
@@ -14,9 +13,10 @@ namespace SistemaTurnos.Dal.Repository
         {
             _context = context;
         }
-        public int GetIdMedicosActivos() { 
+        public int GetIdMedicosActivos()
+        {
             return _idMedicosActivos;
-                }
+        }
         public async Task Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);

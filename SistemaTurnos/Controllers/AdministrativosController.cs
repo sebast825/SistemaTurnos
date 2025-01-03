@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Authorization;
-using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Administrativo;
-using SistemaTurnos.Dto.Medico;
-using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers

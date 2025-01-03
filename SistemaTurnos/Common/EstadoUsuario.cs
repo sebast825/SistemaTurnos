@@ -1,6 +1,6 @@
 ﻿namespace SistemaTurnos.Common
 {
-     public enum EstadoUsuario
+    public enum EstadoUsuario
     {
         Activo,
         Suspendido,

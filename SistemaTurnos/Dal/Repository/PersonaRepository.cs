@@ -7,7 +7,7 @@ using SistemaTurnos.Dto.Persona;
 
 namespace SistemaTurnos.Dal.Repository
 {
-    public class PersonaRepository : Repository<Persona>,IPersonaRepository
+    public class PersonaRepository : Repository<Persona>, IPersonaRepository
     {
         public PersonaRepository(DataContext context) : base(context) { }
 

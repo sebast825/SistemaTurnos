@@ -13,7 +13,7 @@ namespace SistemaTurnos.Service
         {
             _httpContextAccessor = httpContextAccessor;
         }
-      
+
         private string GetClaimValueFromJwt(string claimName)
         {
             var token = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
@@ -43,7 +43,7 @@ namespace SistemaTurnos.Service
 
         }
 
-    
+
         private bool UserMatchType(Role role)
         {
             //var roleToString = role.ToString();
@@ -53,7 +53,7 @@ namespace SistemaTurnos.Service
             return true;
         }
 
-     
+
 
         public void isPaciente()
         {
@@ -64,7 +64,7 @@ namespace SistemaTurnos.Service
         public void isNotPaciente()
         {
             bool esPaciente = UserMatchType(Role.Paciente);
-            if (esPaciente){ throw new UnauthorizedAccessException(ErrorMessages.NoAccess); }
+            if (esPaciente) { throw new UnauthorizedAccessException(ErrorMessages.NoAccess); }
         }
 
         public void PacienteMatchIdOrAdministrativo(int id)

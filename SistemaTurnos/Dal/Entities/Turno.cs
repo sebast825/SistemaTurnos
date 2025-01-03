@@ -2,7 +2,8 @@
 {
     public class Turno : ClaseBase
     {
-        public Turno() {
+        public Turno()
+        {
             Estado = EstadoTurno.Programada;
             FechaCreacion = DateTime.Now;
         }

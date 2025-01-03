@@ -1,6 +1,6 @@
-﻿using SistemaTurnos.Dal.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SistemaTurnos.Dal.Entities;
 
 namespace SistemaTurnos.Dal.Data.DataSeed
 {
@@ -24,7 +24,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                 },
                 new Paciente
                 {
-                   Id = 4,
+                    Id = 4,
                     Nombre = "María",
                     Apellido = "Gómez",
                     FechaNacimiento = new DateTime(1990, 8, 15),
@@ -34,8 +34,8 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                     TelefonoEmergencia = "2233445566",
                     NombreEmergencia = "Carlos Gómez"
                 }
-                
+
             );
         }
-}
+    }
 }

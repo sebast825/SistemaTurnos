@@ -1,6 +1,4 @@
-﻿using SistemaTurnos.Dal.Entities;
-
-namespace SistemaTurnos.Dto.Persona
+﻿namespace SistemaTurnos.Dto.Persona
 {
     public class PersonaUpdateRequestDTO
     {

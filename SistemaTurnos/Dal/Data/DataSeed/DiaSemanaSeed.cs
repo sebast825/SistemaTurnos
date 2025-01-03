@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaTurnos.Dal.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SistemaTurnos.Dal.Data.DataSeed
 {

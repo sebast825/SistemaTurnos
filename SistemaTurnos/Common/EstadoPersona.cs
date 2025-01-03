@@ -3,7 +3,7 @@
     public enum EstadoPersona
     {
         Activo,
-       Inactivo
+        Inactivo
 
     }
 }

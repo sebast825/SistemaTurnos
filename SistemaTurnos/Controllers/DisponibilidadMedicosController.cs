@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata;
-using SistemaTurnos.Dal.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dto.DisponibilidadMedico;
-using SistemaTurnos.Dto.Medico;
-using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
@@ -41,26 +36,26 @@ namespace SistemaTurnos.Controllers
             var rsta = await _disponibilidadMedicoService.FilterByEspecialidad(idEspecialidad);
             return rsta;
         }
-        
+
         [HttpPost()]
-        public async Task<ActionResult<bool>> Create (DisponibilidadMedicoCreateRequestDTO dto)
+        public async Task<ActionResult<bool>> Create(DisponibilidadMedicoCreateRequestDTO dto)
         {
-           // _jwtService.isAdmin();
+             _jwtService.isAdmin();
             var rsta = await _disponibilidadMedicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
         [HttpPut]
         public async Task<ActionResult<bool>> Update(DisponibilidadMedicoUpdateeRequestDTO dto)
         {
-           // _jwtService.isAdmin();
+             _jwtService.isAdmin();
             var rsta = await _disponibilidadMedicoService.Update(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            // _jwtService.isAdmin();
-             await _disponibilidadMedicoService.Delete(id);
+            _jwtService.isAdmin();
+            await _disponibilidadMedicoService.Delete(id);
             return Ok(new { message = "Horario del médico eliminado correctamente." });
         }
 

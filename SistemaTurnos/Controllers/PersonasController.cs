@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Common;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Dto.Persona;
-using SistemaTurnos.Service;
 using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
@@ -24,8 +21,8 @@ namespace SistemaTurnos.Controllers
 
         public async Task<ActionResult<List<PersonaResponseDTO>>> GetAllIncludeInactive()
         {
+            _jwtService.isAdmin();
             var rsta = await _personaService.GetAllPersonaIncludeInactive();
-
             return rsta;
         }
         [HttpGet("{id}")]
@@ -42,13 +39,12 @@ namespace SistemaTurnos.Controllers
 
         public async Task<ActionResult<PersonaResponseDTO>> ActualizarPersona(int id, PersonaUpdateRequestDTO dto)
         {
-            
-            //_jwtService.PacienteMatchIdOrAdministrativo(id);
+            _jwtService.PacienteMatchIdOrAdministrativo(id);
             var rsta = await _personaService.ActualizarPersona(id, dto);
 
             return rsta;
         }
 
-    
+
     }
 }

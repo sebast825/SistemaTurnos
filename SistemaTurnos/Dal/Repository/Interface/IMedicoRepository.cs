@@ -2,7 +2,7 @@
 
 namespace SistemaTurnos.Dal.Repository.Interface
 {
-    public interface IMedicoRepository : IRepository<Medico> 
+    public interface IMedicoRepository : IRepository<Medico>
     {
         Task<List<Medico>> GetAll();
         Task<List<Medico>> FilterByEspecialidad(int id);

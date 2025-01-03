@@ -1,6 +1,6 @@
-﻿using SistemaTurnos.Dal.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SistemaTurnos.Dal.Entities;
 
 namespace SistemaTurnos.Dal.Data.DataSeed
 {
@@ -29,7 +29,7 @@ namespace SistemaTurnos.Dal.Data.DataSeed
                 NumeroDocumento = "87654321",
                 SexoId = 2 // Mujer
             }
-            ) ; 
+            );
         }
     }
 }

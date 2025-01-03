@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Authorization;
-using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
 
@@ -15,7 +13,8 @@ namespace SistemaTurnos.Controllers
     {
         private readonly IPacienteService _pacienteService;
         private readonly IJwtService _jwtService;
-        public PacientesController(IPacienteService pacienteService, IJwtService jwtService) {
+        public PacientesController(IPacienteService pacienteService, IJwtService jwtService)
+        {
             _pacienteService = pacienteService;
             _jwtService = jwtService;
         }
@@ -24,37 +23,37 @@ namespace SistemaTurnos.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<PacienteResponseDTO>> GetAll()
         {
-            var paciente =  await _pacienteService.GetAll();
+            var paciente = await _pacienteService.GetAll();
             return Ok(paciente);
         }
 
         [HttpPost]
 
-        public async Task<ActionResult<bool>> Create ( PacienteCreateRequestDTO paciente)
+        public async Task<ActionResult<bool>> Create(PacienteCreateRequestDTO paciente)
         {
             var rsta = await _pacienteService.Create(paciente);
-          
+
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<bool>> GetById(int id)
         {
-           
+
             _jwtService.PacienteMatchIdOrAdministrativo(id);
-        
+
             var rsta = await _pacienteService.GetById(id);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
-           
+
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<bool>> Update(int id, PacienteUpdateRequestDTO dto )
+        public async Task<ActionResult<bool>> Update(int id, PacienteUpdateRequestDTO dto)
         {
 
             _jwtService.PacienteMatchIdOrAdministrativo(id);
 
-            var rsta = await _pacienteService.Update(id,dto);
+            var rsta = await _pacienteService.Update(id, dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
 
         }

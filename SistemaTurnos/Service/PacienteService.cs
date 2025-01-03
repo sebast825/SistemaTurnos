@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.Paciente;
-using SistemaTurnos.Dto.Persona;
 using SistemaTurnos.Service.Interface;
-using System.Security.Cryptography;
 
 namespace SistemaTurnos.Service
 {
@@ -15,14 +11,15 @@ namespace SistemaTurnos.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public PacienteService(IUnitOfWork unitOfWork, IMapper mapper) { 
+        public PacienteService(IUnitOfWork unitOfWork, IMapper mapper)
+        {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<int> Create(PacienteCreateRequestDTO dto)
         {
-        
+
             var entity = _mapper.Map<Paciente>(dto);
             //entity.ValidarAtributos();
 
@@ -35,7 +32,7 @@ namespace SistemaTurnos.Service
         {
             var pacientes = await _unitOfWork.PacienteRepository.GetAll();
             var rsta = _mapper.Map<List<PacienteResponseDTO>>(pacientes);
-         
+
             return rsta;
         }
         public async Task<PacienteResponseDTO> GetById(int id)
@@ -50,7 +47,7 @@ namespace SistemaTurnos.Service
         {
             var paciente = await _unitOfWork.PacienteRepository.GetById(id);
 
-            if(paciente != null)
+            if (paciente != null)
             {
                 paciente.NombreEmergencia = dto.NombreEmergencia;
                 paciente.TelefonoEmergencia = dto.TelefonoEmergencia;

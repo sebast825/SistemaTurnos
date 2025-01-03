@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using SistemaTurnos.Dto;
-using SistemaTurnos.Service.Interface;
 using SistemaTurnos.Dto.Login;
+using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Controllers
 {
@@ -15,12 +9,12 @@ namespace SistemaTurnos.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-    
+
         private readonly ILogger<LoginController> _logger;
         private readonly ILogService _logService;
         public LoginController(ILogger<LoginController> logger, ILogService logService)
         {
-     
+
             _logger = logger;
             _logService = logService;
         }

@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Repository.Interface;
-using SistemaTurnos.Service.Interface;
 
 namespace SistemaTurnos.Dal
 {
@@ -16,7 +14,7 @@ namespace SistemaTurnos.Dal
         IAdministrativoRepository AdministrativoRepository { get; }
 
         IUsuarioRepository UsuarioRepository { get; }
-        IEspecialidadRepository EspecialidadRepository { get; } 
+        IEspecialidadRepository EspecialidadRepository { get; }
         Task<int> Save();
 
         Task<IDbContextTransaction> BeginTransactionAsync();

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SistemaTurnos.Common;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,6 +28,6 @@ namespace SistemaTurnos.Filter
         }
 
 
-        
+
     }
 }

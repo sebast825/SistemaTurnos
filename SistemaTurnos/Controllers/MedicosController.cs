@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SistemaTurnos.Authorization;
-using SistemaTurnos.Common;
 using SistemaTurnos.Dto.Medico;
 using SistemaTurnos.Service.Interface;
 
@@ -23,7 +21,8 @@ namespace SistemaTurnos.Controllers
 
         [HttpPost("Create")]
 
-        public async Task<ActionResult<bool>> Create (MedicoCreateRequestDTO dto){
+        public async Task<ActionResult<bool>> Create(MedicoCreateRequestDTO dto)
+        {
             _jwtService.isAdmin();
             var rsta = await _medicoService.Create(dto);
             return rsta != null ? Ok(rsta) : BadRequest(rsta);
@@ -39,7 +38,6 @@ namespace SistemaTurnos.Controllers
         [AllowAnonymous]
         public async Task<List<MedicoResponseDTO>> FilterByEspecialidad(int id)
         {
-            //_jwtService.UserMatchType(Role.Paciente);
             var rsta = await _medicoService.FilterByEspecialidad(id);
             return rsta;
         }
@@ -54,7 +52,8 @@ namespace SistemaTurnos.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<MedicoResponseDTO>> Update(int id, MedicoUpdateRequestDTO dto)
         {
-            var rsta = await _medicoService.Update(id,dto);
+            _jwtService.isAdmin();
+            var rsta = await _medicoService.Update(id, dto);
             return Ok(rsta);
         }
 

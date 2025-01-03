@@ -3,7 +3,7 @@
 
     public enum Permission
     {
-        CreateTurno,        
+        CreateTurno,
         CreatePersona,
         CreateDisponibilidadMedico,
         GetEstadosTurno,

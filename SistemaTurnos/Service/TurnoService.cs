@@ -1,19 +1,11 @@
 ﻿using AutoMapper;
-using SistemaTurnos.Dal;
-using SistemaTurnos.Dto.Turno;
-using SistemaTurnos.Service.Interface;
 using SistemaTurnos.Common;
+using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
-using SistemaTurnos.Dto.DisponibilidadMedico;
 using SistemaTurnos.Dto.Turno;
-
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Server.IIS.Core;
-using Microsoft.Data.SqlClient;
-using System.Diagnostics;
 using SistemaTurnos.Helpers;
+using SistemaTurnos.Service.Interface;
+using System.Diagnostics;
 
 namespace SistemaTurnos.Service
 {
@@ -161,7 +153,7 @@ namespace SistemaTurnos.Service
 
             // Lógica para generar los horarios disponibles
             List<TurnoHorarioDisponibleResponseDTO> horariosDisponibles = new GeneradorHorariosDisponibles().GenerarHorariosDisponiblesPorMes(medicoId, turnos, horariosDisponibilidadMedico);
- 
+
             long memoriaDespues = proceso.WorkingSet64;
             double cpuDespues = proceso.TotalProcessorTime.TotalMilliseconds;
 

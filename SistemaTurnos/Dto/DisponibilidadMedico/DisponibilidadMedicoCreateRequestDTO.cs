@@ -1,6 +1,4 @@
-﻿using SistemaTurnos.Dal.Entities;
-
-namespace SistemaTurnos.Dto.DisponibilidadMedico
+﻿namespace SistemaTurnos.Dto.DisponibilidadMedico
 {
     public class DisponibilidadMedicoCreateRequestDTO
     {

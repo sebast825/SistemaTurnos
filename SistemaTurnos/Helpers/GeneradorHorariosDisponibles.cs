@@ -46,7 +46,7 @@ namespace SistemaTurnos.Helpers
         {
             var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
             horarioDisponible.MedicoId = medicoId;
-          
+
 
             foreach (var disp in horariosDisponibilidadMedico)
             {
@@ -68,7 +68,7 @@ namespace SistemaTurnos.Helpers
             var transformFechaFin = fechaInicio.AddMonths(1);
             //reccorre hasta fin de mes
             var fechaFin = new DateTime(transformFechaFin.Year, transformFechaFin.Month, transformFechaFin.Day);
-      
+
 
             var horariosDisponiblesPorDia = new List<TurnoHorarioDisponibleResponseDTO>();
 
@@ -83,7 +83,7 @@ namespace SistemaTurnos.Helpers
                 var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == idDiaSemana).ToList();
 
                 if (!disponibilidadDelDia.Any()) continue;
-              
+
                 TurnoHorarioDisponibleResponseDTO horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, medicoId);
                 if (horariosDia != null)
                 {

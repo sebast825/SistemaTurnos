@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Server.IIS.Core;
-using SistemaTurnos.Common;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Entities;
 using SistemaTurnos.Dto.DisponibilidadMedico;
-using SistemaTurnos.Dto.Paciente;
 using SistemaTurnos.Service.Interface;
-using System.Security.Cryptography.Xml;
 
 namespace SistemaTurnos.Service
 {
@@ -34,10 +30,11 @@ namespace SistemaTurnos.Service
 
             var medico = await _unitOfWork.MedicoRepository.GetId(dto.MedicoId);
 
-            if (medico == null) {
+            if (medico == null)
+            {
                 throw new Exception("Medico invalido");
             }
-            
+
             await _unitOfWork.DisponibilidadMedicoRepository.Add(entity);
             await _unitOfWork.Save();
 
@@ -55,12 +52,13 @@ namespace SistemaTurnos.Service
             {
                 _unitOfWork.DisponibilidadMedicoRepository.Delete(disponibildiadMedico);
                 await _unitOfWork.Save();
-                
+
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new Exception("No se puedo eliminar el horario del medico");
             }
-            
+
         }
 
         public async Task<List<DisponibilidadMedicoResponseDTO>> FilterByEspecialidad(int idEspecialidad)
@@ -74,10 +72,10 @@ namespace SistemaTurnos.Service
 
         public async Task<List<DisponibilidadMedicoResponseDTO>> GetAll()
         {
-          
+
             var disponibildiadMedicos = await _unitOfWork.DisponibilidadMedicoRepository.GetAll();
 
-           
+
             var rsta = _mapper.Map<List<DisponibilidadMedicoResponseDTO>>(disponibildiadMedicos);
             return rsta;
 
@@ -101,7 +99,7 @@ namespace SistemaTurnos.Service
 
             var convert = _mapper.Map<DisponibilidadMedico>(dto);
 
-            if(convert.StartTime >= convert.EndTime)
+            if (convert.StartTime >= convert.EndTime)
             {
                 throw new Exception("La hora de inicio debe ser menor a la de finalizacion");
             }
@@ -114,7 +112,7 @@ namespace SistemaTurnos.Service
             //await _unitOfWork.DisponibilidadMedicoRepository.Edit(disponibildiadMedicos);
             await _unitOfWork.Save();
 
-          //  var disponibildiadMedicos2 = await _unitOfWork.DisponibilidadMedicoRepository.GetId(dto.id);
+            //  var disponibildiadMedicos2 = await _unitOfWork.DisponibilidadMedicoRepository.GetId(dto.id);
 
             var rsta = _mapper.Map<DisponibilidadMedicoResponseDTO>(disponibildiadMedicos);
 
@@ -125,12 +123,12 @@ namespace SistemaTurnos.Service
 
         private string FormatHora(string fecha)
         {
-            if(fecha.Length <= 2 && !fecha.Contains(":"))
+            if (fecha.Length <= 2 && !fecha.Contains(":"))
             {
-              
+
                 return fecha + ":00";
             }
             return fecha;
-        } 
+        }
     }
 }

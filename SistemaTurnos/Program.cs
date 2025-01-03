@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SistemaTurnos.Dal;
 using SistemaTurnos.Dal.Data;
-using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Repository;
 using SistemaTurnos.Dal.Repository.Interface;
 using SistemaTurnos.Filter;
@@ -71,11 +70,11 @@ builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 builder.Services.AddScoped<IDisponibilidadMedicoRepository, DisponibilidadMedicoRepository>();
 builder.Services.AddScoped<IDiaSemanaRepository, DiaSemanaRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
-builder.Services.AddScoped<IAdministrativoRepository,AdministrativoRepository>();
+builder.Services.AddScoped<IAdministrativoRepository, AdministrativoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEspecialidadRepository, EspecialidadRepository>();
 
-builder.Services.AddScoped<IUnitOfWork,UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(x => new UnitOfWork(x.GetRequiredService<DataContext>(),
     x.GetRequiredService<IPacienteRepository>(),
     x.GetRequiredService<IPersonaRepository>(),
     x.GetRequiredService<IMedicoRepository>(),

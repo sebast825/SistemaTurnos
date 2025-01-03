@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaTurnos.Dal.Data.DataSeed;
 using SistemaTurnos.Dal.Entities;
-using System.Security;
 
 namespace SistemaTurnos.Dal.Data
 {
@@ -32,7 +30,7 @@ namespace SistemaTurnos.Dal.Data
                     .HasColumnType("date");
             });
             // Configuración de la herencia con discriminador
-         
+
 
             modelBuilder.ApplyConfiguration(new PacienteSeed());
             modelBuilder.ApplyConfiguration(new MedicoSeed());
@@ -69,28 +67,28 @@ namespace SistemaTurnos.Dal.Data
             modelBuilder.ApplyConfiguration(new UsuarioSeed());
 
             //convierte los enums en enteros para la db, se pueden realizar consultas de manera comun
-         /*   {
-                modelBuilder.Entity<Persona>()
-                    .Property(p => p.EstadoPersona)
-                    .HasConversion<int>();
-                modelBuilder.Entity<Usuario>()
-                  .Property(p => p.EstadoUsuario)
-                  .HasConversion<int>();
-            }*/
+            /*   {
+                   modelBuilder.Entity<Persona>()
+                       .Property(p => p.EstadoPersona)
+                       .HasConversion<int>();
+                   modelBuilder.Entity<Usuario>()
+                     .Property(p => p.EstadoUsuario)
+                     .HasConversion<int>();
+               }*/
         }
 
         //Nombre de las  tablas
         public virtual DbSet<Persona> Personas { get; set; }
-        public virtual DbSet<Sexo> Sexos{ get; set; }
+        public virtual DbSet<Sexo> Sexos { get; set; }
         public virtual DbSet<Paciente> Pacientes { get; set; }
         public virtual DbSet<Especialidad> Especialidades { get; set; }
         //public virtual DbSet<Rol> Roles { get; set; }
-       // public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
+        // public virtual DbSet<EstadoUsuario> EstadoUsuarios { get; set; }
         public virtual DbSet<DiaSemana> DiasSemana { get; set; }
-        public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos{ get; set; }
+        public virtual DbSet<DisponibilidadMedico> DisponibilidadMedicos { get; set; }
         public DbSet<Medico> Medicos { get; set; }
-        public DbSet<Administrativo> Administrativos{ get; set; }
-        
+        public DbSet<Administrativo> Administrativos { get; set; }
+
         public DbSet<Turno> Turnos { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
