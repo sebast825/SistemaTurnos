@@ -105,8 +105,9 @@ public class HorariosDisponiblesporDisponibilidadTest
             GetTurnos,
             dateHoy,
             DataTurnoTest.GetHorarioDisponiblesResponse());
-
+      
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
+
 
     }
     [TestMethod]
@@ -135,8 +136,10 @@ public class HorariosDisponiblesporDisponibilidadTest
             GetTurnos,
             dateHoy,
             DataTurnoTest.GetHorarioDisponiblesResponse());
-
+   
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
+        
+
 
     }
 
@@ -146,8 +149,8 @@ public class HorariosDisponiblesporDisponibilidadTest
 
         List<TimeSpan> horariosEsperados = new List<TimeSpan>()
         {
-             new TimeSpan(13, 0, 0),
-
+             new TimeSpan(13, 0, 0)
+       
 
         };
         List<Turno> GetTurnos = new List<Turno>()
@@ -155,7 +158,12 @@ public class HorariosDisponiblesporDisponibilidadTest
             new Turno{
                 MedicoId = 5,
                 PacienteId = 3,
-                Fecha = DateTime.Today.AddHours(13).AddMinutes(25),
+                Fecha = DateTime.Today.AddHours(13).AddMinutes(20),
+            },
+              new Turno{
+                MedicoId = 5,
+                PacienteId = 3,
+                Fecha = DateTime.Today.AddHours(13).AddMinutes(40),
             },
         };
 
@@ -168,7 +176,6 @@ public class HorariosDisponiblesporDisponibilidadTest
             DataTurnoTest.GetHorarioDisponiblesResponse());
 
         CollectionAssert.AreEqual(horariosEsperados, result.Horario);
-
     }
 
     [TestMethod]

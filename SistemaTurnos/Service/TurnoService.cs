@@ -200,7 +200,7 @@ namespace SistemaTurnos.Service
             });
             
         }
-        public TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos, 
+        public TurnoHorarioDisponibleResponseDTO ObtenerHorariosDisponiblesPorDisponibilidad(DisponibilidadMedico disp, List<Turno> turnos,
             DateTime dia, TurnoHorarioDisponibleResponseDTO horarioDisponible)
         {
             TimeSpan startShift = disp.StartTime;
@@ -212,34 +212,40 @@ namespace SistemaTurnos.Service
 
             var turnosDia = turnos.Where(turno => turno.Fecha.Day == dia.Day).ToList();
 
+            // Crear un HashSet con los horarios ocupados para acceso rápido
+            var horariosOcupados = new HashSet<TimeSpan>(
+                turnosDia.Select(t => t.Fecha.TimeOfDay)
+            );
             //recorre cada franja de tiempo disponible (en relacion con el tiempo del turno) para ver sie sta disponible
+
+            // Llenar la lista de horarios disponibles
+            //valida justo el horario en que cae cada 20 min, si por algun motivo se hardcodio un turno va a haber una sobreposicion
             for (TimeSpan i = startShift; i < endShift; i += tiempoTurno)
             {
-                if (!HayTurno(i, tiempoTurno, turnosDia))
+
+                if (!horariosOcupados.Contains(i))
                 {
                     horarioDisponible.Horario.Add(i);
                 }
             }
             return horarioDisponible;
-            }
-        public TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
+        }
+
+            public TurnoHorarioDisponibleResponseDTO GenerarHorariosDisponiblesPorDia(List<DisponibilidadMedico> horariosDisponibilidadMedico,
             List<Turno> turnos,DateTime dia, int medicoId)
         {
-            int diaSemanaId = (int)dia.DayOfWeek;
-
-            // Filtrar disponibilidades y turnos para el día específico
-            var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == diaSemanaId).ToList();
-            if (disponibilidadDelDia.Count == 0) return null;
-
             var horarioDisponible = new TurnoHorarioDisponibleResponseDTO();
             horarioDisponible.MedicoId = medicoId;
             horarioDisponible.Fecha = dia;
 
-            foreach (var disp in disponibilidadDelDia)
+            foreach (var disp in horariosDisponibilidadMedico)
             {
                 ObtenerHorariosDisponiblesPorDisponibilidad(disp,turnos,dia,horarioDisponible);
             }
-
+            // Ordenar para garantizar consistencia en los tests
+            horarioDisponible.Horario = horarioDisponible.Horario
+                .OrderBy(h => h)
+                .ToList();
             return horarioDisponible;
             }
 
@@ -260,8 +266,10 @@ namespace SistemaTurnos.Service
 
             // Procesar cada día del mes
             for (var dia = fechaInicio.Date; dia <= fechaFin.Date; dia = dia.AddDays(1))
-            {                
-                var horariosDia = GenerarHorariosDisponiblesPorDia(horariosDisponibilidadMedico, turnos,dia, medicoId);
+            {
+                var disponibilidadDelDia = horariosDisponibilidadMedico.Where(d => d.DiaSemanaId == dia.Day).ToList();
+                if (!disponibilidadDelDia.Any()) continue;
+                var horariosDia = GenerarHorariosDisponiblesPorDia(disponibilidadDelDia, turnos, dia, medicoId);
                 if (horariosDia != null)
                 {
                     horariosDisponiblesPorDia.Add(horariosDia);
